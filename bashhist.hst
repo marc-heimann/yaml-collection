@@ -1,0 +1,500 @@
+  138  kubectl -n kubernetes-dashboard get configmap/kubernetes-dashboard-settings
+  139  kubectl -n kubernetes-dashboard get configmap/kubernetes-dashboard-settings -o yaml
+  140  kubectl -n kubernetes-dashboard get serviceaccount/kubernetes-dashboard -o yaml
+  141  kubectl -n kubernetes-dashboard get secret/kubernetes-dashboard-token-54bj8 -o yaml
+  142  kubectl -n kubernetes-dashboard get clusterrolebinding.rbac.authorization.k8s.io/kubernetes-dashboard -o yaml
+  143  hslm list
+  144  helm list
+  145  kubectl -n kube-system get sa
+  146  kubectl -n kube-system get sa tiller -o yaml
+  147  kubectl -n kube-system get secret tiller-token-df49l -o yaml
+  148  kubectl -n kubernetes-dashboard get deployments
+  149  kubectl -n kubernetes-dashboard get deployments kubernetes-dashboard -o yaml
+  150  kubectl -n kube-system get secret tiller-token-df49l -o yaml
+  151  kubectl -n kube-system get sa
+  152  kubectl -n kubernetes-dashboard get sa
+  153  kubectl -n kube-system get sa default -o yaml
+  154  kubectl -n kubernetes-dashboard get secret default-token-94czn -o yaml
+  155  kubectl -n kubernetes-dashboard get secret default-token-94czn -o yaml
+  156  kubectl -n kubernetes-dashboard get sa default -o yaml
+  157  kubectl -n kubernetes-dashboard get secret default-token-vg8md -o yaml
+  158  kubectl config get-contexts
+  159  kubectl config use-context sl-infra
+  160  kubectl get nodes
+  161  ls -l
+  162  helm list
+  163  cd /mnt/c/Users/g7heimm/Documents/git/inbound-order-service/
+  164  ls -l
+  165  cd target/
+  166  ls -l
+  167  cd helm/
+  168  ls -l
+  169  helm install inbound-order-service-0.0.1-SNAPSHOT.tgz -f inbound-order-service/values.yaml 
+  170  helm install inbound-order-service-0.0.1-SNAPSHOT.tgz -f inbound-order-service/values.yaml 
+  171  exit
+  172  kubectl get pods
+  173  kubectl get pods
+  174  helm repo list
+  175  helm repo add gitlab https://charts.gitlab.io/
+  176  helm repo update
+  177  helm get values gitlab > gitlab.yaml
+  178  helm search gitlab
+  179  helm get values gitlab/gitlab > gitlab.yaml
+  180  helm get values gitlab/gitlab:2.5.5 > gitlab.yaml
+  181  cd yaml/
+  182  vi gitlab-values.yaml
+  183  vi gitlab-values.yaml
+  184  helm install --name gitlab --namespace gitlab gitlab/gitlab -f gitlab-values.yaml 
+  185  vi gitlab-values.yaml
+  186  helm list
+  187  helm delete gitlab
+  188  helm install --name gitlab --namespace gitlab gitlab/gitlab -f gitlab-values.yaml 
+  189  vi gitlab-values.yaml
+  190  helm install --name gitlab --namespace gitlab gitlab/gitlab -f gitlab-values.yaml 
+  191  vi gitlab-values.yaml
+  192  vi gitlab-values.yaml
+  193  vi gitlab-values.yaml
+  194  helm install --name gitlab --namespace gitlab gitlab/gitlab -f gitlab-values.yaml 
+  195  vi gitlab-values.yaml
+  196  helm install --name gitlab --namespace gitlab gitlab/gitlab -f gitlab-values.yaml 
+  197  helm list
+  198  helm repo update 
+  199  helm install --name gitlab --namespace gitlab gitlab/gitlab -f gitlab-values.yaml 
+  200  cd ..
+  201  ls -l
+  202  git clone git@gitlab.com:gitlab-org/charts/gitlab.git
+  203  git clone git@gitlab.com:gitlab-org/charts/gitlab.git
+  204  exit
+  205  kubectl get pods
+  206  kubectl config get-contexts
+  207  kubectl config use-context sl-infra
+  208  kubectl get pods
+  209  kubectl get pods
+  210  ls -l
+  211  cd /mnt/c/Users/g7heimm/Documents/git/
+  212  ls -l
+  213  cd inbound-order-service/
+  214  git stage .
+  215  git commit
+  216  git push
+  217  helm serch gitlab
+  218  helm search gitlab
+  219  kubectl get pods
+  220  kubectl get pods
+  221  kubectl get pods
+  222  kubectl get pods
+  223  kubectl get pods
+  224  kubectl get pods
+  225  kubectl get pods
+  226  kubectl get pods
+  227  kubectl get pods
+  228  kubectl get pods
+  229  kubectl get pods
+  230  kubectl get pods
+  231  kubectl get pods
+  232  kubectl get pods
+  233  git pull
+  234  kubectl describe node worker1
+  235  mvn clean package
+  236  mvn clean package -P build
+  237  ls -l
+  238  ls -l
+  239  cd ..
+  240  ls -l
+  241  rm inbound-order-service/
+  242  rm -R inbound-order-service/
+  243  ls -l
+  244  rm -R inbound-order-service/
+  245  kubectl get pods
+  246  git clone git@gitlab.swisslog.net:g7heimm/inbound-order-service.git
+  247  ls -l
+  248  sudo rm -R inbound-order-service/
+  249  mkdir inbound-order-service
+  250  sudo mkdir inbound-order-service
+  251  exit
+  252  cd /mnt/c/Users/g7heimm/Documents/git/
+  253  ls -l
+  254  git clone git@gitlab.swisslog.net:g7heimm/inbound-order-service.git
+  255  ls -l
+  256  cd inbound-order-service/
+  257  ls -l
+  258  git stage .
+  259  git commit
+  260  git push
+  261  git push
+  262  git stage .
+  263  git commit
+  264  git push
+  265  ping confluence.itss.swisslog.net
+  266  git stage .
+  267  git commit
+  268  git push
+  269  git stage .
+  270  git commit
+  271  git push
+  272  echo $PATH
+  273  echo $M2_HOME
+  274  kubectl proxy
+  275  kubectl proxy
+  276  cd /mnt/c/Users/g7heimm/Documents/git/
+  277  ls -l
+  278  git clone git@gitlab.swisslog.net:g7heimm/inbound-order-service.git
+  279  exit
+  280  ls -l
+  281  cd /mnt/c/Users/g7heimm/Documents/git/
+  282  ls -l
+  283  cd inbound-order-service/
+  284  mvn clean package -P build
+  285  java -jar target/inbound-order-service.jar 
+  286  mvn clean package
+  287  mvn clean package -P build
+  288  cd ..
+  289  ls -l
+  290  exit
+  291  cd /mnt/c/Users/g7heimm/Documents/git/
+  292  ls -l
+  293  rm -R inbound-order-service/
+  294  sudo rm -R inbound-order-service/
+  295  cd ..
+  296  sudo rm -R inbound-order-service/
+  297  exit
+  298  ls -l
+  299  exit
+  300  cd /mnt/c/Users/g7heimm/Documents/git/
+  301  git clone git@gitlab.swisslog.net:g7heimm/inbound-order-service.git
+  302  cd inbound-order-service/
+  303  mvn celan package
+  304  mvn clean package
+  305  mvn clean package -P build
+  306  java -jar target/inbound-order-service.jar 
+  307  exit
+  308  cd /mnt/c/Users/g7heimm/Documents/git/
+  309  cd inbound-order-service/
+  310  java -jar target/inbound-order-service.jar 
+  311  sudo java -jar target/inbound-order-service.jar 
+  312  exit
+  313  cd /mnt/c/Users/g7heimm/Documents/git/
+  314  ls -l
+  315  git clone git@gitlab.swisslog.net:g7heimm/inbound-order-service.git
+  316  cd inbound-order-service/
+  317  mvn clean package
+  318  cd ..
+  319  ls -l
+  320  git clone git@gitlab.swisslog.net:g7heimm/inbound-order-service.git
+  321  git stage .
+  322  git clone git@gitlab.swisslog.net:g7heimm/inbound-order-service.git
+  323  kubectl get ingress
+  324  kubectl get ingress ambassador-ingress -o yaml
+  325  sudo vi /etc/hosts
+  326  kubectlkubectl get pvc apiVersion: extensions/v1beta1
+  327  kind: Ingress
+  328  metadata:
+  329    annotations:
+  330      kubernetes.io/ingress.class: nginx
+  331    creationTimestamp: "2019-09-11T17:42:30Z"
+  332  kubectlkubectl get pvc cicd-server-jenkins -o yaml
+  333  kubectl get pvc cicd-server-jenkins -o yaml
+  334  kubectl edit pvc apiVersion: v1
+  335  kind: PersistentVolumeClaim
+  336  metadata:
+  337    annotations:
+  338  kubectl edit pvc cicd-server-jenkins -o yaml
+  339  kubectl get pods
+  340  kubectl exec -it cicd-server-jenkins-546cf6ffd6-dtqhr bash
+  341  kubectl get pods
+  342  kubectl exec -it cicd-server-jenkins-546cf6ffd6-dtqhr bash
+  343  exit
+  344  ls -l
+  345  cd yaml/
+  346  ls -l
+  347  kubectl get pods -n velero
+  348  kubectl delete pod restic-85bg4 -n velero
+  349  kubectl delete pod restic-85bg4 -n velero --force --grace-period=0
+  350  cd yaml/
+  351  vi velero-values.yaml
+  352  rm velero-values.yaml 
+  353  vi velero-values.yaml
+  354  helm upgrade --install velero --namespace velero -f velero-values.yaml stable/velero
+  355  helm upgrade --install velero --namespace velero -f velero-values.yaml stable/velero
+  356  helm upgrade --install velero --namespace velero -f velero-values.yaml stable/velero
+  357  helm upgrade --install velero --namespace velero -f velero-values.yaml stable/velero
+  358  helm upgrade --install velero --namespace velero -f velero-values.yaml stable/velero
+  359  cat > velero-trust-policy.json <<EOF
+  360  {
+  361      "Version": "2012-10-17",
+  362      "Statement": [
+  363          {
+  364              "Effect": "Allow",
+  365              "Principal": {
+  366                  "Service": "ec2.amazonaws.com"
+  367              },
+  368              "Action": "sts:AssumeRole"
+  369          },
+  370          {
+  371              "Effect": "Allow",
+  372              "Principal": {
+  373                  "AWS": "arn:aws:iam::<AWS_ACCOUNT_ID>:role/<ROLE_CREATED_WHEN_INITIALIZING_KUBE2IAM>"
+  374              },
+  375              "Action": "sts:AssumeRole"
+  376          }
+  377      ]
+  378  }
+  379  EOF
+  380  ls -l
+  381  helm upgrade --install velero --namespace velero -f velero-values.yaml stable/velero
+  382  helm upgrade --install velero --namespace velero -f velero-values.yaml stable/velero
+  383  helm upgrade --install velero --namespace velero -f velero-values.yaml stable/velero
+  384  ls -l
+  385  helm upgrade --install velero --namespace velero --set-file credentials.secretContents.cloud=credentials-velero -f velero-values.yaml stable/velero
+  386  helm upgrade --install velero --namespace velero --set-file credentials.secretContents.cloud=credentials-velero -f velero-values.yaml stable/velero
+  387  helm delete velero --purge
+  388  helm upgrade --install velero --namespace velero -f velero-values.yaml stable/velero
+  389  helm delete velero --purge
+  390  helm upgrade --install velero --namespace velero --set-file credentials.secretContents.cloud=credentials-velero -f velero-values.yaml stable/velero
+  391  cd /mnt/c/Users/g7heimm/Documents/spring-workspace/
+  392  ls -l
+  393  cd wm6-opp-project/
+  394  mvn install
+  395  ls -l
+  396  cd wm6-opp-main
+  397  cd target/
+  398  cd dataloader/
+  399  cd ..
+  400  cd wm6-dataloader/wm6-dataloader/
+  401  ls -l
+  402  ./00-DATA_LOADER.bat 
+  403  exit
+  404  kubectl get pods
+  405  kubectl proxy
+  406  kubectl get pods
+  407  helm list
+  408  helm search gitlab
+  409  helm repo upgrade
+  410  helm repo update
+  411  helm search gitlab
+  412  cd yaml/
+  413  ls -l
+  414  vi gitlab-values.yaml 
+  415  mv gitlab-values.yaml gitlab-values-old.yaml 
+  416  ls -l
+  417  vi gitlab-values.yaml 
+  418  helm install --name gitlab --namespace gitlab gitlab/gitlab -f gitlab-values.yaml 
+  419  helm list
+  420  helm list -all
+  421  helm list --all
+  422  helm install --name gitlab --namespace gitlab gitlab/gitlab -f gitlab-values.yaml 
+  423  helm install --name gitlab --namespace gitlab gitlab/gitlab -f gitlab-values.yaml 
+  424  helm search gitlab
+  425  helm list --all
+  426  kubectl proxy
+  427  helm list
+  428  helm delete velero --purge
+  429  kubectl get nodes
+  430  kubectl get nodes
+  431  exit
+  432  kubectl get pods
+  433  cd /mnt/c/Users/g7heimm/Documents/git/
+  434  ls -l
+  435  rm -R enterprise-portal-old/
+  436  cd inbound-order-service/
+  437  git pull
+  438  cd ..
+  439  ls -l
+  440  cd macro-architecture-documentation/
+  441  git pull
+  442  cd ..
+  443  cd swisslog-kube-infra-docu/
+  444  git pull
+  445  cd ..
+  446  cd simpledns/
+  447  git pull
+  448  git init
+  449  git pull
+  450  cd ..
+  451  cd macro-architecture-documentation/
+  452  git init
+  453  git add .
+  454  git commit -m "initial commit"
+  455  git remote add origin git@github.com:marc-heimann/macro-architecture.git
+  456  git push -u origin master
+  457  git push -u origin master
+  458  cd ..
+  459  ls -l
+  460  cd swisslog-kube-infra-docu/
+  461  git init
+  462  git add .
+  463  git commit -m "Initial commit"
+  464  git remote add origin git@github.com:marc-heimann/kube-infra.git
+  465  git push -u origin master
+  466  cd ..
+  467  ls -l
+  468  git clone git@gitlab.swisslog.net:g7grobm/enterprise-portal-java.git
+  469  ls -l
+  470  cd enterprise-portal-java/
+  471  git init
+  472  git add .
+  473  git add .
+  474  git commit -m "Initial commit"
+  475  git remote add origin git@github.com:marc-heimann/enterprise-portal.git
+  476  git push -u origin master
+  477  git push -u origin master
+  478  git push -u origin master
+  479  cd ..
+  480  ls -l
+  481  cd swisslog-demo-scs/
+  482  git init
+  483  git add .
+  484  git commit -m "Initial commit"
+  485  git remote add origin git@github.com:marc-heimann/demo-scs.git
+  486  git push -u origin master
+  487  cd ..
+  488  cd inbound-order-service/
+  489  git init
+  490  git add .
+  491  git commit -m "Initial commit"
+  492  git remote add origin git@github.com:marc-heimann/inbound-orders.git
+  493  git push -u origin master
+  494  cd ..
+  495  git clone git@gitlab.swisslog.net:g7heimm/swisslog-demo-scs.git
+  496  git clone git@gitlab.swisslog.net:g7heimm/inbound-order-service.git
+  497  exit
+  498  kubectl proxy
+  499  kubectl get pods
+  500  kubectl get  ambassador -o 'go-template={{range .status.loadBalancer.ingress}}{{print .ip "\n"}}{{end}}'
+  501  kubectl get service ambassador -o 'go-template={{range .status.loadBalancer.ingress}}{{print .ip "\n"}}{{end}}'
+  502  helm list
+  503  kubectl create secret generic ambassador-auth-jwt-key --from-literal=jwt-key=$(openssl rand -base64 64|tr -d '\n ')
+  504  kubectl create secret generic ambassador-auth-redis-password --from-literal=redis-password=$(openssl rand -base64 20)
+  505  kubectl create secret generic ambassador-auth-oidc-provider --from-literal=oidc-provider=10.49.145.191
+  506  kubectl create secret generic ambassador-auth-self-url --from-literal=self-url=10.49.145.194
+  507  kubectl create secret generic ambassador-auth-client-id --from-literal=client-id=ambassador
+  508  kubectl create secret generic ambassador-auth-client-secret --from-literal=client-secret=06a92ba0-6045-457d-a419-7c83ebc01962
+  509  kubectl get secrets
+  510  cd yaml/
+  511  vi ambassador-oauth-oidc.yaml
+  512  vi ambassador-oauth-service.yaml
+  513  vi ambassador-oauth-oidc.yaml
+  514  kubectl create -f ambassador-oauth-oidc.yaml 
+  515  vi ambassador-oauth-oidc.yaml
+  516  vi ambassador-oauth-oidc.yaml
+  517  vi ambassador-oauth-oidc.yaml
+  518  kubectl create -f ambassador-oauth-oidc.yaml 
+  519  kubectl delete svc oidc-auth
+  520  kubectl create -f ambassador-oauth-oidc.yaml 
+  521  vi ambassador-oauth-oidc.yaml
+  522  vi ambassador-oauth-oidc.yaml
+  523  kubectl delete svc oidc-auth
+  524  kubectl create -f ambassador-oauth-oidc.yaml 
+  525  vi ambassador-oauth-oidc.yaml
+  526  vi ambassador-oauth-oidc.yaml
+  527  kubectl delete svc oidc-auth
+  528  kubectl create -f ambassador-oauth-oidc.yaml 
+  529  vi ambassador-oauth-oidc.yaml
+  530  kubectl delete svc oidc-auth
+  531  kubectl create -f ambassador-oauth-oidc.yaml 
+  532  vi ambassador-oauth-oidc.yaml
+  533  kubectl delete svc oidc-auth
+  534  kubectl create -f ambassador-oauth-oidc.yaml 
+  535  ls -l
+  536  kubectl create -f ambassador-oauth-service.yaml 
+  537  kubectl create secret generic ambassador-auth-self-url --from-literal=self-url=http://10.49.145.194
+  538  kubectl delete secret ambassador-auth-self-url
+  539  kubectl create secret generic ambassador-auth-self-url --from-literal=self-url=http://10.49.145.194
+  540  kubectl create secret generic ambassador-auth-oidc-provider --from-literal=oidc-provider=http://10.49.145.191/auth/realms/SynQ/protocol/openid-connect/auth
+  541  kubectl delete secret ambassador-auth-oidc-provider
+  542  kubectl create secret generic ambassador-auth-oidc-provider --from-literal=oidc-provider=http://10.49.145.191/auth/realms/SynQ/protocol/openid-connect/auth
+  543  kubectl delete secret ambassador-auth-oidc-provider
+  544  kubectl create secret generic ambassador-auth-oidc-provider --from-literal=oidc-provider=http://10.49.145.191
+  545  kubectl delete secret ambassador-auth-oidc-provider
+  546  kubectl create secret generic ambassador-auth-oidc-provider --from-literal=oidc-provider=http://10.49.145.191/auth/realms/SynQ/protocol/openid-connect/auth
+  547  kubectl delete secret ambassador-auth-oidc-provider
+  548  kubectl create secret generic ambassador-auth-oidc-provider --from-literal=oidc-provider=http://10.49.145.191/auth/realms/SynQ/
+  549  kubectl delete secret ambassador-auth-oidc-provider
+  550  kubectl create secret generic ambassador-auth-oidc-provider --from-literal=oidc-provider=http://10.49.145.191/auth/realms/SynQ
+  551  cd /mnt/c/Users/g7heimm/Documents/git/
+  552  ls -l
+  553  cd simpledns/
+  554  ls -l
+  555  git stage .
+  556  git commit -m "latest version committed"
+  557  git push
+  558  git push -u origin master
+  559  git init
+  560  git remote add origin git@gitlab.swisslog.net:g7heimm/simpledns.git
+  561  git add .
+  562  git commit -m "Initial commit"
+  563  git push -u origin master
+  564  kubectl get pods
+  565  kubectl create secret generic ambassador-auth-self-url --from-literal=self-url=http://api.swisslog.net
+  566  kubectl delete secret ambassador-auth-self-url
+  567  kubectl create secret generic ambassador-auth-self-url --from-literal=self-url=http://api.swisslog.net
+  568  kubectl -n kube-system edit configmap coredns -o yaml
+  569  git init
+  570  git add .
+  571  git commit -m "Initial commit"
+  572  git remote add origin git@github.com:marc-heimann/simpledns.git
+  573  git push -u origin master
+  574  cd ~
+  575  ls -l
+  576  cd yam
+  577  cd yaml/
+  578  ls -l
+  579  kubectl -n kube-system edit configmap coredns -o yaml > coredns-configmap.yaml
+  580  kubectl -n kube-system get configmap coredns -o yaml > coredns-configmap.yaml
+  581  kubectl -n kube-system get configmap coredns -o yaml >> coredns-configmap.yaml
+  582  kubectl -n kube-system get configmap coredns -o yaml
+  583  kubectl -n kube-system get configmap coredns -o yaml > coredns-configmap.yaml
+  584  ls -l
+  585  kubectl get deploy,sts,svc,configmap,secret,pvc,destinationrule,virtualservice,sa,job -default -o yaml --export > infra-default.yaml
+  586  kubectl get deploy,sts,svc,configmap,secret,pvc,destinationrule,virtualservice,sa,job -n default -o yaml --export > infra-default.yaml
+  587  vi infra-default.yaml 
+  588  kubectl get deploy,sts,svc,configmap,secret,pvc,destinationrule,virtualservice,sa,job -n kube-system -o yaml --export > infra-kube-system.yaml
+  589  kubectl get deploy,sts,svc,configmap,secret,pvc,destinationrule,virtualservice,sa,job -n sl-application -o yaml --export > infra-sl-application.yaml
+  590  kubectl get deploy,sts,svc,configmap,secret,pvc,destinationrule,virtualservice,sa,job,clusterrolebinding,VolumeSnapshotLocation,adapter,AppRepository,attributemanifest,AuthorizationPolicy,AuthService,Backup,BackupStorageLocation,BGPConfiguration,BGPPeer,BlockDeviceChain,BlockDevice,CASTemplate,CertificateRequest,Challenge,ClusterInformation,ClusterRbacConfig,ConsulResolver,CStorBackup,CStoreCompletedBackup,CStorPoolInstance,CStorPool,CStorRestor,CStorVolumeClaim,CStorVolumeReplica,CStorVolume,DeleteBackupRequest,disk,downloadrequest,envoyfilter,felixconfiguration,gateway,globalnetworkpolicy,globalnetworkset,handler,hostendpoint, -n default -o yaml --export > infra-default.yaml
+  591  kubectl get deploy,sts,svc,configmap,secret,pvc,destinationrule,virtualservice,sa,job,clusterrolebinding -n sl-application -o yaml --export > infra-sl-application.yaml
+  592  kubectl get deploy,sts,svc,configmap,secret,pvc,destinationrule,virtualservice,sa,job,clusterrolebinding -n default -o yaml --export > infra-default.yaml
+  593  kubectl get deploy,sts,svc,configmap,secret,pvc,destinationrule,virtualservice,sa,job,clusterrolebinding -n kube-system -o yaml --export > infra-kube-system.yaml
+  594  kubectl get deploy,sts,svc,configmap,secret,pvc,destinationrule,virtualservice,sa,job,clusterrolebinding -n openebs -o yaml --export > infra-openebs.yaml
+  595  kubectl get deploy,sts,svc,configmap,secret,pvc,destinationrule,virtualservice,sa,job,clusterrolebinding -n istio-system -o yaml --export > infra-istio-system.yaml
+  596  kubectl get deploy,sts,svc,configmap,secret,pvc,destinationrule,virtualservice,sa,job,clusterrolebinding -n metallb-system -o yaml --export > infra-metallb-system.yaml
+  597  ls -l
+  598  echo "# yaml-collection" >> README.md
+  599  git init
+  600  git add .
+  601  chwon marc:marc gitlab-*
+  602  sudo chwon marc:marc gitlab-*
+  603  sudo chown marc:marc gitlab-*
+  604  ls -l
+  605  sudo chmod rw marc:marc gitlab-*
+  606  sudo chmod +rw marc:marc gitlab-*
+  607  sudo chmod +rw gitlab-*
+  608  ls -l
+  609  git add .
+  610  sudo chmod +rw velero-*
+  611  git add .
+  612  git commit -m "first commit"
+  613  git remote add origin git@github.com:marc-heimann/yaml-collection.git
+  614  git push -u origin master
+  615  kubectl exec -it spinnaker-spinnaker-halyard-0 bash
+  616  kubectl exec -it spinnaker-spinnaker-halyard-0 bash
+  617  vi halyard-config.yaml
+  618  git add halyard-config.yaml 
+  619  git commit
+  620  git push
+  621  kubectl get deploy,sts,svc,configmap,secret,pvc,destinationrule,virtualservice,sa,job,clusterrolebinding,ingress -n metallb-system -o yaml --export > infra-metallb-system.yaml
+  622  kubectl get deploy,sts,svc,configmap,secret,pvc,destinationrule,virtualservice,sa,job,clusterrolebinding,ingress -n istio-system -o yaml --export > infra-istio-system.yaml
+  623  kubectl get deploy,sts,svc,configmap,secret,pvc,destinationrule,virtualservice,sa,job,clusterrolebinding,ingress -n openebs -o yaml --export > infra-openebs.yaml
+  624  kubectl get deploy,sts,svc,configmap,secret,pvc,destinationrule,virtualservice,sa,job,clusterrolebinding,ingress -n kube-system -o yaml --export > infra-kube-system.yaml
+  625  kubectl get deploy,sts,svc,configmap,secret,pvc,destinationrule,virtualservice,sa,job,clusterrolebinding,infra,clusterrole -n default -o yaml --export > infra-default.yaml
+  626  kubectl get deploy,sts,svc,configmap,secret,pvc,destinationrule,virtualservice,sa,job,clusterrolebinding,ingress,clusterrole -n default -o yaml --export > infra-default.yaml
+  627  kubectl get deploy,sts,svc,configmap,secret,pvc,destinationrule,virtualservice,sa,job,clusterrolebinding,ingress,clusterrole -n kube-system -o yaml --export > infra-kube-system.yaml
+  628  kubectl get deploy,sts,svc,configmap,secret,pvc,destinationrule,virtualservice,sa,job,clusterrolebinding,ingress,clusterrole -n istio-system -o yaml --export > infra-istio-system.yaml
+  629  kubectl get deploy,sts,svc,configmap,secret,pvc,destinationrule,virtualservice,sa,job,clusterrolebinding,ingress,clusterrole -n openebs -o yaml --export > infra-openebs.yaml
+  630  kubectl get deploy,sts,svc,configmap,secret,pvc,destinationrule,virtualservice,sa,job,clusterrolebinding,ingress,clusterrole -n metallb-system -o yaml --export > infra-metallb-system.yaml
+  631  kubectl get deploy,sts,svc,configmap,secret,pvc,destinationrule,virtualservice,sa,job,clusterrolebinding,ingress,clusterrole -n kube-system -o yaml --export > infra-kube-system.yaml
+  632  kubectl get deploy,sts,svc,configmap,secret,pvc,destinationrule,virtualservice,sa,job,clusterrolebinding,ingress,clusterrole -n sl-application -o yaml --export > infra-sl-application.yaml
+  633  git commit
+  634  git stage .
+  635  git commit
+  636  git push
+  637  history >> bashhist.hst
