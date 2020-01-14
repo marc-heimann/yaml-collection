@@ -1,0 +1,2673 @@
+apiVersion: v1
+items:
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      artifact.spinnaker.io/location: sl-application
+      artifact.spinnaker.io/name: inboundorders-inbound-order-service
+      artifact.spinnaker.io/type: kubernetes/deployment
+      deployment.kubernetes.io/revision: "1"
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"inboundorders-inbound-order-service","artifact.spinnaker.io/type":"kubernetes/deployment","moniker.spinnaker.io/application":"inboundorderservice","moniker.spinnaker.io/cluster":"deployment inboundorders-inbound-order-service"},"labels":{"app.kubernetes.io/instance":"inboundorders","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"inbound-order-service","app.kubernetes.io/part-of":"inbound-order-service","app.kubernetes.io/version":"0.0.1-SNAPSHOT","helm.sh/chart":"inbound-order-service-0.0.1-SNAPSHOT"},"name":"inboundorders-inbound-order-service","namespace":"sl-application"},"spec":{"replicas":1,"selector":{"matchLabels":{"app.kubernetes.io/instance":"inboundorders","app.kubernetes.io/name":"inbound-order-service"}},"template":{"metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"inboundorders-inbound-order-service","artifact.spinnaker.io/type":"kubernetes/deployment","moniker.spinnaker.io/application":"inboundorderservice","moniker.spinnaker.io/cluster":"deployment inboundorders-inbound-order-service"},"labels":{"app":"inboundorders-inbound-order-service","app.kubernetes.io/instance":"inboundorders","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"inbound-order-service","app.kubernetes.io/part-of":"inbound-order-service"}},"spec":{"containers":[{"image":"container.swisslog.net:30056/sl/inbound-order-service:latest","imagePullPolicy":"Always","livenessProbe":{"httpGet":{"path":"/health/","port":"http"},"initialDelaySeconds":20,"periodSeconds":5},"name":"inbound-order-service","ports":[{"containerPort":80,"name":"http","protocol":"TCP"}],"readinessProbe":{"httpGet":{"path":"/health/","port":"http"},"initialDelaySeconds":20,"periodSeconds":5},"resources":{}}],"imagePullSecrets":[{"name":"nightly-regcred"}],"nodeSelector":{"kubernetes.io/os":"linux"}}}}}
+      moniker.spinnaker.io/application: inboundorderservice
+      moniker.spinnaker.io/cluster: deployment inboundorders-inbound-order-service
+    creationTimestamp: "2019-12-18T12:03:16Z"
+    generation: 1
+    labels:
+      app.kubernetes.io/instance: inboundorders
+      app.kubernetes.io/managed-by: spinnaker
+      app.kubernetes.io/name: inbound-order-service
+      app.kubernetes.io/part-of: inbound-order-service
+      app.kubernetes.io/version: 0.0.1-SNAPSHOT
+      helm.sh/chart: inbound-order-service-0.0.1-SNAPSHOT
+    name: inboundorders-inbound-order-service
+    namespace: sl-application
+    resourceVersion: "35098580"
+    selfLink: /apis/apps/v1/namespaces/sl-application/deployments/inboundorders-inbound-order-service
+    uid: 886d0c80-7bab-4058-a029-a1dae34d8119
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app.kubernetes.io/instance: inboundorders
+        app.kubernetes.io/name: inbound-order-service
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          artifact.spinnaker.io/location: sl-application
+          artifact.spinnaker.io/name: inboundorders-inbound-order-service
+          artifact.spinnaker.io/type: kubernetes/deployment
+          moniker.spinnaker.io/application: inboundorderservice
+          moniker.spinnaker.io/cluster: deployment inboundorders-inbound-order-service
+        creationTimestamp: null
+        labels:
+          app: inboundorders-inbound-order-service
+          app.kubernetes.io/instance: inboundorders
+          app.kubernetes.io/managed-by: spinnaker
+          app.kubernetes.io/name: inbound-order-service
+          app.kubernetes.io/part-of: inbound-order-service
+      spec:
+        containers:
+        - image: container.swisslog.net:30056/sl/inbound-order-service:latest
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /health/
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 20
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: inbound-order-service
+          ports:
+          - containerPort: 80
+            name: http
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /health/
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 20
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        imagePullSecrets:
+        - name: nightly-regcred
+        nodeSelector:
+          kubernetes.io/os: linux
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2019-12-18T12:03:46Z"
+      lastUpdateTime: "2019-12-18T12:03:46Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2019-12-18T12:03:16Z"
+      lastUpdateTime: "2019-12-18T12:03:46Z"
+      message: ReplicaSet "inboundorders-inbound-order-service-646c77c8cf" has successfully
+        progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+    updatedReplicas: 1
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      artifact.spinnaker.io/location: sl-application
+      artifact.spinnaker.io/name: swisslog-demo-scs-demo
+      artifact.spinnaker.io/type: kubernetes/deployment
+      deployment.kubernetes.io/revision: "1"
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"swisslog-demo-scs-demo","artifact.spinnaker.io/type":"kubernetes/deployment","moniker.spinnaker.io/application":"swisslog","moniker.spinnaker.io/cluster":"deployment swisslog-demo-scs-demo"},"labels":{"app":"swisslog-demo-scs","app.kubernetes.io/instance":"swisslog-demo-scs-demo","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"swisslog-demo-scs","app.kubernetes.io/part-of":"swisslog-demo-scs","app.kubernetes.io/version":"0.0.59-SNAPSHOT","helm.sh/chart":"swisslog-demo-scs"},"name":"swisslog-demo-scs-demo","namespace":"sl-application"},"spec":{"replicas":1,"selector":{"matchLabels":{"app.kubernetes.io/instance":"swisslog-demo-scs-demo","app.kubernetes.io/name":"swisslog-demo-scs"}},"template":{"metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"swisslog-demo-scs-demo","artifact.spinnaker.io/type":"kubernetes/deployment","moniker.spinnaker.io/application":"swisslog","moniker.spinnaker.io/cluster":"deployment swisslog-demo-scs-demo"},"labels":{"app":"swisslog-demo-scs-demo","app.kubernetes.io/instance":"swisslog-demo-scs-demo","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"swisslog-demo-scs","app.kubernetes.io/part-of":"swisslog-demo-scs","app.kubernetes.io/version":"0.0.59-SNAPSHOT","helm.sh/chart":"swisslog-demo-scs-0.0.59-SNAPSHOT"}},"spec":{"containers":[{"image":"container.swisslog.net:30056/sl/swisslog-demo-scs:latest","imagePullPolicy":"Always","livenessProbe":{"httpGet":{"path":"/","port":"http"},"initialDelaySeconds":10,"periodSeconds":5},"name":"swisslog-demo-scs","ports":[{"containerPort":80,"name":"http","protocol":"TCP"}],"readinessProbe":{"httpGet":{"path":"/","port":"http"},"initialDelaySeconds":10,"periodSeconds":5},"resources":{}}],"imagePullSecrets":[{"name":"nightly-regcred"}],"nodeSelector":{"kubernetes.io/os":"linux"}}}}}
+      moniker.spinnaker.io/application: swisslog
+      moniker.spinnaker.io/cluster: deployment swisslog-demo-scs-demo
+    creationTimestamp: "2020-01-13T14:43:46Z"
+    generation: 1
+    labels:
+      app: swisslog-demo-scs
+      app.kubernetes.io/instance: swisslog-demo-scs-demo
+      app.kubernetes.io/managed-by: spinnaker
+      app.kubernetes.io/name: swisslog-demo-scs
+      app.kubernetes.io/part-of: swisslog-demo-scs
+      app.kubernetes.io/version: 0.0.59-SNAPSHOT
+      helm.sh/chart: swisslog-demo-scs
+    name: swisslog-demo-scs-demo
+    namespace: sl-application
+    resourceVersion: "43842652"
+    selfLink: /apis/apps/v1/namespaces/sl-application/deployments/swisslog-demo-scs-demo
+    uid: 9971eb3d-66f6-42a6-99eb-c518b81a0989
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app.kubernetes.io/instance: swisslog-demo-scs-demo
+        app.kubernetes.io/name: swisslog-demo-scs
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          artifact.spinnaker.io/location: sl-application
+          artifact.spinnaker.io/name: swisslog-demo-scs-demo
+          artifact.spinnaker.io/type: kubernetes/deployment
+          moniker.spinnaker.io/application: swisslog
+          moniker.spinnaker.io/cluster: deployment swisslog-demo-scs-demo
+        creationTimestamp: null
+        labels:
+          app: swisslog-demo-scs-demo
+          app.kubernetes.io/instance: swisslog-demo-scs-demo
+          app.kubernetes.io/managed-by: spinnaker
+          app.kubernetes.io/name: swisslog-demo-scs
+          app.kubernetes.io/part-of: swisslog-demo-scs
+          app.kubernetes.io/version: 0.0.59-SNAPSHOT
+          helm.sh/chart: swisslog-demo-scs-0.0.59-SNAPSHOT
+      spec:
+        containers:
+        - image: container.swisslog.net:30056/sl/swisslog-demo-scs:latest
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: swisslog-demo-scs
+          ports:
+          - containerPort: 80
+            name: http
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        imagePullSecrets:
+        - name: nightly-regcred
+        nodeSelector:
+          kubernetes.io/os: linux
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2020-01-13T14:44:14Z"
+      lastUpdateTime: "2020-01-13T14:44:14Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2020-01-13T14:43:46Z"
+      lastUpdateTime: "2020-01-13T14:44:14Z"
+      message: ReplicaSet "swisslog-demo-scs-demo-8646479667" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+    updatedReplicas: 1
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      artifact.spinnaker.io/location: sl-application
+      artifact.spinnaker.io/name: asns
+      artifact.spinnaker.io/type: kubernetes/service
+      getambassador.io/config: |2
+
+        ---
+        apiVersion: ambassador/v1
+        kind: Mapping
+        name: asns_get_mapping
+        prefix: /v1/asns
+        service: http://asns.sl-application:80
+        method: GET
+        rewrite: ""
+        ---
+        apiVersion: ambassador/v1
+        kind: Mapping
+        name: asns_put_mapping
+        prefix: /v1/asns
+        service: http://asns.sl-application:80
+        method: PUT
+        rewrite: ""
+        ---
+        apiVersion: ambassador/v1
+        kind: Mapping
+        name: asns_post_mapping
+        prefix: /v1/asns
+        service: http://asns.sl-application:80
+        method: POST
+        rewrite: ""
+        ---
+        apiVersion: ambassador/v1
+        kind: Mapping
+        name: asns_delete_mapping
+        prefix: '/v1/asns'
+        service: http://asns.sl-application:80
+        method: DELETE
+        rewrite: ""
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"asns","artifact.spinnaker.io/type":"kubernetes/service","getambassador.io/config":"\n---\napiVersion: ambassador/v1\nkind: Mapping\nname: asns_get_mapping\nprefix: /v1/asns\nservice: http://asns.sl-application:80\nmethod: GET\nrewrite: \"\"\n---\napiVersion: ambassador/v1\nkind: Mapping\nname: asns_put_mapping\nprefix: /v1/asns\nservice: http://asns.sl-application:80\nmethod: PUT\nrewrite: \"\"\n---\napiVersion: ambassador/v1\nkind: Mapping\nname: asns_post_mapping\nprefix: /v1/asns\nservice: http://asns.sl-application:80\nmethod: POST\nrewrite: \"\"\n---\napiVersion: ambassador/v1\nkind: Mapping\nname: asns_delete_mapping\nprefix: '/v1/asns'\nservice: http://asns.sl-application:80\nmethod: DELETE\nrewrite: \"\"\n","moniker.spinnaker.io/application":"swisslog","moniker.spinnaker.io/cluster":"service asns"},"labels":{"app":"swisslog-demo-scs","app.kubernetes.io/instance":"swisslog-demo-scs-demo","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"swisslog-demo-scs","app.kubernetes.io/part-of":"swisslog-demo-scs","app.kubernetes.io/version":"0.0.59-SNAPSHOT","helm.sh/chart":"swisslog-demo-scs"},"name":"asns","namespace":"sl-application"},"spec":{"ports":[{"name":"http","port":80,"protocol":"TCP","targetPort":"http"}],"selector":{"app.kubernetes.io/instance":"swisslog-demo-scs-demo","app.kubernetes.io/name":"swisslog-demo-scs"},"type":"NodePort"}}
+      moniker.spinnaker.io/application: swisslog
+      moniker.spinnaker.io/cluster: service asns
+    creationTimestamp: "2020-01-13T14:43:45Z"
+    labels:
+      app: swisslog-demo-scs
+      app.kubernetes.io/instance: swisslog-demo-scs-demo
+      app.kubernetes.io/managed-by: spinnaker
+      app.kubernetes.io/name: swisslog-demo-scs
+      app.kubernetes.io/part-of: swisslog-demo-scs
+      app.kubernetes.io/version: 0.0.59-SNAPSHOT
+      helm.sh/chart: swisslog-demo-scs
+    name: asns
+    namespace: sl-application
+    resourceVersion: "43842485"
+    selfLink: /api/v1/namespaces/sl-application/services/asns
+    uid: e9e9b555-59e0-42c7-8edb-f9666825c086
+  spec:
+    clusterIP: 10.96.233.123
+    externalTrafficPolicy: Cluster
+    ports:
+    - name: http
+      nodePort: 31028
+      port: 80
+      protocol: TCP
+      targetPort: http
+    selector:
+      app.kubernetes.io/instance: swisslog-demo-scs-demo
+      app.kubernetes.io/name: swisslog-demo-scs
+    sessionAffinity: None
+    type: NodePort
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      artifact.spinnaker.io/location: sl-application
+      artifact.spinnaker.io/name: demoscsui
+      artifact.spinnaker.io/type: kubernetes/service
+      getambassador.io/config: |2
+
+        ---
+        apiVersion: ambassador/v1
+        kind: Mapping
+        name: demoscsui_get_mapping
+        prefix: /demoscs/
+        service: http://demoscsui.sl-application:80
+        method: GET
+        rewrite: ""
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"demoscsui","artifact.spinnaker.io/type":"kubernetes/service","getambassador.io/config":"\n---\napiVersion: ambassador/v1\nkind: Mapping\nname: demoscsui_get_mapping\nprefix: /demoscs/\nservice: http://demoscsui.sl-application:80\nmethod: GET\nrewrite: \"\"\n","moniker.spinnaker.io/application":"swisslog","moniker.spinnaker.io/cluster":"service demoscsui"},"labels":{"app":"swisslog-demo-scs","app.kubernetes.io/instance":"swisslog-demo-scs-demo","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"swisslog-demo-scs","app.kubernetes.io/part-of":"swisslog-demo-scs","app.kubernetes.io/version":"0.0.59-SNAPSHOT","helm.sh/chart":"swisslog-demo-scs"},"name":"demoscsui","namespace":"sl-application"},"spec":{"ports":[{"name":"http","port":80,"protocol":"TCP","targetPort":"http"}],"selector":{"app.kubernetes.io/instance":"swisslog-demo-scs-demo","app.kubernetes.io/name":"swisslog-demo-scs"},"type":"ClusterIP"}}
+      moniker.spinnaker.io/application: swisslog
+      moniker.spinnaker.io/cluster: service demoscsui
+    creationTimestamp: "2020-01-13T14:43:46Z"
+    labels:
+      app: swisslog-demo-scs
+      app.kubernetes.io/instance: swisslog-demo-scs-demo
+      app.kubernetes.io/managed-by: spinnaker
+      app.kubernetes.io/name: swisslog-demo-scs
+      app.kubernetes.io/part-of: swisslog-demo-scs
+      app.kubernetes.io/version: 0.0.59-SNAPSHOT
+      helm.sh/chart: swisslog-demo-scs
+    name: demoscsui
+    namespace: sl-application
+    resourceVersion: "43842493"
+    selfLink: /api/v1/namespaces/sl-application/services/demoscsui
+    uid: 6c2cea77-0988-41e8-9a1b-5574b86e38bb
+  spec:
+    clusterIP: 10.96.7.228
+    ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: http
+    selector:
+      app.kubernetes.io/instance: swisslog-demo-scs-demo
+      app.kubernetes.io/name: swisslog-demo-scs
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      artifact.spinnaker.io/location: sl-application
+      artifact.spinnaker.io/name: inboundorder
+      artifact.spinnaker.io/type: kubernetes/service
+      getambassador.io/config: |2
+
+        ---
+        apiVersion: ambassador/v1
+        kind: Mapping
+        name: inboundorder_get_mapping
+        prefix: /v1/inboundorder
+        service: http://inboundorder.sl-application:80
+        method: GET
+        rewrite: ""
+        ---
+        apiVersion: ambassador/v1
+        kind: Mapping
+        name: inboundorder_put_mapping
+        prefix: /v1/inboundorder
+        service: http://inboundorder.sl-application:80
+        method: PUT
+        rewrite: ""
+        ---
+        apiVersion: ambassador/v1
+        kind: Mapping
+        name: inboundorder_post_mapping
+        prefix: /v1/inboundorder
+        service: http://inboundorder.sl-application:80
+        method: POST
+        rewrite: ""
+        ---
+        apiVersion: ambassador/v1
+        kind: Mapping
+        name: inboundorder_delete_mapping
+        prefix: /v1/inboundorder
+        service: http://inboundorder.sl-application:80
+        method: DELETE
+        rewrite: ""
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"inboundorder","artifact.spinnaker.io/type":"kubernetes/service","getambassador.io/config":"\n---\napiVersion: ambassador/v1\nkind: Mapping\nname: inboundorder_get_mapping\nprefix: /v1/inboundorder\nservice: http://inboundorder.sl-application:80\nmethod: GET\nrewrite: \"\"\n---\napiVersion: ambassador/v1\nkind: Mapping\nname: inboundorder_put_mapping\nprefix: /v1/inboundorder\nservice: http://inboundorder.sl-application:80\nmethod: PUT\nrewrite: \"\"\n---\napiVersion: ambassador/v1\nkind: Mapping\nname: inboundorder_post_mapping\nprefix: /v1/inboundorder\nservice: http://inboundorder.sl-application:80\nmethod: POST\nrewrite: \"\"\n---\napiVersion: ambassador/v1\nkind: Mapping\nname: inboundorder_delete_mapping\nprefix: /v1/inboundorder\nservice: http://inboundorder.sl-application:80\nmethod: DELETE\nrewrite: \"\"\n","moniker.spinnaker.io/application":"inboundorderservice","moniker.spinnaker.io/cluster":"service inboundorder"},"labels":{"app":"inbound-order-service","app.kubernetes.io/instance":"inboundorders","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"inbound-order-service","app.kubernetes.io/part-of":"inbound-order-service","app.kubernetes.io/version":"0.0.1-SNAPSHOT","helm.sh/chart":"inbound-order-service"},"name":"inboundorder","namespace":"sl-application"},"spec":{"ports":[{"name":"http","port":80,"protocol":"TCP","targetPort":"http"}],"selector":{"app.kubernetes.io/instance":"inboundorders","app.kubernetes.io/name":"inbound-order-service"},"type":"NodePort"}}
+      moniker.spinnaker.io/application: inboundorderservice
+      moniker.spinnaker.io/cluster: service inboundorder
+    creationTimestamp: "2019-12-18T12:03:15Z"
+    labels:
+      app: inbound-order-service
+      app.kubernetes.io/instance: inboundorders
+      app.kubernetes.io/managed-by: spinnaker
+      app.kubernetes.io/name: inbound-order-service
+      app.kubernetes.io/part-of: inbound-order-service
+      app.kubernetes.io/version: 0.0.1-SNAPSHOT
+      helm.sh/chart: inbound-order-service
+    name: inboundorder
+    namespace: sl-application
+    resourceVersion: "35098414"
+    selfLink: /api/v1/namespaces/sl-application/services/inboundorder
+    uid: 0a203185-91fa-4e9e-abba-beae943ae303
+  spec:
+    clusterIP: 10.100.182.73
+    externalTrafficPolicy: Cluster
+    ports:
+    - name: http
+      nodePort: 32705
+      port: 80
+      protocol: TCP
+      targetPort: http
+    selector:
+      app.kubernetes.io/instance: inboundorders
+      app.kubernetes.io/name: inbound-order-service
+    sessionAffinity: None
+    type: NodePort
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      artifact.spinnaker.io/location: sl-application
+      artifact.spinnaker.io/name: inboundorders
+      artifact.spinnaker.io/type: kubernetes/service
+      getambassador.io/config: |2
+
+        ---
+        apiVersion: ambassador/v1
+        kind: Mapping
+        name: inboundorders_get_mapping
+        prefix: /v1/inboundorders
+        service: http://inboundorders.sl-application:80
+        method: GET
+        rewrite: ""
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"inboundorders","artifact.spinnaker.io/type":"kubernetes/service","getambassador.io/config":"\n---\napiVersion: ambassador/v1\nkind: Mapping\nname: inboundorders_get_mapping\nprefix: /v1/inboundorders\nservice: http://inboundorders.sl-application:80\nmethod: GET\nrewrite: \"\"\n","moniker.spinnaker.io/application":"inboundorderservice","moniker.spinnaker.io/cluster":"service inboundorders"},"labels":{"app":"inbound-order-service","app.kubernetes.io/instance":"inboundorders","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"inbound-order-service","app.kubernetes.io/part-of":"inbound-order-service","app.kubernetes.io/version":"0.0.1-SNAPSHOT","helm.sh/chart":"inbound-order-service"},"name":"inboundorders","namespace":"sl-application"},"spec":{"ports":[{"name":"http","port":80,"protocol":"TCP","targetPort":"http"}],"selector":{"app.kubernetes.io/instance":"inboundorders","app.kubernetes.io/name":"inbound-order-service"},"type":"ClusterIP"}}
+      moniker.spinnaker.io/application: inboundorderservice
+      moniker.spinnaker.io/cluster: service inboundorders
+    creationTimestamp: "2019-12-18T12:03:15Z"
+    labels:
+      app: inbound-order-service
+      app.kubernetes.io/instance: inboundorders
+      app.kubernetes.io/managed-by: spinnaker
+      app.kubernetes.io/name: inbound-order-service
+      app.kubernetes.io/part-of: inbound-order-service
+      app.kubernetes.io/version: 0.0.1-SNAPSHOT
+      helm.sh/chart: inbound-order-service
+    name: inboundorders
+    namespace: sl-application
+    resourceVersion: "35098419"
+    selfLink: /api/v1/namespaces/sl-application/services/inboundorders
+    uid: be8aaf08-0b62-40be-9da2-746be83f41bd
+  spec:
+    clusterIP: 10.111.128.38
+    ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: http
+    selector:
+      app.kubernetes.io/instance: inboundorders
+      app.kubernetes.io/name: inbound-order-service
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      artifact.spinnaker.io/location: sl-application
+      artifact.spinnaker.io/name: skus
+      artifact.spinnaker.io/type: kubernetes/service
+      getambassador.io/config: |2
+
+        ---
+        apiVersion: ambassador/v1
+        kind: Mapping
+        name: skus_get_mapping
+        prefix: /v1/skus
+        service: http://skus.sl-application:80
+        method: GET
+        rewrite: ""
+        ---
+        apiVersion: ambassador/v1
+        kind: Mapping
+        name: skus_put_mapping
+        prefix: /v1/skus
+        service: http://skus.sl-application:80
+        method: PUT
+        rewrite: ""
+        ---
+        apiVersion: ambassador/v1
+        kind: Mapping
+        name: skus_post_mapping
+        prefix: /v1/skus
+        service: http://skus.sl-application:80
+        method: POST
+        rewrite: ""
+        ---
+        apiVersion: ambassador/v1
+        kind: Mapping
+        name: skus_delete_mapping
+        prefix: /v1/skus
+        service: http://skus.sl-application:80
+        method: DELETE
+        rewrite: ""
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"skus","artifact.spinnaker.io/type":"kubernetes/service","getambassador.io/config":"\n---\napiVersion: ambassador/v1\nkind: Mapping\nname: skus_get_mapping\nprefix: /v1/skus\nservice: http://skus.sl-application:80\nmethod: GET\nrewrite: \"\"\n---\napiVersion: ambassador/v1\nkind: Mapping\nname: skus_put_mapping\nprefix: /v1/skus\nservice: http://skus.sl-application:80\nmethod: PUT\nrewrite: \"\"\n---\napiVersion: ambassador/v1\nkind: Mapping\nname: skus_post_mapping\nprefix: /v1/skus\nservice: http://skus.sl-application:80\nmethod: POST\nrewrite: \"\"\n---\napiVersion: ambassador/v1\nkind: Mapping\nname: skus_delete_mapping\nprefix: /v1/skus\nservice: http://skus.sl-application:80\nmethod: DELETE\nrewrite: \"\"\n","moniker.spinnaker.io/application":"swisslog","moniker.spinnaker.io/cluster":"service skus"},"labels":{"app":"swisslog-demo-scs","app.kubernetes.io/instance":"swisslog-demo-scs-demo","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"swisslog-demo-scs","app.kubernetes.io/part-of":"swisslog-demo-scs","app.kubernetes.io/version":"0.0.59-SNAPSHOT","helm.sh/chart":"swisslog-demo-scs"},"name":"skus","namespace":"sl-application"},"spec":{"ports":[{"name":"http","port":80,"protocol":"TCP","targetPort":"http"}],"selector":{"app.kubernetes.io/instance":"swisslog-demo-scs-demo","app.kubernetes.io/name":"swisslog-demo-scs"},"type":"ClusterIP"}}
+      moniker.spinnaker.io/application: swisslog
+      moniker.spinnaker.io/cluster: service skus
+    creationTimestamp: "2020-01-13T14:43:45Z"
+    labels:
+      app: swisslog-demo-scs
+      app.kubernetes.io/instance: swisslog-demo-scs-demo
+      app.kubernetes.io/managed-by: spinnaker
+      app.kubernetes.io/name: swisslog-demo-scs
+      app.kubernetes.io/part-of: swisslog-demo-scs
+      app.kubernetes.io/version: 0.0.59-SNAPSHOT
+      helm.sh/chart: swisslog-demo-scs
+    name: skus
+    namespace: sl-application
+    resourceVersion: "43842489"
+    selfLink: /api/v1/namespaces/sl-application/services/skus
+    uid: 56429a64-3295-4b2a-81ac-56deac835c72
+  spec:
+    clusterIP: 10.100.172.112
+    ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: http
+    selector:
+      app.kubernetes.io/instance: swisslog-demo-scs-demo
+      app.kubernetes.io/name: swisslog-demo-scs
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  data:
+    ca.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRFNU1EY3pNREE1TURneU5Wb1hEVEk1TURjeU56QTVNRGd5TlZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBS3J0CnIzcHRkK0p3ZTZuK2ljYlA2Z2QydlJicjZuZ0FYR0NpdVJHakJ5MjBjMlBBZ0ZoYjJDRTNKa3NDdWlFMU11b0MKVnNCRWRBL0NZQWtRdDFlazlDZU1SOWdyaDN4MUNCMTFDRHJCeDBtaHRBNXYxS3ZneW5OZDhVdytGemJpdzNxRQpmZ3lsOXlkc1NRTmRQSFFxYitTUVZPZ283a3FSdXhLdkRiQjZvNkU1endOVDJqSnNqQ3NPdWRVMndtRjJXRlhiCnBVYy82Ymkya2puV2lyKzhkZDl4cTRPeFh3Q3hmYUMwNERqdVVCc0cyNHg3U05QMVpUY2ZxU096RzBZdkVNVWQKZXJ4Z3ZjTGQvSmVVQnNCcENxRWc2OUlMY0xRemFGTHpKK29vMjVuRENDc3d5NmUrMXdLTWVlVWdCM29ma0MzNQppM1F3NDdEWWxYZ1lLdkh6VjNNQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFKUXZnQitWNnNWVElrd1NPVTM5V1JwOVhVNVoKZXB5eDZ5NFllTnM4YXhkbGRZdlhDL1NhaC81elFpK0xEWDZiMkszalJXaEY1SFRMb0ZGODU5WjRlS0lrZGNsUApwb3NkTExXRTVGUXlLbFJvY1gyN0xYWkNWMlI3WFFCY2phdzlUd09WUWRUUVU0Z2l2N2grbUFDclZrbmVKbHE0CllhTlg0Rm5Pc0ZRWkNjRWpycWlGZTRMR1ZqSGJoVVV4QmMrcTBpTXY3NFg0Y2w1L3hjdHBub3duOWVJREVZTkoKbE5kYjR1c29GZnFWUGMvSm4yY2p0S1pLc0tubzNBYy9RTmR4c0k4RThvVmhmYmJqM1VYWDBDekFYcloyR3I1eQpnaWpyZFJuYzlXRm1Va2cyalFwdVpnazg0Nm1TbUk1Y3kwVTNaTklLd1ZEcGh2aW9NT3U5YzVKY0NOMD0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+    namespace: c2wtYXBwbGljYXRpb24=
+    token: ZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNklpSjkuZXlKcGMzTWlPaUpyZFdKbGNtNWxkR1Z6TDNObGNuWnBZMlZoWTJOdmRXNTBJaXdpYTNWaVpYSnVaWFJsY3k1cGJ5OXpaWEoyYVdObFlXTmpiM1Z1ZEM5dVlXMWxjM0JoWTJVaU9pSnpiQzFoY0hCc2FXTmhkR2x2YmlJc0ltdDFZbVZ5Ym1WMFpYTXVhVzh2YzJWeWRtbGpaV0ZqWTI5MWJuUXZjMlZqY21WMExtNWhiV1VpT2lKa1pXWmhkV3gwTFhSdmEyVnVMVGxyY1hoMklpd2lhM1ZpWlhKdVpYUmxjeTVwYnk5elpYSjJhV05sWVdOamIzVnVkQzl6WlhKMmFXTmxMV0ZqWTI5MWJuUXVibUZ0WlNJNkltUmxabUYxYkhRaUxDSnJkV0psY201bGRHVnpMbWx2TDNObGNuWnBZMlZoWTJOdmRXNTBMM05sY25acFkyVXRZV05qYjNWdWRDNTFhV1FpT2lJNVlqazVZVEkxT0MwelkyUXlMVFJqWXpNdFltWXdNUzA1T0RRM1pUWXdNMkZoWkdVaUxDSnpkV0lpT2lKemVYTjBaVzA2YzJWeWRtbGpaV0ZqWTI5MWJuUTZjMnd0WVhCd2JHbGpZWFJwYjI0NlpHVm1ZWFZzZENKOS5hLUpBMVFzUGVJMUtiTXNpVUJRQUdONXc3RnN2OGVxYW9XRHpXMEtRVkJrSVo4VEttY1F4OVhyRVhzRm81a3ljQXZqNEJsaE42bjFVMWt4OWxoRDFEMFdnMmhiWGxUNU13eU93RWhNdkQ1WVFjNHhULVcyZF9wVXQyY1d2SHlicnE5VndPQl9UM2o1bndWa1lJMC0zVURsOVdqS1Z2Z2VSX3k1VHVlQXBVbFdkZnM0SmZDNDQ3VUxOZXo5NU5sOGRYR0RKclM0TVZoRFNVdlB4X1MzMHBEbTN6cFMwMG5oNjk1d0I4c0g5UWRlMl8zVmJJSTNNaFVoSHhPOEpua1NYMnlpYVRZa21UUDNwcF8wS0xUbUpUZ0FPYXdESWNMOEV5Qzltd1BHTFkzcnkyMTI1ZlVyR0gzTk5Pc1ZEX0d3X1RPX2dhQUVlTmZyQjRHVFQxeVRJRUE=
+  kind: Secret
+  metadata:
+    annotations:
+      kubernetes.io/service-account.name: default
+      kubernetes.io/service-account.uid: 9b99a258-3cd2-4cc3-bf01-9847e603aade
+    creationTimestamp: "2019-08-19T11:40:13Z"
+    name: default-token-9kqxv
+    namespace: sl-application
+    resourceVersion: "4692017"
+    selfLink: /api/v1/namespaces/sl-application/secrets/default-token-9kqxv
+    uid: c4c2e777-742e-4397-9615-e9b5ee67a416
+  type: kubernetes.io/service-account-token
+- apiVersion: v1
+  data:
+    .dockerconfigjson: eyJhdXRocyI6eyJodHRwczovL2luZGV4LmRvY2tlci5pby92MS8iOnsidXNlcm5hbWUiOiJoZWltYW5uIiwicGFzc3dvcmQiOiJtYXI1YmN4ZyIsImVtYWlsIjoibS5oZWltYW5uQG1lLmNvbSIsImF1dGgiOiJhR1ZwYldGdWJqcHRZWEkxWW1ONFp3PT0ifX19
+  kind: Secret
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","data":{".dockerconfigjson":"eyJhdXRocyI6eyJodHRwczovL2luZGV4LmRvY2tlci5pby92MS8iOnsidXNlcm5hbWUiOiJoZWltYW5uIiwicGFzc3dvcmQiOiJtYXI1YmN4ZyIsImVtYWlsIjoibS5oZWltYW5uQG1lLmNvbSIsImF1dGgiOiJhR1ZwYldGdWJqcHRZWEkxWW1ONFp3PT0ifX19"},"kind":"Secret","metadata":{"annotations":{},"creationTimestamp":"2019-05-14T17:41:22Z","name":"docker-hub-registry-secret","namespace":"sl-application","resourceVersion":"2771247","selfLink":"/api/v1/namespaces/sl-application/secrets/docker-hub-registry-secret","uid":"7d383617-766f-11e9-a929-00505699e9e3"},"type":"kubernetes.io/dockerconfigjson"}
+    creationTimestamp: "2019-08-19T11:40:36Z"
+    name: docker-hub-registry-secret
+    namespace: sl-application
+    resourceVersion: "4692101"
+    selfLink: /api/v1/namespaces/sl-application/secrets/docker-hub-registry-secret
+    uid: 43892184-5fc5-419b-a921-d267b74ee3f7
+  type: kubernetes.io/dockerconfigjson
+- apiVersion: v1
+  data:
+    ca.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRFNU1EY3pNREE1TURneU5Wb1hEVEk1TURjeU56QTVNRGd5TlZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBS3J0CnIzcHRkK0p3ZTZuK2ljYlA2Z2QydlJicjZuZ0FYR0NpdVJHakJ5MjBjMlBBZ0ZoYjJDRTNKa3NDdWlFMU11b0MKVnNCRWRBL0NZQWtRdDFlazlDZU1SOWdyaDN4MUNCMTFDRHJCeDBtaHRBNXYxS3ZneW5OZDhVdytGemJpdzNxRQpmZ3lsOXlkc1NRTmRQSFFxYitTUVZPZ283a3FSdXhLdkRiQjZvNkU1endOVDJqSnNqQ3NPdWRVMndtRjJXRlhiCnBVYy82Ymkya2puV2lyKzhkZDl4cTRPeFh3Q3hmYUMwNERqdVVCc0cyNHg3U05QMVpUY2ZxU096RzBZdkVNVWQKZXJ4Z3ZjTGQvSmVVQnNCcENxRWc2OUlMY0xRemFGTHpKK29vMjVuRENDc3d5NmUrMXdLTWVlVWdCM29ma0MzNQppM1F3NDdEWWxYZ1lLdkh6VjNNQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFKUXZnQitWNnNWVElrd1NPVTM5V1JwOVhVNVoKZXB5eDZ5NFllTnM4YXhkbGRZdlhDL1NhaC81elFpK0xEWDZiMkszalJXaEY1SFRMb0ZGODU5WjRlS0lrZGNsUApwb3NkTExXRTVGUXlLbFJvY1gyN0xYWkNWMlI3WFFCY2phdzlUd09WUWRUUVU0Z2l2N2grbUFDclZrbmVKbHE0CllhTlg0Rm5Pc0ZRWkNjRWpycWlGZTRMR1ZqSGJoVVV4QmMrcTBpTXY3NFg0Y2w1L3hjdHBub3duOWVJREVZTkoKbE5kYjR1c29GZnFWUGMvSm4yY2p0S1pLc0tubzNBYy9RTmR4c0k4RThvVmhmYmJqM1VYWDBDekFYcloyR3I1eQpnaWpyZFJuYzlXRm1Va2cyalFwdVpnazg0Nm1TbUk1Y3kwVTNaTklLd1ZEcGh2aW9NT3U5YzVKY0NOMD0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+    namespace: c2wtYXBwbGljYXRpb24=
+    token: ZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNklpSjkuZXlKcGMzTWlPaUpyZFdKbGNtNWxkR1Z6TDNObGNuWnBZMlZoWTJOdmRXNTBJaXdpYTNWaVpYSnVaWFJsY3k1cGJ5OXpaWEoyYVdObFlXTmpiM1Z1ZEM5dVlXMWxjM0JoWTJVaU9pSnpiQzFoY0hCc2FXTmhkR2x2YmlJc0ltdDFZbVZ5Ym1WMFpYTXVhVzh2YzJWeWRtbGpaV0ZqWTI5MWJuUXZjMlZqY21WMExtNWhiV1VpT2lKbGJuUmxjbkJ5YVhObExYQnZjblJoYkMxellTMTBiMnRsYmkwMGJYZG1jU0lzSW10MVltVnlibVYwWlhNdWFXOHZjMlZ5ZG1salpXRmpZMjkxYm5RdmMyVnlkbWxqWlMxaFkyTnZkVzUwTG01aGJXVWlPaUpsYm5SbGNuQnlhWE5sTFhCdmNuUmhiQzF6WVNJc0ltdDFZbVZ5Ym1WMFpYTXVhVzh2YzJWeWRtbGpaV0ZqWTI5MWJuUXZjMlZ5ZG1salpTMWhZMk52ZFc1MExuVnBaQ0k2SWpReE9XRmxOREk1TFdOaU1ESXROR0ZrT0MxaE5XUmpMVGRpTldJellqUmpZbVZtT1NJc0luTjFZaUk2SW5ONWMzUmxiVHB6WlhKMmFXTmxZV05qYjNWdWREcHpiQzFoY0hCc2FXTmhkR2x2YmpwbGJuUmxjbkJ5YVhObExYQnZjblJoYkMxellTSjkuTTkySkR5cHprbGQ0SWJyWXVCTU5YTHJ4N2RIWjRadXc2UkQyZkFYcm1EamFKWFkyckJLOTkwNXBFMHg0eWNKY29iOFdiWXFkUU1yNWJuSjJwalM4Ny1jaWVYVXpWWTNwUnJHLVc3eFNCb0lORzFqU0tCM01GMHM1NmNWYWRjYzJ0VnBITGp0OWRROFlnUW9kYzIzaTdXdnZCRFhpYi11bDgzWGtmWmxfX2xOT3hQRk9VYTBUREhKaGVtWUxWMWh4RHM2WnBhZUVPYkYtNFNuVmUyTURvZFlZbFJXeWFLclNOLXRvdFRFdVl3dG04QVFNeWhNM1FJa2ZIcmpOdUZscUROUEhKYzV1WmxrRzRWaExWM1VuRXVCcldWR2UtOHFiWDI2dC1ubS1PU3FCdmw2dUF2bHR3MDB3OWdDVTlfMm90R1hYSDRJY1VJWTFjQkFBUXhnZ0tB
+  kind: Secret
+  metadata:
+    annotations:
+      kubernetes.io/service-account.name: enterprise-portal-sa
+      kubernetes.io/service-account.uid: 419ae429-cb02-4ad8-a5dc-7b5b3b4cbef9
+    creationTimestamp: "2019-11-04T00:24:00Z"
+    name: enterprise-portal-sa-token-4mwfq
+    namespace: sl-application
+    resourceVersion: "21653755"
+    selfLink: /api/v1/namespaces/sl-application/secrets/enterprise-portal-sa-token-4mwfq
+    uid: b986aab5-bcd3-4854-aa4d-6bb14a9acdaa
+  type: kubernetes.io/service-account-token
+- apiVersion: v1
+  data:
+    cert-chain.pem: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURKakNDQWc2Z0F3SUJBZ0lRUC90WVQ1T1FTZ3g4Q1FxeTRxOHg4ekFOQmdrcWhraUc5dzBCQVFzRkFEQVkKTVJZd0ZBWURWUVFLRXcxamJIVnpkR1Z5TG14dlkyRnNNQjRYRFRFNU1USXdOakEzTlRRek5Wb1hEVEl3TURNdwpOVEEzTlRRek5Wb3dBRENDQVNJd0RRWUpLb1pJaHZjTkFRRUJCUUFEZ2dFUEFEQ0NBUW9DZ2dFQkFOK1VPdEdNClNoUElsZUcwRzFGSk93YzdCOWU2OEZ6U2NBYWJPUWdjVFFxWmtjNHNhNEJEQi9HTHoyY3RhTklHQ0RtbVRtcG8KZE1kbXNVWjkyYUlkZnM2WlJvUzNqZXdJN295bkpXeDZtaHlqVDVYRXQ2OG1FeVhSYS83d3ZpQittdDREZmE3UQpEa0ppR0x1STFjNXgzbEZ0a0E1YS81VWNSQ1F1SFhDcUQwNGZuZE1TOHJad1pYcmd6MjZlUmQySU1RRHBPUzl2CmJubGdBNnF2K2FFRm13bFU1Vkx2ZEpkVHZWVTczQ3dJZitHWGZKNFNzSHFUTjFMVTk4cnJKYXhWbVZhamhsZjEKeWl2QkIrd1pHL2E0VWlwckxtUFlaU2ZRQ2grSHJjYW1ha1h0Q29vL1hoVmVRYTFKMzVxTXZtcnd0c2swb1ZxRQpLV25FYng3TlpHZmFSTjBDQXdFQUFhT0JnekNCZ0RBT0JnTlZIUThCQWY4RUJBTUNCYUF3SFFZRFZSMGxCQll3CkZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQXdHQTFVZEV3RUIvd1FDTUFBd1FRWURWUjBSQVFIL0JEY3cKTllZemMzQnBabVpsT2k4dlkyeDFjM1JsY2k1c2IyTmhiQzl1Y3k5emJDMWhjSEJzYVdOaGRHbHZiaTl6WVM5awpaV1poZFd4ME1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQVVkL3VMUjJJeVRGUVlPdmZwbTFOYTBwR2ZxempiCnFJa0dWckVwSG9xS2M1dk9Cai9XRWVaN1pBUGZlek1LWCtDdUVBYTFBVStYMmRhN3VhS0xVbUV3M3p6aXZENGkKNnZYUVZaelZuZnY5bHhRVXk2WjBoZW5KL0JteERpNDRJbE1FUWdGdmtuekI0QXVvSkptRS85SVJoV1NiZkI1Nwp4SGdINmpqdEp5eW5VcThhU2I2TG1oWXVsVVUyYnIxdGVDazVXcjRqOThrNHc2ckdVT1k3cjV1ZkVpSmZvY0s2CnQ3TVE5YUJBRi9IRVUzbVRsRTYyRlQ4b1lXRUZhY2piOTUra2RzYm51TnBMSXVMblBiSFNINEMwSUFpVldGeC8KVzUxdm0yV2N1TS9VTFVmNnE3enlIOGtuN3hZV2prNHpLQUJxQytKS0dkSWJJODE5aDJzWlBJZWoKLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+    key.pem: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFcGdJQkFBS0NBUUVBMzVRNjBZeEtFOGlWNGJRYlVVazdCenNIMTdyd1hOSndCcHM1Q0J4TkNwbVJ6aXhyCmdFTUg4WXZQWnkxbzBnWUlPYVpPYW1oMHgyYXhSbjNab2gxK3pwbEdoTGVON0FqdWpLY2xiSHFhSEtOUGxjUzMKcnlZVEpkRnIvdkMrSUg2YTNnTjlydEFPUW1JWXU0alZ6bkhlVVcyUURsci9sUnhFSkM0ZGNLb1BUaCtkMHhMeQp0bkJsZXVEUGJwNUYzWWd4QU9rNUwyOXVlV0FEcXEvNW9RV2JDVlRsVXU5MGwxTzlWVHZjTEFoLzRaZDhuaEt3CmVwTTNVdFQzeXVzbHJGV1pWcU9HVi9YS0s4RUg3QmtiOXJoU0ttc3VZOWhsSjlBS0g0ZXR4cVpxUmUwS2lqOWUKRlY1QnJVbmZtb3krYXZDMnlUU2hXb1FwYWNSdkhzMWtaOXBFM1FJREFRQUJBb0lCQVFDeENGa3VsYXdPVURURgoyK3dKaURmU09ONno1bFR1MnI1VHJOTVM1ZjNtMThUSkFRazZMVmw3M0oya2NDTmdzZUFQYmUwSGVxQ0ZSMzQxCmQrODgyNmdPQlBYK25xMGs2Y21oMjdQWldwYnUrQzFMUk5IQlFSL0dRVFlIVHk3czRmTFV1dVRvNTl0eW11UkUKa2t2aHhPNHBnZHlnVVZPeENRbTNzRUFsZHJMWnd0bWoyYkxVbUYvcjB0VFNUUHd0bEVOL0NvdlZMcWM0WG94VwpHTTlRV1B2Z1VhRlkvNktPR28xbm5KY3pPT2xBSks3blFUSElVdzJhOTFYdkV3cUt5Z1F6RXEzTFViMTFKMUY4CmNUNnNNNEJuRTBZYmxwUHpIaml1LzR6SUcyNTVCVFJaS2FjOEZYWG5tOG1wbWdTTlZUdDNOMVBWM3psd0pqUmMKdnYvbTVUcHRBb0dCQVAwOGtQWlpkQ0Vjc1ZxQ0ZwY1RoRU1kVWlEcWZJRk5PL09XdFZ3cXRCZkpkVGtIYWE2KwowWnQvQTl2V2ZYbk1OSDJJVUx0VW9GWm8zMlNFWGFSUzk0ZVJnaGhTQjZQTERHQkdUM2tsSlpFR0tQWndKQ2t4ClFlVXI5N2NOd0RtZE41dFk1eFBheThoWDFweVZTOGFIejh2KzhjVGlaaGZNdFJyYkRqam5tblpEQW9HQkFPSUUKMENUOTZVYktCYU8zQjdVaFpuNnB0K0wzbHEyVC9Jakg5UXNmUStRVkZKVmpEZHV1ZGo3YWJVUXNBVFl5Y1prNgptNzZnNmtwSVdobWxGQlhyUlJVcDViVnlTbm56dkpsaHc4S05TV0p2aEVPQzNpeURoRGI0cnBETzh4eTl5UHBjCnU0eXFkdGFMK28zaW9RaEV6RFd0NEZ2ejVGQmdpN1ZHM042a1RQWmZBb0dCQUk3dEtUQXhhczdwZjl3Q2dqZUEKaDJ6TjFyWEhRc0JEMUN0Mml5UGE0a3h1b3QrdUpHTEJSbEtLREtaK1Y5RnZoTXk1TEQrZTB1UVNTc3RUdmZwcAo3VlV4dGdoOSs5dmhWVG5kVlN1ZDRLY0tvQUgvWnhsc3VMRmM4SEg3cTl1WXRYTFRhWkNXTTkvK1c1MkMwZ0xhClVsampxcGNoNU5kWDdYdWIyVm9hdGQ0N0FvR0JBS2k2aVJ5a2hTcTRsRjgwdTBkSUtQajBBSGdxOTB5YnhwSGkKSEpmeC9qL2VVT0I0OHhhRjluWlRuL0NkblVYMWdJS3dreVpMZ0x4MXFQV3VIQUdGQXF5YSs0WnFUUmtma1RNOApIZVUyam9zeXp4MkxMQXMxSDFYZWJvdGlRM0c0YUxvbTBraGYxWm16SkJnYUVMZFlqTTZpQUhVRTdQUG9MMFBrCkkrejk0UXFuQW9HQkFNdEkrdmVmeWJxYmxXR3QxZ29BTU9zUzMwNkFJR2FsL1o4S21kRDFLK3BrQWFIbVB4ak4KTTNjYXMxYmZjYVhJcUVSRVh1QXYxVXppY3Y3MVZBZUhaQnhJblAxenkrbklqNmt1eXAwWFNZeXQ5S1MxelFZRApUeFo1aVU4L0lnczBQYTVjYzhjZTR4dVcvUFFlRDVmaGhrMmNWT2g3Y3UzdEo0Y3l5Y3g0dmgyQgotLS0tLUVORCBSU0EgUFJJVkFURSBLRVktLS0tLQo=
+    root-cert.pem: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMzVENDQWNXZ0F3SUJBZ0lRZUw2ZmhkY2w0a2lOR0xGL0t0ekhFakFOQmdrcWhraUc5dzBCQVFzRkFEQVkKTVJZd0ZBWURWUVFLRXcxamJIVnpkR1Z5TG14dlkyRnNNQjRYRFRFNU1Ea3dOekEzTURZeU4xb1hEVEk1TURrdwpOREEzTURZeU4xb3dHREVXTUJRR0ExVUVDaE1OWTJ4MWMzUmxjaTVzYjJOaGJEQ0NBU0l3RFFZSktvWklodmNOCkFRRUJCUUFEZ2dFUEFEQ0NBUW9DZ2dFQkFMYjFvMmdKaTgwUUwyM2dmQ250K2xkUExOT1BOWDE5cVVqaWlhbWIKY21jK1ViNCsxUnVhOGI1MzQyTlBpNmNkUlIweEYrOWZEMXZqc1Z3TFJBMS9SQnB4alFCTG43TWJUT1Uyc1gvLwp1MXJaM1VOQm5zUml0NVhBSDRJK2VGTDQ3Uk93bndRKzlpMkU2ZkgvQ1dXbVpkV0hLdWZrUUViK2dwWEFnVVJTCnIwc1kxVFVjQTZYeUh2WmFGLzR3RUx6Ulg1N0F3Zk9lY1VEdHBxVXdlcVhBMVV1MjVseUpUTnZnbVM5Z1VPbncKWVZWSWM5WllBY2xWY3REbWVxYVcxK2Rnb3BwQk9LS1RYQXZMYk52dEVIRTdubHZqK1F1SEgxenEwMnJ0MERjRApQZVVNWFpFQmlibFZVTytld2l6TDdEWm5TRnp3UU5nTEJ2THFDYWl0Tjl2Zm5VOENBd0VBQWFNak1DRXdEZ1lEClZSMFBBUUgvQkFRREFnSUVNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdEUVlKS29aSWh2Y05BUUVMQlFBRGdnRUIKQUozay9CSjN3clhYTWJOSVkwMVJVaGphNEtLblRvSDNUY25DRHIrVDFZRmRRbDl6UXRiU0JSOUhXZWZuUlBJOAp0K0ZNU0srSGFPbFlZRXMrdVNqb0R5RFZIYUhJbGFPYURUOVBaSVZtVFlJcnNjcjd0MnhNa3k1OWFEVXpQR2FsCmg4Wm9menJjb0lGVlRJUGU2TGNZNDNWd3dUMU9ObXdLSE00ODNxcWh4VkNjTHF6L0p2Nlh0eFVORUlwWStKbzAKdXdJWVRhaTU4NHNhMlljRWtWd0JwTDNNOG1MSmt0eDAvZllVNVlIMW1yc3QvcVNhanZ5dW9ydHlJbzVUNE5RSgphRFlCeGNHcFhtNjZHYXFtK0R0Y0RhNjFaa1N3ZVB2NDVyb2Uxem9ZNjRHcDYwS0lTTllkME1mRWJpY0Q3YmpBCllSdGJTTnlRNTVwTEZYNlJEcUhNeDNvPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+  kind: Secret
+  metadata:
+    annotations:
+      istio.io/service-account.name: default
+    creationTimestamp: "2019-09-07T07:53:04Z"
+    name: istio.default
+    namespace: sl-application
+    resourceVersion: "31033719"
+    selfLink: /api/v1/namespaces/sl-application/secrets/istio.default
+    uid: 7026d696-1782-4262-80af-03bb682892d2
+  type: istio.io/key-and-cert
+- apiVersion: v1
+  data:
+    cert-chain.pem: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURORENDQWh5Z0F3SUJBZ0lSQU5tWU5YWnJqNm5PVlVpdHpSaEVvWlF3RFFZSktvWklodmNOQVFFTEJRQXcKR0RFV01CUUdBMVVFQ2hNTlkyeDFjM1JsY2k1c2IyTmhiREFlRncweE9URXlNVGt4TkRRNE5EZGFGdzB5TURBegpNVGd4TkRRNE5EZGFNQUF3Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLQW9JQkFRRE80RW5rCnFpK0s2MjlodTkvM1RKTE9GSmt1enVoRmFJeDRmbC9SQlRnL1ZUOWlwdXhLU1ZoYjhqbE5kTjJDQUcvd3ZHbngKdEhkVnBmczFhMUxBSFBGcWVCdnBmSjZBOEZIcnVjU0RzVzlLTUhoaDlZV3VVeVNSMjVQSXNSbVppYWllcXhZdgpncGJXS0VrRlFxeDBSSVR4YmFKdmEwakx0bUg0SVlJRmxsbElmTXliOFN1RDIxSkszOEIrZVhLZTZGZjFOajAwClFCSC9ZSG05QzBMUWVFa0cxRmQ1ME5nWXVMeTBlazhLcUtTaUZjUmMxSWRmZWU2dGlyVDJ2MzliSjVlQUhFa3oKK1NYUUJES0pNSVVHbVNCYW41Ykd2dmh4QmhBWTU4ZnpFUWJ0SzM2TDhEWEtYaCt2TVN0RUkxTW9PQlloVmNEQgpTUE9EUHdTUWFyU2FLcEovQWdNQkFBR2pnWkF3Z1kwd0RnWURWUjBQQVFIL0JBUURBZ1dnTUIwR0ExVWRKUVFXCk1CUUdDQ3NHQVFVRkJ3TUJCZ2dyQmdFRkJRY0RBakFNQmdOVkhSTUJBZjhFQWpBQU1FNEdBMVVkRVFFQi93UkUKTUVLR1FITndhV1ptWlRvdkwyTnNkWE4wWlhJdWJHOWpZV3d2Ym5NdmMyd3RZWEJ3YkdsallYUnBiMjR2YzJFdgpaVzUwWlhKd2NtbHpaUzF3YjNKMFlXd3RjMkV3RFFZSktvWklodmNOQVFFTEJRQURnZ0VCQUNQWUQ3Uk9hdTcrCkp6WU1yZjBoUkJHdGwwd09SZ3NhcE1kdXVXMFZ4S3JGYW16K2FOMng0aFlPY1IvcjZqUkoydDIyd3ZxaG1mVmYKcytyZHlaWGp1bHhDRWQwUk5UTnB0NlZkS1d2Tk0vUXVpd21BQ3BWV2VEMGdlUWZGVlNtSXJ3U2R1UnowdHZtVgpFc1B3bXJFOEtCaTk0Y012c0ZDNnE1L1BjN3pQSUhydFBwVEhQS0dLL2tOOC9iUks0RnZNeUhFYkFvbWlUdW45CkZxMXFRd29ldythMXdzb2o5dWNYVzYrMkdkRG84YzZ3MG5iOEFBRTkwVkpnSjBpUHlOT01CMTFtK3JxU0xGWGgKWk9PYURxMjRHT29UY3JDelBqamNRcGtNVWxTcmxhOGxDUmJDb1UzRjFnT1lYL05jUnFvdE9LT1A2MUlUcFpuRQpmU0lIMjE5bGpGYz0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+    key.pem: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFcFFJQkFBS0NBUUVBenVCSjVLb3ZpdXR2WWJ2ZjkweVN6aFNaTHM3b1JXaU1lSDVmMFFVNFAxVS9ZcWJzClNrbFlXL0k1VFhUZGdnQnY4THhwOGJSM1ZhWDdOV3RTd0J6eGFuZ2I2WHllZ1BCUjY3bkVnN0Z2U2pCNFlmV0YKcmxNa2tkdVR5TEVabVltb25xc1dMNEtXMWloSkJVS3NkRVNFOFcyaWIydEl5N1poK0NHQ0JaWlpTSHpNbS9FcgpnOXRTU3QvQWZubHludWhYOVRZOU5FQVIvMkI1dlF0QzBIaEpCdFJYZWREWUdMaTh0SHBQQ3Fpa29oWEVYTlNIClgzbnVyWXEwOXI5L1d5ZVhnQnhKTS9rbDBBUXlpVENGQnBrZ1dwK1d4cjc0Y1FZUUdPZkg4eEVHN1N0K2kvQTEKeWw0ZnJ6RXJSQ05US0RnV0lWWEF3VWp6Z3o4RWtHcTBtaXFTZndJREFRQUJBb0lCQVFDL3drODhValEzaFB4OQpqM1NPK3IrcG5wWlBPU004RXlrQ0Y4SWhNY0Z0azB0cDJtaDBnNEFQMm5zYlBSU0dDSG02b0N0a0RIQUJTQldPCjhxaUZ3MDVUN25tUStCN0VUZjdoamhTR0xkYUc0bDcwRG0yWHBTSGt3YkErKzBwTGM3cUZPUGtibU9UUUpnOXAKZk4vMTlmMTAvTGJ3cUhXVnZyMFpENVpDTDVjYkJFalJ6S3gyTExZUEVXbVhoSStRUHRGWnM2aHNaWU45V3NqSQplekg0dXBjalpXQnhvcnlSWjNoR2hRTDluckw0dS9EQVNJNmV0TDluNFdUU1dTWVZ5QzNycjl5bTB0VDJXVW5wCmljdFVKZnY2ak0xWUUyODM2YlNNd21CbFVJWWpZMmM3NU5MMStld0JVeVBUL2xzSTNJNDMyUzZIWDh5L2hvc24KNS85TnNzNkJBb0dCQU9XYjcwdG02cElRbDMybnNOSFRQcVBiSWlSc0E3MTZwNjNUR3c4MnBoa3NvbUp6SzRQOQp6V0JRcVI0TUE0SVhIS2oyMGZNSmxsdk1vT29ZUGxrWVJQMkU0NFF1ZGVFdWRHWXlqbjZvaWRtMTVjMzh4WVNRCnBmZGlYKy9Ib21aZ2ZLbVNaUFo4Wk15b1k5aE9SRXp2dmpqczVQQ3JmbEYxSSt6SFZ3cFU4VmtQQW9HQkFPYW4KZENjenJNak8vaVBpOGU0eWd1ang0MmY5b1FPL0s3TE0rcGQ1NENVSjl1QXR1UUgyZFdSU0tiY3BXalNIK2ltbwpmSmR3c1lqaFI5MmhyWWZtRkpsa1ZONDE4WmhOU1ZZNnpkVFJZdTh3aDhuUVFqVlhiZGw1UzZESHloTjZTVFd6ClVjVjRmOHdjTWxMUDkvRTh6MVNkWUFPREZGUklMZlgrb2pDNlRNK1JBb0dCQUl2alRROHJUSTVnL1dyWTE2bCsKZ2hOaVZwTEtIQjA4dFJ2NkdlcFM2Uzg5T2xHd3lUcEpUdTczTlpIUXovSmFFbVArdkRyT0JJVTVUbkJSQk90VApGZlUvR1Q1VzhBcVpPdUZvdTlmKzVyMTFUT1VLczJ2b2xMVDdnbWVid1IyT2UyVDBnLzZJR3dGMU5oOTZ6N0h2Ci9uekFGMXRwb0RRUW9pcUg2RWVyS0wrUkFvR0JBSXhlcEdXbklTUWtOSzRLVTBtdkc5UkFRVERzUGExV0RuWUcKSVF0R2RJNlYvZFI0ZnZzZXpscDdWai9OdnNQeGJPRWxWSTJsVzZYOTFBcWhka1lhVTdiMlJGL25YRnhmekozWgpzNklzdTVUdFovWDk5QTBhWkJQUnFhRHpkWnRjOUdqbDlJSEV6NkdjRjFRbWxMSVBXKzRXeUhQYXRlaUU5Tk9jClg0QmdJSmJCQW9HQU1Td1pPZEhnUXhnVzJrMUtUZ1FjUEF5UnVwbXFSWG04bTk4SE5OSWthQ29MTVhXQUJSWmEKaXlzSlk2cElFcHM5UGwyZDFiQ0J3NUZLNUdPZm85MXhQWFlBK3ZhWGViTU5HQWM3emdkMDY0NDdPejc1S1JPbApOV0NsQURiOTI2a2ZzZEVvczdhcWVndW91ZXVBZjB1WWhCdGZxY0hCMkxVNmhxQWZza2FVNEV3PQotLS0tLUVORCBSU0EgUFJJVkFURSBLRVktLS0tLQo=
+    root-cert.pem: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMzVENDQWNXZ0F3SUJBZ0lRZUw2ZmhkY2w0a2lOR0xGL0t0ekhFakFOQmdrcWhraUc5dzBCQVFzRkFEQVkKTVJZd0ZBWURWUVFLRXcxamJIVnpkR1Z5TG14dlkyRnNNQjRYRFRFNU1Ea3dOekEzTURZeU4xb1hEVEk1TURrdwpOREEzTURZeU4xb3dHREVXTUJRR0ExVUVDaE1OWTJ4MWMzUmxjaTVzYjJOaGJEQ0NBU0l3RFFZSktvWklodmNOCkFRRUJCUUFEZ2dFUEFEQ0NBUW9DZ2dFQkFMYjFvMmdKaTgwUUwyM2dmQ250K2xkUExOT1BOWDE5cVVqaWlhbWIKY21jK1ViNCsxUnVhOGI1MzQyTlBpNmNkUlIweEYrOWZEMXZqc1Z3TFJBMS9SQnB4alFCTG43TWJUT1Uyc1gvLwp1MXJaM1VOQm5zUml0NVhBSDRJK2VGTDQ3Uk93bndRKzlpMkU2ZkgvQ1dXbVpkV0hLdWZrUUViK2dwWEFnVVJTCnIwc1kxVFVjQTZYeUh2WmFGLzR3RUx6Ulg1N0F3Zk9lY1VEdHBxVXdlcVhBMVV1MjVseUpUTnZnbVM5Z1VPbncKWVZWSWM5WllBY2xWY3REbWVxYVcxK2Rnb3BwQk9LS1RYQXZMYk52dEVIRTdubHZqK1F1SEgxenEwMnJ0MERjRApQZVVNWFpFQmlibFZVTytld2l6TDdEWm5TRnp3UU5nTEJ2THFDYWl0Tjl2Zm5VOENBd0VBQWFNak1DRXdEZ1lEClZSMFBBUUgvQkFRREFnSUVNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdEUVlKS29aSWh2Y05BUUVMQlFBRGdnRUIKQUozay9CSjN3clhYTWJOSVkwMVJVaGphNEtLblRvSDNUY25DRHIrVDFZRmRRbDl6UXRiU0JSOUhXZWZuUlBJOAp0K0ZNU0srSGFPbFlZRXMrdVNqb0R5RFZIYUhJbGFPYURUOVBaSVZtVFlJcnNjcjd0MnhNa3k1OWFEVXpQR2FsCmg4Wm9menJjb0lGVlRJUGU2TGNZNDNWd3dUMU9ObXdLSE00ODNxcWh4VkNjTHF6L0p2Nlh0eFVORUlwWStKbzAKdXdJWVRhaTU4NHNhMlljRWtWd0JwTDNNOG1MSmt0eDAvZllVNVlIMW1yc3QvcVNhanZ5dW9ydHlJbzVUNE5RSgphRFlCeGNHcFhtNjZHYXFtK0R0Y0RhNjFaa1N3ZVB2NDVyb2Uxem9ZNjRHcDYwS0lTTllkME1mRWJpY0Q3YmpBCllSdGJTTnlRNTVwTEZYNlJEcUhNeDNvPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+  kind: Secret
+  metadata:
+    annotations:
+      istio.io/service-account.name: enterprise-portal-sa
+    creationTimestamp: "2019-11-04T00:24:00Z"
+    name: istio.enterprise-portal-sa
+    namespace: sl-application
+    resourceVersion: "35482622"
+    selfLink: /api/v1/namespaces/sl-application/secrets/istio.enterprise-portal-sa
+    uid: c53a9d50-92e8-43e4-924c-c93fec98faaa
+  type: istio.io/key-and-cert
+- apiVersion: v1
+  data:
+    .dockerconfigjson: eyJhdXRocyI6eyJjb250YWluZXIuc3dpc3Nsb2cubmV0OjMwMDU2Ijp7InVzZXJuYW1lIjoiRG9ja2VyTmlnaHRseURlcGxveWVyIiwicGFzc3dvcmQiOiIhU3dpc3Nsb2dEb2NrZXJOaWdodGx5RGVwbG95ZXIiLCJlbWFpbCI6Im1hcmMuaGVpbWFubkBzd2lzc2xvZy5jb20iLCJhdXRoIjoiUkc5amEyVnlUbWxuYUhSc2VVUmxjR3h2ZVdWeU9pRlRkMmx6YzJ4dlowUnZZMnRsY2s1cFoyaDBiSGxFWlhCc2IzbGxjZz09In19fQ==
+  kind: Secret
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","data":{".dockerconfigjson":"eyJhdXRocyI6eyJjb250YWluZXIuc3dpc3Nsb2cubmV0OjMwMDU2Ijp7InVzZXJuYW1lIjoiRG9ja2VyTmlnaHRseURlcGxveWVyIiwicGFzc3dvcmQiOiIhU3dpc3Nsb2dEb2NrZXJOaWdodGx5RGVwbG95ZXIiLCJlbWFpbCI6Im1hcmMuaGVpbWFubkBzd2lzc2xvZy5jb20iLCJhdXRoIjoiUkc5amEyVnlUbWxuYUhSc2VVUmxjR3h2ZVdWeU9pRlRkMmx6YzJ4dlowUnZZMnRsY2s1cFoyaDBiSGxFWlhCc2IzbGxjZz09In19fQ=="},"kind":"Secret","metadata":{"annotations":{},"creationTimestamp":"2019-05-20T09:08:19Z","name":"nightly-regcred","namespace":"sl-application","resourceVersion":"4082289","selfLink":"/api/v1/namespaces/sl-application/secrets/nightly-regcred","uid":"cf9743dc-7ade-11e9-8878-00505699e9e3"},"type":"kubernetes.io/dockerconfigjson"}
+    creationTimestamp: "2019-08-19T11:40:36Z"
+    name: nightly-regcred
+    namespace: sl-application
+    resourceVersion: "4692102"
+    selfLink: /api/v1/namespaces/sl-application/secrets/nightly-regcred
+    uid: 11b88ad3-3b27-48da-83d5-1d0984146eec
+  type: kubernetes.io/dockerconfigjson
+- apiVersion: networking.istio.io/v1alpha3
+  kind: DestinationRule
+  metadata:
+    annotations:
+      artifact.spinnaker.io/location: sl-application
+      artifact.spinnaker.io/name: asn
+      artifact.spinnaker.io/type: kubernetes/DestinationRule.networking.istio.io
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.istio.io/v1alpha3","kind":"DestinationRule","metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"asn","artifact.spinnaker.io/type":"kubernetes/DestinationRule.networking.istio.io","moniker.spinnaker.io/application":"swisslog","moniker.spinnaker.io/cluster":"DestinationRule.networking.istio.io asn"},"labels":{"app":"swisslog-demo-scs","app.kubernetes.io/instance":"swisslog-demo-scs-demo","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"swisslog-demo-scs","app.kubernetes.io/part-of":"swisslog-demo-scs","app.kubernetes.io/version":"0.0.59-SNAPSHOT","helm.sh/chart":"swisslog-demo-scs"},"name":"asn","namespace":"sl-application"},"spec":{"host":"asn","subsets":[{"labels":{"version":"nil"},"name":"latest"}]}}
+      moniker.spinnaker.io/application: swisslog
+      moniker.spinnaker.io/cluster: DestinationRule.networking.istio.io asn
+    creationTimestamp: "2019-11-03T21:50:19Z"
+    generation: 3
+    labels:
+      app: swisslog-demo-scs
+      app.kubernetes.io/instance: swisslog-demo-scs-demo
+      app.kubernetes.io/managed-by: spinnaker
+      app.kubernetes.io/name: swisslog-demo-scs
+      app.kubernetes.io/part-of: swisslog-demo-scs
+      app.kubernetes.io/version: 0.0.59-SNAPSHOT
+      helm.sh/chart: swisslog-demo-scs
+    name: asn
+    namespace: sl-application
+    resourceVersion: "21954487"
+    selfLink: /apis/networking.istio.io/v1alpha3/namespaces/sl-application/destinationrules/asn
+    uid: 5c3d9a44-fa2f-416d-9126-1d2dc275159b
+  spec:
+    host: asn
+    subsets:
+    - labels:
+        version: nil
+      name: latest
+- apiVersion: networking.istio.io/v1alpha3
+  kind: DestinationRule
+  metadata:
+    annotations:
+      artifact.spinnaker.io/location: sl-application
+      artifact.spinnaker.io/name: asns
+      artifact.spinnaker.io/type: kubernetes/DestinationRule.networking.istio.io
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.istio.io/v1alpha3","kind":"DestinationRule","metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"asns","artifact.spinnaker.io/type":"kubernetes/DestinationRule.networking.istio.io","moniker.spinnaker.io/application":"swisslog","moniker.spinnaker.io/cluster":"DestinationRule.networking.istio.io asns"},"labels":{"app":"swisslog-demo-scs","app.kubernetes.io/instance":"swisslog-demo-scs-demo","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"swisslog-demo-scs","app.kubernetes.io/part-of":"swisslog-demo-scs","app.kubernetes.io/version":"0.0.59-SNAPSHOT","helm.sh/chart":"swisslog-demo-scs"},"name":"asns","namespace":"sl-application"},"spec":{"host":"asns","subsets":[{"labels":{"version":"nil"},"name":"latest"}]}}
+      moniker.spinnaker.io/application: swisslog
+      moniker.spinnaker.io/cluster: DestinationRule.networking.istio.io asns
+    creationTimestamp: "2019-11-03T21:50:19Z"
+    generation: 3
+    labels:
+      app: swisslog-demo-scs
+      app.kubernetes.io/instance: swisslog-demo-scs-demo
+      app.kubernetes.io/managed-by: spinnaker
+      app.kubernetes.io/name: swisslog-demo-scs
+      app.kubernetes.io/part-of: swisslog-demo-scs
+      app.kubernetes.io/version: 0.0.59-SNAPSHOT
+      helm.sh/chart: swisslog-demo-scs
+    name: asns
+    namespace: sl-application
+    resourceVersion: "21954488"
+    selfLink: /apis/networking.istio.io/v1alpha3/namespaces/sl-application/destinationrules/asns
+    uid: f264b5ca-d104-4d7a-9d5b-a4f55718a5cb
+  spec:
+    host: asns
+    subsets:
+    - labels:
+        version: nil
+      name: latest
+- apiVersion: networking.istio.io/v1alpha3
+  kind: DestinationRule
+  metadata:
+    annotations:
+      artifact.spinnaker.io/location: sl-application
+      artifact.spinnaker.io/name: demoscsui
+      artifact.spinnaker.io/type: kubernetes/DestinationRule.networking.istio.io
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.istio.io/v1alpha3","kind":"DestinationRule","metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"demoscsui","artifact.spinnaker.io/type":"kubernetes/DestinationRule.networking.istio.io","moniker.spinnaker.io/application":"swisslog","moniker.spinnaker.io/cluster":"DestinationRule.networking.istio.io demoscsui"},"labels":{"app":"swisslog-demo-scs","app.kubernetes.io/instance":"swisslog-demo-scs-demo","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"swisslog-demo-scs","app.kubernetes.io/part-of":"swisslog-demo-scs","app.kubernetes.io/version":"0.0.59-SNAPSHOT","helm.sh/chart":"swisslog-demo-scs"},"name":"demoscsui","namespace":"sl-application"},"spec":{"host":"demoscsui","subsets":[{"labels":{"version":"nil"},"name":"latest"}]}}
+      moniker.spinnaker.io/application: swisslog
+      moniker.spinnaker.io/cluster: DestinationRule.networking.istio.io demoscsui
+    creationTimestamp: "2019-12-05T07:31:02Z"
+    generation: 1
+    labels:
+      app: swisslog-demo-scs
+      app.kubernetes.io/instance: swisslog-demo-scs-demo
+      app.kubernetes.io/managed-by: spinnaker
+      app.kubernetes.io/name: swisslog-demo-scs
+      app.kubernetes.io/part-of: swisslog-demo-scs
+      app.kubernetes.io/version: 0.0.59-SNAPSHOT
+      helm.sh/chart: swisslog-demo-scs
+    name: demoscsui
+    namespace: sl-application
+    resourceVersion: "30716948"
+    selfLink: /apis/networking.istio.io/v1alpha3/namespaces/sl-application/destinationrules/demoscsui
+    uid: 04317fa8-e609-4624-b3f9-4c9c804a4210
+  spec:
+    host: demoscsui
+    subsets:
+    - labels:
+        version: nil
+      name: latest
+- apiVersion: networking.istio.io/v1alpha3
+  kind: DestinationRule
+  metadata:
+    annotations:
+      artifact.spinnaker.io/location: sl-application
+      artifact.spinnaker.io/name: epd
+      artifact.spinnaker.io/type: kubernetes/DestinationRule.networking.istio.io
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.istio.io/v1alpha3","kind":"DestinationRule","metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"epd","artifact.spinnaker.io/type":"kubernetes/DestinationRule.networking.istio.io","moniker.spinnaker.io/application":"enterpriseportaljava","moniker.spinnaker.io/cluster":"DestinationRule.networking.istio.io epd"},"labels":{"app":"enterprise-portal","app.kubernetes.io/instance":"enterprise-portal","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"enterprise-portal","app.kubernetes.io/part-of":"enterprise-portal","app.kubernetes.io/version":"0.1.0-SNAPSHOT","helm.sh/chart":"enterprise-portal"},"name":"epd","namespace":"sl-application"},"spec":{"host":"epd","subsets":[{"labels":{"version":"latest"},"name":"latest"}]}}
+      moniker.spinnaker.io/application: enterpriseportaljava
+      moniker.spinnaker.io/cluster: DestinationRule.networking.istio.io epd
+    creationTimestamp: "2019-11-04T03:48:03Z"
+    generation: 1
+    labels:
+      app: enterprise-portal
+      app.kubernetes.io/instance: enterprise-portal
+      app.kubernetes.io/managed-by: spinnaker
+      app.kubernetes.io/name: enterprise-portal
+      app.kubernetes.io/part-of: enterprise-portal
+      app.kubernetes.io/version: 0.1.0-SNAPSHOT
+      helm.sh/chart: enterprise-portal
+    name: epd
+    namespace: sl-application
+    resourceVersion: "21697859"
+    selfLink: /apis/networking.istio.io/v1alpha3/namespaces/sl-application/destinationrules/epd
+    uid: 61ff6cbf-20ed-437b-98a5-ee576d0ba478
+  spec:
+    host: epd
+    subsets:
+    - labels:
+        version: latest
+      name: latest
+- apiVersion: networking.istio.io/v1alpha3
+  kind: DestinationRule
+  metadata:
+    annotations:
+      artifact.spinnaker.io/location: sl-application
+      artifact.spinnaker.io/name: inboundorder
+      artifact.spinnaker.io/type: kubernetes/DestinationRule.networking.istio.io
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.istio.io/v1alpha3","kind":"DestinationRule","metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"inboundorder","artifact.spinnaker.io/type":"kubernetes/DestinationRule.networking.istio.io","moniker.spinnaker.io/application":"inboundorderservice","moniker.spinnaker.io/cluster":"DestinationRule.networking.istio.io inboundorder"},"labels":{"app":"inbound-order-service","app.kubernetes.io/instance":"inboundorders","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"inbound-order-service","app.kubernetes.io/part-of":"inbound-order-service","app.kubernetes.io/version":"0.0.1-SNAPSHOT","helm.sh/chart":"inbound-order-service"},"name":"inboundorder","namespace":"sl-application"},"spec":{"host":"inboundorder","subsets":[{"labels":{"version":"nil"},"name":"latest"}]}}
+      moniker.spinnaker.io/application: inboundorderservice
+      moniker.spinnaker.io/cluster: DestinationRule.networking.istio.io inboundorder
+    creationTimestamp: "2019-09-13T17:13:33Z"
+    generation: 1
+    labels:
+      app: inbound-order-service
+      app.kubernetes.io/instance: inboundorders
+      app.kubernetes.io/managed-by: spinnaker
+      app.kubernetes.io/name: inbound-order-service
+      app.kubernetes.io/part-of: inbound-order-service
+      app.kubernetes.io/version: 0.0.1-SNAPSHOT
+      helm.sh/chart: inbound-order-service
+    name: inboundorder
+    namespace: sl-application
+    resourceVersion: "34710470"
+    selfLink: /apis/networking.istio.io/v1alpha3/namespaces/sl-application/destinationrules/inboundorder
+    uid: 980d8bcd-84fd-411e-a61c-5f6788b2bf71
+  spec:
+    host: inboundorder
+    subsets:
+    - labels:
+        version: nil
+      name: latest
+- apiVersion: networking.istio.io/v1alpha3
+  kind: DestinationRule
+  metadata:
+    annotations:
+      artifact.spinnaker.io/location: sl-application
+      artifact.spinnaker.io/name: inboundorders
+      artifact.spinnaker.io/type: kubernetes/DestinationRule.networking.istio.io
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.istio.io/v1alpha3","kind":"DestinationRule","metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"inboundorders","artifact.spinnaker.io/type":"kubernetes/DestinationRule.networking.istio.io","moniker.spinnaker.io/application":"inboundorderservice","moniker.spinnaker.io/cluster":"DestinationRule.networking.istio.io inboundorders"},"labels":{"app":"inbound-order-service","app.kubernetes.io/instance":"inboundorders","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"inbound-order-service","app.kubernetes.io/part-of":"inbound-order-service","app.kubernetes.io/version":"0.0.1-SNAPSHOT","helm.sh/chart":"inbound-order-service"},"name":"inboundorders","namespace":"sl-application"},"spec":{"host":"inboundorders","subsets":[{"labels":{"version":"nil"},"name":"latest"}]}}
+      moniker.spinnaker.io/application: inboundorderservice
+      moniker.spinnaker.io/cluster: DestinationRule.networking.istio.io inboundorders
+    creationTimestamp: "2019-09-13T17:13:33Z"
+    generation: 1
+    labels:
+      app: inbound-order-service
+      app.kubernetes.io/instance: inboundorders
+      app.kubernetes.io/managed-by: spinnaker
+      app.kubernetes.io/name: inbound-order-service
+      app.kubernetes.io/part-of: inbound-order-service
+      app.kubernetes.io/version: 0.0.1-SNAPSHOT
+      helm.sh/chart: inbound-order-service
+    name: inboundorders
+    namespace: sl-application
+    resourceVersion: "34710473"
+    selfLink: /apis/networking.istio.io/v1alpha3/namespaces/sl-application/destinationrules/inboundorders
+    uid: 74cbd165-f845-4ab4-9b78-f261f09be315
+  spec:
+    host: inboundorders
+    subsets:
+    - labels:
+        version: nil
+      name: latest
+- apiVersion: networking.istio.io/v1alpha3
+  kind: DestinationRule
+  metadata:
+    annotations:
+      artifact.spinnaker.io/location: sl-application
+      artifact.spinnaker.io/name: sku
+      artifact.spinnaker.io/type: kubernetes/DestinationRule.networking.istio.io
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.istio.io/v1alpha3","kind":"DestinationRule","metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"sku","artifact.spinnaker.io/type":"kubernetes/DestinationRule.networking.istio.io","moniker.spinnaker.io/application":"swisslog","moniker.spinnaker.io/cluster":"DestinationRule.networking.istio.io sku"},"labels":{"app":"swisslog-demo-scs","app.kubernetes.io/instance":"swisslog-demo-scs-demo","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"swisslog-demo-scs","app.kubernetes.io/part-of":"swisslog-demo-scs","app.kubernetes.io/version":"0.0.59-SNAPSHOT","helm.sh/chart":"swisslog-demo-scs"},"name":"sku","namespace":"sl-application"},"spec":{"host":"sku","subsets":[{"labels":{"version":"nil"},"name":"latest"}]}}
+      moniker.spinnaker.io/application: swisslog
+      moniker.spinnaker.io/cluster: DestinationRule.networking.istio.io sku
+    creationTimestamp: "2019-11-03T21:50:19Z"
+    generation: 4
+    labels:
+      app: swisslog-demo-scs
+      app.kubernetes.io/instance: swisslog-demo-scs-demo
+      app.kubernetes.io/managed-by: spinnaker
+      app.kubernetes.io/name: swisslog-demo-scs
+      app.kubernetes.io/part-of: swisslog-demo-scs
+      app.kubernetes.io/version: 0.0.59-SNAPSHOT
+      helm.sh/chart: swisslog-demo-scs
+    name: sku
+    namespace: sl-application
+    resourceVersion: "22172477"
+    selfLink: /apis/networking.istio.io/v1alpha3/namespaces/sl-application/destinationrules/sku
+    uid: e1677cd6-6d14-43d0-ab07-b8bdadc5cc67
+  spec:
+    host: sku
+    subsets:
+    - labels:
+        version: nil
+      name: latest
+- apiVersion: networking.istio.io/v1alpha3
+  kind: DestinationRule
+  metadata:
+    annotations:
+      artifact.spinnaker.io/location: sl-application
+      artifact.spinnaker.io/name: skus
+      artifact.spinnaker.io/type: kubernetes/DestinationRule.networking.istio.io
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.istio.io/v1alpha3","kind":"DestinationRule","metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"skus","artifact.spinnaker.io/type":"kubernetes/DestinationRule.networking.istio.io","moniker.spinnaker.io/application":"swisslog","moniker.spinnaker.io/cluster":"DestinationRule.networking.istio.io skus"},"labels":{"app":"swisslog-demo-scs","app.kubernetes.io/instance":"swisslog-demo-scs-demo","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"swisslog-demo-scs","app.kubernetes.io/part-of":"swisslog-demo-scs","app.kubernetes.io/version":"0.0.59-SNAPSHOT","helm.sh/chart":"swisslog-demo-scs"},"name":"skus","namespace":"sl-application"},"spec":{"host":"skus","subsets":[{"labels":{"version":"nil"},"name":"latest"}]}}
+      moniker.spinnaker.io/application: swisslog
+      moniker.spinnaker.io/cluster: DestinationRule.networking.istio.io skus
+    creationTimestamp: "2019-11-03T21:50:20Z"
+    generation: 3
+    labels:
+      app: swisslog-demo-scs
+      app.kubernetes.io/instance: swisslog-demo-scs-demo
+      app.kubernetes.io/managed-by: spinnaker
+      app.kubernetes.io/name: swisslog-demo-scs
+      app.kubernetes.io/part-of: swisslog-demo-scs
+      app.kubernetes.io/version: 0.0.59-SNAPSHOT
+      helm.sh/chart: swisslog-demo-scs
+    name: skus
+    namespace: sl-application
+    resourceVersion: "21954494"
+    selfLink: /apis/networking.istio.io/v1alpha3/namespaces/sl-application/destinationrules/skus
+    uid: 34d5e4b1-7f54-40c6-bcd2-1413e533251a
+  spec:
+    host: skus
+    subsets:
+    - labels:
+        version: nil
+      name: latest
+- apiVersion: networking.istio.io/v1alpha3
+  kind: DestinationRule
+  metadata:
+    annotations:
+      artifact.spinnaker.io/location: sl-application
+      artifact.spinnaker.io/name: ui
+      artifact.spinnaker.io/type: kubernetes/DestinationRule.networking.istio.io
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.istio.io/v1alpha3","kind":"DestinationRule","metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"ui","artifact.spinnaker.io/type":"kubernetes/DestinationRule.networking.istio.io","moniker.spinnaker.io/application":"swisslog","moniker.spinnaker.io/cluster":"DestinationRule.networking.istio.io ui"},"labels":{"app":"swisslog-demo-scs","app.kubernetes.io/instance":"swisslog-demo-scs-demo","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"swisslog-demo-scs","app.kubernetes.io/part-of":"swisslog-demo-scs","app.kubernetes.io/version":"0.0.59-SNAPSHOT","helm.sh/chart":"swisslog-demo-scs"},"name":"ui","namespace":"sl-application"},"spec":{"host":"ui","subsets":[{"labels":{"version":"nil"},"name":"latest"}]}}
+      moniker.spinnaker.io/application: swisslog
+      moniker.spinnaker.io/cluster: DestinationRule.networking.istio.io ui
+    creationTimestamp: "2019-11-14T13:20:21Z"
+    generation: 1
+    labels:
+      app: swisslog-demo-scs
+      app.kubernetes.io/instance: swisslog-demo-scs-demo
+      app.kubernetes.io/managed-by: spinnaker
+      app.kubernetes.io/name: swisslog-demo-scs
+      app.kubernetes.io/part-of: swisslog-demo-scs
+      app.kubernetes.io/version: 0.0.59-SNAPSHOT
+      helm.sh/chart: swisslog-demo-scs
+    name: ui
+    namespace: sl-application
+    resourceVersion: "24642277"
+    selfLink: /apis/networking.istio.io/v1alpha3/namespaces/sl-application/destinationrules/ui
+    uid: 809a8a83-9dba-4ac3-8527-bf8b1a22e50d
+  spec:
+    host: ui
+    subsets:
+    - labels:
+        version: nil
+      name: latest
+- apiVersion: networking.istio.io/v1alpha3
+  kind: VirtualService
+  metadata:
+    annotations:
+      artifact.spinnaker.io/location: sl-application
+      artifact.spinnaker.io/name: asn
+      artifact.spinnaker.io/type: kubernetes/VirtualService.networking.istio.io
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.istio.io/v1alpha3","kind":"VirtualService","metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"asn","artifact.spinnaker.io/type":"kubernetes/VirtualService.networking.istio.io","moniker.spinnaker.io/application":"swisslog","moniker.spinnaker.io/cluster":"VirtualService.networking.istio.io asn"},"labels":{"app":"swisslog-demo-scs","app.kubernetes.io/instance":"swisslog-demo-scs-demo","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"swisslog-demo-scs","app.kubernetes.io/part-of":"swisslog-demo-scs","app.kubernetes.io/version":"0.0.59-SNAPSHOT","helm.sh/chart":"swisslog-demo-scs"},"name":"asn","namespace":"sl-application"},"spec":{"hosts":["asn"],"http":[{"route":[{"destination":{"host":"asn","subset":"latest"}}]}]}}
+      moniker.spinnaker.io/application: swisslog
+      moniker.spinnaker.io/cluster: VirtualService.networking.istio.io asn
+    creationTimestamp: "2019-11-03T21:50:20Z"
+    generation: 3
+    labels:
+      app: swisslog-demo-scs
+      app.kubernetes.io/instance: swisslog-demo-scs-demo
+      app.kubernetes.io/managed-by: spinnaker
+      app.kubernetes.io/name: swisslog-demo-scs
+      app.kubernetes.io/part-of: swisslog-demo-scs
+      app.kubernetes.io/version: 0.0.59-SNAPSHOT
+      helm.sh/chart: swisslog-demo-scs
+    name: asn
+    namespace: sl-application
+    resourceVersion: "22172486"
+    selfLink: /apis/networking.istio.io/v1alpha3/namespaces/sl-application/virtualservices/asn
+    uid: 7b6a1f37-3fd1-492c-bacc-c3337283a633
+  spec:
+    hosts:
+    - asn
+    http:
+    - route:
+      - destination:
+          host: asn
+          subset: latest
+- apiVersion: networking.istio.io/v1alpha3
+  kind: VirtualService
+  metadata:
+    annotations:
+      artifact.spinnaker.io/location: sl-application
+      artifact.spinnaker.io/name: asns
+      artifact.spinnaker.io/type: kubernetes/VirtualService.networking.istio.io
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.istio.io/v1alpha3","kind":"VirtualService","metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"asns","artifact.spinnaker.io/type":"kubernetes/VirtualService.networking.istio.io","moniker.spinnaker.io/application":"swisslog","moniker.spinnaker.io/cluster":"VirtualService.networking.istio.io asns"},"labels":{"app":"swisslog-demo-scs","app.kubernetes.io/instance":"swisslog-demo-scs-demo","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"swisslog-demo-scs","app.kubernetes.io/part-of":"swisslog-demo-scs","app.kubernetes.io/version":"0.0.59-SNAPSHOT","helm.sh/chart":"swisslog-demo-scs"},"name":"asns","namespace":"sl-application"},"spec":{"hosts":["asns"],"http":[{"route":[{"destination":{"host":"asns","subset":"latest"}}]}]}}
+      moniker.spinnaker.io/application: swisslog
+      moniker.spinnaker.io/cluster: VirtualService.networking.istio.io asns
+    creationTimestamp: "2019-11-03T21:50:20Z"
+    generation: 3
+    labels:
+      app: swisslog-demo-scs
+      app.kubernetes.io/instance: swisslog-demo-scs-demo
+      app.kubernetes.io/managed-by: spinnaker
+      app.kubernetes.io/name: swisslog-demo-scs
+      app.kubernetes.io/part-of: swisslog-demo-scs
+      app.kubernetes.io/version: 0.0.59-SNAPSHOT
+      helm.sh/chart: swisslog-demo-scs
+    name: asns
+    namespace: sl-application
+    resourceVersion: "22172488"
+    selfLink: /apis/networking.istio.io/v1alpha3/namespaces/sl-application/virtualservices/asns
+    uid: 20fd0a16-0f6b-4bb7-b22e-45992bb96156
+  spec:
+    hosts:
+    - asns
+    http:
+    - route:
+      - destination:
+          host: asns
+          subset: latest
+- apiVersion: networking.istio.io/v1alpha3
+  kind: VirtualService
+  metadata:
+    annotations:
+      artifact.spinnaker.io/location: sl-application
+      artifact.spinnaker.io/name: demoscsui
+      artifact.spinnaker.io/type: kubernetes/VirtualService.networking.istio.io
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.istio.io/v1alpha3","kind":"VirtualService","metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"demoscsui","artifact.spinnaker.io/type":"kubernetes/VirtualService.networking.istio.io","moniker.spinnaker.io/application":"swisslog","moniker.spinnaker.io/cluster":"VirtualService.networking.istio.io demoscsui"},"labels":{"app":"swisslog-demo-scs","app.kubernetes.io/instance":"swisslog-demo-scs-demo","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"swisslog-demo-scs","app.kubernetes.io/part-of":"swisslog-demo-scs","app.kubernetes.io/version":"0.0.59-SNAPSHOT","helm.sh/chart":"swisslog-demo-scs"},"name":"demoscsui","namespace":"sl-application"},"spec":{"hosts":["demoscsui"],"http":[{"route":[{"destination":{"host":"demoscsui","subset":"latest"}}]}]}}
+      moniker.spinnaker.io/application: swisslog
+      moniker.spinnaker.io/cluster: VirtualService.networking.istio.io demoscsui
+    creationTimestamp: "2019-12-05T07:31:04Z"
+    generation: 1
+    labels:
+      app: swisslog-demo-scs
+      app.kubernetes.io/instance: swisslog-demo-scs-demo
+      app.kubernetes.io/managed-by: spinnaker
+      app.kubernetes.io/name: swisslog-demo-scs
+      app.kubernetes.io/part-of: swisslog-demo-scs
+      app.kubernetes.io/version: 0.0.59-SNAPSHOT
+      helm.sh/chart: swisslog-demo-scs
+    name: demoscsui
+    namespace: sl-application
+    resourceVersion: "30716961"
+    selfLink: /apis/networking.istio.io/v1alpha3/namespaces/sl-application/virtualservices/demoscsui
+    uid: 47f7394a-94d7-4042-b085-b2200959dc05
+  spec:
+    hosts:
+    - demoscsui
+    http:
+    - route:
+      - destination:
+          host: demoscsui
+          subset: latest
+- apiVersion: networking.istio.io/v1alpha3
+  kind: VirtualService
+  metadata:
+    annotations:
+      artifact.spinnaker.io/location: sl-application
+      artifact.spinnaker.io/name: epd
+      artifact.spinnaker.io/type: kubernetes/VirtualService.networking.istio.io
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.istio.io/v1alpha3","kind":"VirtualService","metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"epd","artifact.spinnaker.io/type":"kubernetes/VirtualService.networking.istio.io","moniker.spinnaker.io/application":"enterpriseportaljava","moniker.spinnaker.io/cluster":"VirtualService.networking.istio.io epd"},"labels":{"app":"enterprise-portal","app.kubernetes.io/instance":"enterprise-portal","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"enterprise-portal","app.kubernetes.io/part-of":"enterprise-portal","app.kubernetes.io/version":"0.1.0-SNAPSHOT","helm.sh/chart":"enterprise-portal"},"name":"epd","namespace":"sl-application"},"spec":{"hosts":["epd"],"http":[{"route":[{"destination":{"host":"epd","subset":"latest"}}]}]}}
+      moniker.spinnaker.io/application: enterpriseportaljava
+      moniker.spinnaker.io/cluster: VirtualService.networking.istio.io epd
+    creationTimestamp: "2019-11-04T03:48:04Z"
+    generation: 1
+    labels:
+      app: enterprise-portal
+      app.kubernetes.io/instance: enterprise-portal
+      app.kubernetes.io/managed-by: spinnaker
+      app.kubernetes.io/name: enterprise-portal
+      app.kubernetes.io/part-of: enterprise-portal
+      app.kubernetes.io/version: 0.1.0-SNAPSHOT
+      helm.sh/chart: enterprise-portal
+    name: epd
+    namespace: sl-application
+    resourceVersion: "21697860"
+    selfLink: /apis/networking.istio.io/v1alpha3/namespaces/sl-application/virtualservices/epd
+    uid: 793beeb2-ad4d-4d57-9688-11170c9870e8
+  spec:
+    hosts:
+    - epd
+    http:
+    - route:
+      - destination:
+          host: epd
+          subset: latest
+- apiVersion: networking.istio.io/v1alpha3
+  kind: VirtualService
+  metadata:
+    annotations:
+      artifact.spinnaker.io/location: sl-application
+      artifact.spinnaker.io/name: inboundorder
+      artifact.spinnaker.io/type: kubernetes/VirtualService.networking.istio.io
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.istio.io/v1alpha3","kind":"VirtualService","metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"inboundorder","artifact.spinnaker.io/type":"kubernetes/VirtualService.networking.istio.io","moniker.spinnaker.io/application":"inboundorderservice","moniker.spinnaker.io/cluster":"VirtualService.networking.istio.io inboundorder"},"labels":{"app":"inbound-order-service","app.kubernetes.io/instance":"inboundorders","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"inbound-order-service","app.kubernetes.io/part-of":"inbound-order-service","app.kubernetes.io/version":"0.0.1-SNAPSHOT","helm.sh/chart":"inbound-order-service"},"name":"inboundorder","namespace":"sl-application"},"spec":{"hosts":["inboundorder"],"http":[{"route":[{"destination":{"host":"inboundorder","subset":"latest"}}]}]}}
+      moniker.spinnaker.io/application: inboundorderservice
+      moniker.spinnaker.io/cluster: VirtualService.networking.istio.io inboundorder
+    creationTimestamp: "2019-09-13T17:13:34Z"
+    generation: 1
+    labels:
+      app: inbound-order-service
+      app.kubernetes.io/instance: inboundorders
+      app.kubernetes.io/managed-by: spinnaker
+      app.kubernetes.io/name: inbound-order-service
+      app.kubernetes.io/part-of: inbound-order-service
+      app.kubernetes.io/version: 0.0.1-SNAPSHOT
+      helm.sh/chart: inbound-order-service
+    name: inboundorder
+    namespace: sl-application
+    resourceVersion: "34710479"
+    selfLink: /apis/networking.istio.io/v1alpha3/namespaces/sl-application/virtualservices/inboundorder
+    uid: 48c5524a-02ce-4c68-afb5-5c4cf4c2a830
+  spec:
+    hosts:
+    - inboundorder
+    http:
+    - route:
+      - destination:
+          host: inboundorder
+          subset: latest
+- apiVersion: networking.istio.io/v1alpha3
+  kind: VirtualService
+  metadata:
+    annotations:
+      artifact.spinnaker.io/location: sl-application
+      artifact.spinnaker.io/name: inboundorders
+      artifact.spinnaker.io/type: kubernetes/VirtualService.networking.istio.io
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.istio.io/v1alpha3","kind":"VirtualService","metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"inboundorders","artifact.spinnaker.io/type":"kubernetes/VirtualService.networking.istio.io","moniker.spinnaker.io/application":"inboundorderservice","moniker.spinnaker.io/cluster":"VirtualService.networking.istio.io inboundorders"},"labels":{"app":"inbound-order-service","app.kubernetes.io/instance":"inboundorders","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"inbound-order-service","app.kubernetes.io/part-of":"inbound-order-service","app.kubernetes.io/version":"0.0.1-SNAPSHOT","helm.sh/chart":"inbound-order-service"},"name":"inboundorders","namespace":"sl-application"},"spec":{"hosts":["inboundorders"],"http":[{"route":[{"destination":{"host":"inboundorders","subset":"latest"}}]}]}}
+      moniker.spinnaker.io/application: inboundorderservice
+      moniker.spinnaker.io/cluster: VirtualService.networking.istio.io inboundorders
+    creationTimestamp: "2019-09-13T17:13:35Z"
+    generation: 1
+    labels:
+      app: inbound-order-service
+      app.kubernetes.io/instance: inboundorders
+      app.kubernetes.io/managed-by: spinnaker
+      app.kubernetes.io/name: inbound-order-service
+      app.kubernetes.io/part-of: inbound-order-service
+      app.kubernetes.io/version: 0.0.1-SNAPSHOT
+      helm.sh/chart: inbound-order-service
+    name: inboundorders
+    namespace: sl-application
+    resourceVersion: "34710482"
+    selfLink: /apis/networking.istio.io/v1alpha3/namespaces/sl-application/virtualservices/inboundorders
+    uid: 207e0056-0e91-42da-896f-3dbdcafdc7e6
+  spec:
+    hosts:
+    - inboundorders
+    http:
+    - route:
+      - destination:
+          host: inboundorders
+          subset: latest
+- apiVersion: networking.istio.io/v1alpha3
+  kind: VirtualService
+  metadata:
+    annotations:
+      artifact.spinnaker.io/location: sl-application
+      artifact.spinnaker.io/name: sku
+      artifact.spinnaker.io/type: kubernetes/VirtualService.networking.istio.io
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.istio.io/v1alpha3","kind":"VirtualService","metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"sku","artifact.spinnaker.io/type":"kubernetes/VirtualService.networking.istio.io","moniker.spinnaker.io/application":"swisslog","moniker.spinnaker.io/cluster":"VirtualService.networking.istio.io sku"},"labels":{"app":"swisslog-demo-scs","app.kubernetes.io/instance":"swisslog-demo-scs-demo","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"swisslog-demo-scs","app.kubernetes.io/part-of":"swisslog-demo-scs","app.kubernetes.io/version":"0.0.59-SNAPSHOT","helm.sh/chart":"swisslog-demo-scs"},"name":"sku","namespace":"sl-application"},"spec":{"hosts":["sku"],"http":[{"route":[{"destination":{"host":"sku","subset":"latest"}}]}]}}
+      moniker.spinnaker.io/application: swisslog
+      moniker.spinnaker.io/cluster: VirtualService.networking.istio.io sku
+    creationTimestamp: "2019-11-03T21:50:21Z"
+    generation: 4
+    labels:
+      app: swisslog-demo-scs
+      app.kubernetes.io/instance: swisslog-demo-scs-demo
+      app.kubernetes.io/managed-by: spinnaker
+      app.kubernetes.io/name: swisslog-demo-scs
+      app.kubernetes.io/part-of: swisslog-demo-scs
+      app.kubernetes.io/version: 0.0.59-SNAPSHOT
+      helm.sh/chart: swisslog-demo-scs
+    name: sku
+    namespace: sl-application
+    resourceVersion: "22172490"
+    selfLink: /apis/networking.istio.io/v1alpha3/namespaces/sl-application/virtualservices/sku
+    uid: 4cb7a891-fbe3-4f06-9837-7deedddbd91a
+  spec:
+    hosts:
+    - sku
+    http:
+    - route:
+      - destination:
+          host: sku
+          subset: latest
+- apiVersion: networking.istio.io/v1alpha3
+  kind: VirtualService
+  metadata:
+    annotations:
+      artifact.spinnaker.io/location: sl-application
+      artifact.spinnaker.io/name: skus
+      artifact.spinnaker.io/type: kubernetes/VirtualService.networking.istio.io
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.istio.io/v1alpha3","kind":"VirtualService","metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"skus","artifact.spinnaker.io/type":"kubernetes/VirtualService.networking.istio.io","moniker.spinnaker.io/application":"swisslog","moniker.spinnaker.io/cluster":"VirtualService.networking.istio.io skus"},"labels":{"app":"swisslog-demo-scs","app.kubernetes.io/instance":"swisslog-demo-scs-demo","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"swisslog-demo-scs","app.kubernetes.io/part-of":"swisslog-demo-scs","app.kubernetes.io/version":"0.0.59-SNAPSHOT","helm.sh/chart":"swisslog-demo-scs"},"name":"skus","namespace":"sl-application"},"spec":{"hosts":["skus"],"http":[{"route":[{"destination":{"host":"skus","subset":"latest"}}]}]}}
+      moniker.spinnaker.io/application: swisslog
+      moniker.spinnaker.io/cluster: VirtualService.networking.istio.io skus
+    creationTimestamp: "2019-11-03T21:50:21Z"
+    generation: 3
+    labels:
+      app: swisslog-demo-scs
+      app.kubernetes.io/instance: swisslog-demo-scs-demo
+      app.kubernetes.io/managed-by: spinnaker
+      app.kubernetes.io/name: swisslog-demo-scs
+      app.kubernetes.io/part-of: swisslog-demo-scs
+      app.kubernetes.io/version: 0.0.59-SNAPSHOT
+      helm.sh/chart: swisslog-demo-scs
+    name: skus
+    namespace: sl-application
+    resourceVersion: "22172491"
+    selfLink: /apis/networking.istio.io/v1alpha3/namespaces/sl-application/virtualservices/skus
+    uid: d6b9a49c-8085-4eed-af3f-22fc60b68b54
+  spec:
+    hosts:
+    - skus
+    http:
+    - route:
+      - destination:
+          host: skus
+          subset: latest
+- apiVersion: networking.istio.io/v1alpha3
+  kind: VirtualService
+  metadata:
+    annotations:
+      artifact.spinnaker.io/location: sl-application
+      artifact.spinnaker.io/name: ui
+      artifact.spinnaker.io/type: kubernetes/VirtualService.networking.istio.io
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.istio.io/v1alpha3","kind":"VirtualService","metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"ui","artifact.spinnaker.io/type":"kubernetes/VirtualService.networking.istio.io","moniker.spinnaker.io/application":"swisslog","moniker.spinnaker.io/cluster":"VirtualService.networking.istio.io ui"},"labels":{"app":"swisslog-demo-scs","app.kubernetes.io/instance":"swisslog-demo-scs-demo","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"swisslog-demo-scs","app.kubernetes.io/part-of":"swisslog-demo-scs","app.kubernetes.io/version":"0.0.59-SNAPSHOT","helm.sh/chart":"swisslog-demo-scs"},"name":"ui","namespace":"sl-application"},"spec":{"hosts":["ui"],"http":[{"route":[{"destination":{"host":"ui","subset":"latest"}}]}]}}
+      moniker.spinnaker.io/application: swisslog
+      moniker.spinnaker.io/cluster: VirtualService.networking.istio.io ui
+    creationTimestamp: "2019-11-14T13:20:23Z"
+    generation: 1
+    labels:
+      app: swisslog-demo-scs
+      app.kubernetes.io/instance: swisslog-demo-scs-demo
+      app.kubernetes.io/managed-by: spinnaker
+      app.kubernetes.io/name: swisslog-demo-scs
+      app.kubernetes.io/part-of: swisslog-demo-scs
+      app.kubernetes.io/version: 0.0.59-SNAPSHOT
+      helm.sh/chart: swisslog-demo-scs
+    name: ui
+    namespace: sl-application
+    resourceVersion: "24642294"
+    selfLink: /apis/networking.istio.io/v1alpha3/namespaces/sl-application/virtualservices/ui
+    uid: 69162933-d4b3-406e-b5c2-eb16c1588cd1
+  spec:
+    hosts:
+    - ui
+    http:
+    - route:
+      - destination:
+          host: ui
+          subset: latest
+- apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    creationTimestamp: "2019-08-19T11:40:13Z"
+    name: default
+    namespace: sl-application
+    resourceVersion: "4692018"
+    selfLink: /api/v1/namespaces/sl-application/serviceaccounts/default
+    uid: 9b99a258-3cd2-4cc3-bf01-9847e603aade
+  secrets:
+  - name: default-token-9kqxv
+- apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    annotations:
+      artifact.spinnaker.io/location: sl-application
+      artifact.spinnaker.io/name: enterprise-portal-sa
+      artifact.spinnaker.io/type: kubernetes/serviceAccount
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"ServiceAccount","metadata":{"annotations":{"artifact.spinnaker.io/location":"sl-application","artifact.spinnaker.io/name":"enterprise-portal-sa","artifact.spinnaker.io/type":"kubernetes/serviceAccount","moniker.spinnaker.io/application":"enterpriseportaljava","moniker.spinnaker.io/cluster":"serviceAccount enterprise-portal-sa"},"labels":{"app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"enterpriseportaljava"},"name":"enterprise-portal-sa","namespace":"sl-application"},"secrets":[{"name":"enterprise-portal-sa-token-vk69d"}]}
+      moniker.spinnaker.io/application: enterpriseportaljava
+      moniker.spinnaker.io/cluster: serviceAccount enterprise-portal-sa
+    creationTimestamp: "2019-11-04T00:24:00Z"
+    labels:
+      app.kubernetes.io/managed-by: spinnaker
+      app.kubernetes.io/name: enterpriseportaljava
+    name: enterprise-portal-sa
+    namespace: sl-application
+    resourceVersion: "21653756"
+    selfLink: /api/v1/namespaces/sl-application/serviceaccounts/enterprise-portal-sa
+    uid: 419ae429-cb02-4ad8-a5dc-7b5b3b4cbef9
+  secrets:
+  - name: enterprise-portal-sa-token-vk69d
+  - name: enterprise-portal-sa-token-4mwfq
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1beta1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"name":"ambassador"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"ambassador"},"subjects":[{"kind":"ServiceAccount","name":"ambassador","namespace":"default"}]}
+    creationTimestamp: "2019-09-11T15:59:06Z"
+    name: ambassador
+    resourceVersion: "8194515"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/ambassador
+    uid: a22e6197-0927-4a49-9a48-0424b76c24ec
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: ambassador
+  subjects:
+  - kind: ServiceAccount
+    name: ambassador
+    namespace: default
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1beta1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"name":"calico-node"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"calico-node"},"subjects":[{"kind":"ServiceAccount","name":"calico-node","namespace":"kube-system"}]}
+    creationTimestamp: "2019-07-30T10:23:05Z"
+    name: calico-node
+    resourceVersion: "8241"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/calico-node
+    uid: eac943b0-9993-4c34-baf1-5c636a1871f3
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: calico-node
+  subjects:
+  - kind: ServiceAccount
+    name: calico-node
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-11-27T08:18:00Z"
+    labels:
+      app: openebs
+      chart: openebs-1.4.0
+      heritage: Tiller
+      release: cas
+    name: cas-openebs
+    resourceVersion: "28263501"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/cas-openebs
+    uid: 7f42d9fa-3f4c-44dd-ac68-c856e3a32ce0
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cas-openebs
+  subjects:
+  - kind: ServiceAccount
+    name: cas-openebs
+    namespace: openebs
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: cluster-admin
+    resourceVersion: "97"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/cluster-admin
+    uid: ea308c04-72ac-4556-85f3-1f2dcd9a76cb
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cluster-admin
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: system:masters
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1beta1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"name":"default-rbac"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"cluster-admin"},"subjects":[{"kind":"ServiceAccount","name":"default","namespace":"default"}]}
+    creationTimestamp: "2019-07-31T08:51:20Z"
+    name: default-rbac
+    resourceVersion: "143399"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/default-rbac
+    uid: 6bc29bba-fb28-4331-8fa9-5733b0447e12
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cluster-admin
+  subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: default
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1beta1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"name":"fabric8-rbac"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"cluster-admin"},"subjects":[{"kind":"ServiceAccount","name":"default","namespace":"default"}]}
+    creationTimestamp: "2019-07-31T08:50:47Z"
+    name: fabric8-rbac
+    resourceVersion: "143346"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/fabric8-rbac
+    uid: c0c27c1b-aa12-4597-9eee-a631d175a43c
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cluster-admin
+  subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: default
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1beta1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"name":"heapster"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"system:heapster"},"subjects":[{"kind":"ServiceAccount","name":"heapster","namespace":"kube-system"}]}
+    creationTimestamp: "2019-07-30T10:35:49Z"
+    name: heapster
+    resourceVersion: "9984"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/heapster
+    uid: e59b789b-ee9c-441d-a2e2-2d842a844455
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:heapster
+  subjects:
+  - kind: ServiceAccount
+    name: heapster
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-08-22T08:50:20Z"
+    labels:
+      app: nginx-ingress
+      chart: nginx-ingress-1.16.1
+      heritage: Tiller
+      release: ingress
+    name: ingress-nginx-ingress
+    resourceVersion: "5086891"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/ingress-nginx-ingress
+    uid: 2a8d9e33-3b61-498f-84a5-81c54216a20a
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: ingress-nginx-ingress
+  subjects:
+  - kind: ServiceAccount
+    name: ingress-nginx-ingress
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"labels":{"app":"security","chart":"security","heritage":"Tiller","release":"istio"},"name":"istio-citadel-istio-system"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"istio-citadel-istio-system"},"subjects":[{"kind":"ServiceAccount","name":"istio-citadel-service-account","namespace":"istio-system"}]}
+    creationTimestamp: "2019-09-07T07:05:53Z"
+    labels:
+      app: security
+      chart: security
+      heritage: Tiller
+      release: istio
+    name: istio-citadel-istio-system
+    resourceVersion: "7514405"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/istio-citadel-istio-system
+    uid: 13c92303-91a7-4301-b7b0-028d2fe5c969
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: istio-citadel-istio-system
+  subjects:
+  - kind: ServiceAccount
+    name: istio-citadel-service-account
+    namespace: istio-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      helm.sh/hook: post-delete
+      helm.sh/hook-delete-policy: hook-succeeded
+      helm.sh/hook-weight: "2"
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRoleBinding","metadata":{"annotations":{"helm.sh/hook":"post-delete","helm.sh/hook-delete-policy":"hook-succeeded","helm.sh/hook-weight":"2"},"labels":{"app":"security","chart":"security","heritage":"Tiller","release":"istio"},"name":"istio-cleanup-secrets-istio-system"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"istio-cleanup-secrets-istio-system"},"subjects":[{"kind":"ServiceAccount","name":"istio-cleanup-secrets-service-account","namespace":"istio-system"}]}
+    creationTimestamp: "2019-09-07T07:52:37Z"
+    labels:
+      app: security
+      chart: security
+      heritage: Tiller
+      release: istio
+    name: istio-cleanup-secrets-istio-system
+    resourceVersion: "7514353"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/istio-cleanup-secrets-istio-system
+    uid: b8e0f6e0-b3ef-4764-bb24-475e61543966
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: istio-cleanup-secrets-istio-system
+  subjects:
+  - kind: ServiceAccount
+    name: istio-cleanup-secrets-service-account
+    namespace: istio-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"labels":{"app":"galley","chart":"galley","heritage":"Tiller","release":"istio"},"name":"istio-galley-admin-role-binding-istio-system"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"istio-galley-istio-system"},"subjects":[{"kind":"ServiceAccount","name":"istio-galley-service-account","namespace":"istio-system"}]}
+    creationTimestamp: "2019-09-07T07:05:53Z"
+    labels:
+      app: galley
+      chart: galley
+      heritage: Tiller
+      release: istio
+    name: istio-galley-admin-role-binding-istio-system
+    resourceVersion: "7514395"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/istio-galley-admin-role-binding-istio-system
+    uid: b37db476-0a4b-4394-9b14-9ca9db9f5428
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: istio-galley-istio-system
+  subjects:
+  - kind: ServiceAccount
+    name: istio-galley-service-account
+    namespace: istio-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-09-07T06:59:15Z"
+    labels:
+      app: istio-init
+      istio: init
+    name: istio-init-admin-role-binding-istio-system
+    resourceVersion: "7507793"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/istio-init-admin-role-binding-istio-system
+    uid: c0b538fa-96e0-4fa2-b88c-e5ed1a8d5be5
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: istio-init-istio-system
+  subjects:
+  - kind: ServiceAccount
+    name: istio-init-service-account
+    namespace: istio-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"labels":{"app":"kiali","chart":"kiali","heritage":"Tiller","release":"istio"},"name":"istio-kiali-admin-role-binding-istio-system"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"kiali"},"subjects":[{"kind":"ServiceAccount","name":"kiali-service-account","namespace":"istio-system"}]}
+    creationTimestamp: "2019-09-07T07:52:39Z"
+    labels:
+      app: kiali
+      chart: kiali
+      heritage: Tiller
+      release: istio
+    name: istio-kiali-admin-role-binding-istio-system
+    resourceVersion: "7514397"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/istio-kiali-admin-role-binding-istio-system
+    uid: 3e1f86dc-0d6b-4f75-88e2-1931b4eb4f32
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: kiali
+  subjects:
+  - kind: ServiceAccount
+    name: kiali-service-account
+    namespace: istio-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"labels":{"app":"mixer","chart":"mixer","heritage":"Tiller","release":"istio"},"name":"istio-mixer-admin-role-binding-istio-system"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"istio-mixer-istio-system"},"subjects":[{"kind":"ServiceAccount","name":"istio-mixer-service-account","namespace":"istio-system"}]}
+    creationTimestamp: "2019-09-07T07:05:53Z"
+    labels:
+      app: mixer
+      chart: mixer
+      heritage: Tiller
+      release: istio
+    name: istio-mixer-admin-role-binding-istio-system
+    resourceVersion: "7514400"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/istio-mixer-admin-role-binding-istio-system
+    uid: a20712ca-071e-4424-90fc-3a3eead0f816
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: istio-mixer-istio-system
+  subjects:
+  - kind: ServiceAccount
+    name: istio-mixer-service-account
+    namespace: istio-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"labels":{"chart":"istio-1.2.5"},"name":"istio-multi"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"istio-reader"},"subjects":[{"kind":"ServiceAccount","name":"istio-multi","namespace":"istio-system"}]}
+    creationTimestamp: "2019-09-07T07:05:53Z"
+    labels:
+      chart: istio-1.2.5
+    name: istio-multi
+    resourceVersion: "7514409"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/istio-multi
+    uid: eb6968f2-175b-4a69-bee1-9e4351c4697b
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: istio-reader
+  subjects:
+  - kind: ServiceAccount
+    name: istio-multi
+    namespace: istio-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"labels":{"app":"pilot","chart":"pilot","heritage":"Tiller","release":"istio"},"name":"istio-pilot-istio-system"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"istio-pilot-istio-system"},"subjects":[{"kind":"ServiceAccount","name":"istio-pilot-service-account","namespace":"istio-system"}]}
+    creationTimestamp: "2019-09-07T07:05:53Z"
+    labels:
+      app: pilot
+      chart: pilot
+      heritage: Tiller
+      release: istio
+    name: istio-pilot-istio-system
+    resourceVersion: "7514402"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/istio-pilot-istio-system
+    uid: fc7b8fa8-3a33-4c4a-aeb7-2a297959cfa3
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: istio-pilot-istio-system
+  subjects:
+  - kind: ServiceAccount
+    name: istio-pilot-service-account
+    namespace: istio-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1beta1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"labels":{"app":"security","chart":"security","heritage":"Tiller","release":"istio"},"name":"istio-security-post-install-role-binding-istio-system"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"istio-security-post-install-istio-system"},"subjects":[{"kind":"ServiceAccount","name":"istio-security-post-install-account","namespace":"istio-system"}]}
+    creationTimestamp: "2019-09-07T07:05:53Z"
+    labels:
+      app: security
+      chart: security
+      heritage: Tiller
+      release: istio
+    name: istio-security-post-install-role-binding-istio-system
+    resourceVersion: "7514364"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/istio-security-post-install-role-binding-istio-system
+    uid: 2bb2ed9a-7075-4906-bd35-61612641604b
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: istio-security-post-install-istio-system
+  subjects:
+  - kind: ServiceAccount
+    name: istio-security-post-install-account
+    namespace: istio-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"labels":{"app":"sidecarInjectorWebhook","chart":"sidecarInjectorWebhook","heritage":"Tiller","istio":"sidecar-injector","release":"istio"},"name":"istio-sidecar-injector-admin-role-binding-istio-system"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"istio-sidecar-injector-istio-system"},"subjects":[{"kind":"ServiceAccount","name":"istio-sidecar-injector-service-account","namespace":"istio-system"}]}
+    creationTimestamp: "2019-09-07T07:05:53Z"
+    labels:
+      app: sidecarInjectorWebhook
+      chart: sidecarInjectorWebhook
+      heritage: Tiller
+      istio: sidecar-injector
+      release: istio
+    name: istio-sidecar-injector-admin-role-binding-istio-system
+    resourceVersion: "7514407"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/istio-sidecar-injector-admin-role-binding-istio-system
+    uid: a7e5e195-847f-4a89-b9b6-4dda97c5c818
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: istio-sidecar-injector-istio-system
+  subjects:
+  - kind: ServiceAccount
+    name: istio-sidecar-injector-service-account
+    namespace: istio-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-07-30T09:08:47Z"
+    name: kubeadm:kubelet-bootstrap
+    resourceVersion: "165"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/kubeadm%3Akubelet-bootstrap
+    uid: bbb9f7df-651f-4a44-be37-555c3a2182d5
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:node-bootstrapper
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: system:bootstrappers:kubeadm:default-node-token
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-07-30T09:08:47Z"
+    name: kubeadm:node-autoapprove-bootstrap
+    resourceVersion: "166"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/kubeadm%3Anode-autoapprove-bootstrap
+    uid: 07314184-8642-4e52-82eb-2847dcd76ebe
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:certificates.k8s.io:certificatesigningrequests:nodeclient
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: system:bootstrappers:kubeadm:default-node-token
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-07-30T09:08:47Z"
+    name: kubeadm:node-autoapprove-certificate-rotation
+    resourceVersion: "167"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/kubeadm%3Anode-autoapprove-certificate-rotation
+    uid: b226f649-c637-4bde-8e22-19eb4e51dead
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:certificates.k8s.io:certificatesigningrequests:selfnodeclient
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: system:nodes
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-07-30T09:08:47Z"
+    name: kubeadm:node-proxier
+    resourceVersion: "188"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/kubeadm%3Anode-proxier
+    uid: cee0ff2a-8cd6-4cf2-867c-5fb91fd22daa
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:node-proxier
+  subjects:
+  - kind: ServiceAccount
+    name: kube-proxy
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-09-18T18:47:06Z"
+    name: kubeapps-operator
+    resourceVersion: "9281043"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/kubeapps-operator
+    uid: 9fc539ad-f581-40a0-89e0-5e50fed47dbf
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cluster-admin
+  subjects:
+  - kind: ServiceAccount
+    name: kubeapps-operator
+    namespace: default
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"name":"kubernetes-dashboard"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"kubernetes-dashboard"},"subjects":[{"kind":"ServiceAccount","name":"kubernetes-dashboard","namespace":"kubernetes-dashboard"}]}
+    creationTimestamp: "2019-11-21T12:24:04Z"
+    name: kubernetes-dashboard
+    resourceVersion: "26629267"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/kubernetes-dashboard
+    uid: 4de36e2f-19bc-42fe-85db-5184448ab101
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: kubernetes-dashboard
+  subjects:
+  - kind: ServiceAccount
+    name: kubernetes-dashboard
+    namespace: kubernetes-dashboard
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-08-22T08:48:22Z"
+    labels:
+      app: metallb
+      chart: metallb-0.11.2
+      heritage: Tiller
+      release: metallb
+    name: metallb:controller
+    resourceVersion: "5086634"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/metallb%3Acontroller
+    uid: d2070440-f40c-4cf2-b747-326704195b30
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: metallb:controller
+  subjects:
+  - kind: ServiceAccount
+    name: metallb-controller
+    namespace: metallb-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-08-22T08:48:22Z"
+    labels:
+      app: metallb
+      chart: metallb-0.11.2
+      heritage: Tiller
+      release: metallb
+    name: metallb:speaker
+    resourceVersion: "5086635"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/metallb%3Aspeaker
+    uid: c26bed98-8b8b-4fb0-9c53-86b52e031f3f
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: metallb:speaker
+  subjects:
+  - kind: ServiceAccount
+    name: metallb-speaker
+    namespace: metallb-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-11-21T14:14:36Z"
+    labels:
+      app: metrics-server
+      chart: metrics-server-2.8.5
+      heritage: Tiller
+      release: metrics-server
+    name: metrics-server:system:auth-delegator
+    resourceVersion: "26651656"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/metrics-server%3Asystem%3Aauth-delegator
+    uid: 443a7c88-dcee-4994-9d37-b36138235389
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:auth-delegator
+  subjects:
+  - kind: ServiceAccount
+    name: metrics-server
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-12-09T08:11:21Z"
+    labels:
+      app: nfs-server-provisioner
+      chart: nfs-server-provisioner-0.3.2
+      heritage: Tiller
+      release: nfs-server
+    name: nfs-server-nfs-server-provisioner
+    resourceVersion: "31977617"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/nfs-server-nfs-server-provisioner
+    uid: 800c073d-fe22-4876-bcdd-3e4446d66a9d
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: nfs-server-nfs-server-provisioner
+  subjects:
+  - kind: ServiceAccount
+    name: nfs-server-nfs-server-provisioner
+    namespace: default
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"labels":{"app":"prometheus","chart":"prometheus","heritage":"Tiller","release":"istio"},"name":"prometheus-istio-system"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"prometheus-istio-system"},"subjects":[{"kind":"ServiceAccount","name":"prometheus","namespace":"istio-system"}]}
+    creationTimestamp: "2019-09-07T07:05:53Z"
+    labels:
+      app: prometheus
+      chart: prometheus
+      heritage: Tiller
+      release: istio
+    name: prometheus-istio-system
+    resourceVersion: "7514404"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/prometheus-istio-system
+    uid: 4d36eb23-7145-4565-a4ac-384051f2d458
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: prometheus-istio-system
+  subjects:
+  - kind: ServiceAccount
+    name: prometheus
+    namespace: istio-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-09-04T06:48:49Z"
+    name: spinnaker-default-crbinding
+    resourceVersion: "7027803"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/spinnaker-default-crbinding
+    uid: 841606fd-0c46-4536-837a-ed30aa3e6cc9
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cluster-admin
+  subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: spinnaker
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1beta1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"name":"swisslog-admin"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"cluster-admin"},"subjects":[{"kind":"ServiceAccount","name":"swisslog-admin","namespace":"kube-system"}]}
+    creationTimestamp: "2019-07-30T10:27:05Z"
+    name: swisslog-admin
+    resourceVersion: "8831"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/swisslog-admin
+    uid: fd7cd3e2-8721-4728-b1c7-df8a336230a8
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cluster-admin
+  subjects:
+  - kind: ServiceAccount
+    name: swisslog-admin
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:basic-user
+    resourceVersion: "99"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Abasic-user
+    uid: 762ade01-f77a-4f9d-bc04-5ac854a3f59e
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:basic-user
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: system:authenticated
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:attachdetach-controller
+    resourceVersion: "107"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Aattachdetach-controller
+    uid: a6e21130-419e-480b-8fa2-f5a9e1653537
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:attachdetach-controller
+  subjects:
+  - kind: ServiceAccount
+    name: attachdetach-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:certificate-controller
+    resourceVersion: "130"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Acertificate-controller
+    uid: 20063055-f293-4857-b446-6465cdd6568b
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:certificate-controller
+  subjects:
+  - kind: ServiceAccount
+    name: certificate-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:clusterrole-aggregation-controller
+    resourceVersion: "108"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Aclusterrole-aggregation-controller
+    uid: d80f12f1-8405-46e0-bd0e-622e22160504
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:clusterrole-aggregation-controller
+  subjects:
+  - kind: ServiceAccount
+    name: clusterrole-aggregation-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:cronjob-controller
+    resourceVersion: "109"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Acronjob-controller
+    uid: 7cb325a3-4cd5-44e1-88b5-8cc70b543167
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:cronjob-controller
+  subjects:
+  - kind: ServiceAccount
+    name: cronjob-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:daemon-set-controller
+    resourceVersion: "110"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Adaemon-set-controller
+    uid: b76c1fd7-05bc-435f-84ff-d42c6c9407c2
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:daemon-set-controller
+  subjects:
+  - kind: ServiceAccount
+    name: daemon-set-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:deployment-controller
+    resourceVersion: "111"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Adeployment-controller
+    uid: 50bbc060-b71f-44ab-85d6-c76feed7eea1
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:deployment-controller
+  subjects:
+  - kind: ServiceAccount
+    name: deployment-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:disruption-controller
+    resourceVersion: "112"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Adisruption-controller
+    uid: 98eef827-8faa-48dd-ad64-e3f42d5e6128
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:disruption-controller
+  subjects:
+  - kind: ServiceAccount
+    name: disruption-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:endpoint-controller
+    resourceVersion: "113"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Aendpoint-controller
+    uid: fb8d7f93-066b-4661-b13f-d0543f498019
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:endpoint-controller
+  subjects:
+  - kind: ServiceAccount
+    name: endpoint-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:expand-controller
+    resourceVersion: "114"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Aexpand-controller
+    uid: 00d65c73-b36a-4806-8608-32d40ff39c8f
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:expand-controller
+  subjects:
+  - kind: ServiceAccount
+    name: expand-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:generic-garbage-collector
+    resourceVersion: "115"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Ageneric-garbage-collector
+    uid: 13e273eb-fa05-4e88-8c99-20d84a4fad17
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:generic-garbage-collector
+  subjects:
+  - kind: ServiceAccount
+    name: generic-garbage-collector
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:horizontal-pod-autoscaler
+    resourceVersion: "116"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Ahorizontal-pod-autoscaler
+    uid: 8aab82ab-952a-4f46-b03b-2ac554e869fb
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:horizontal-pod-autoscaler
+  subjects:
+  - kind: ServiceAccount
+    name: horizontal-pod-autoscaler
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:job-controller
+    resourceVersion: "117"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Ajob-controller
+    uid: c66604c1-da1b-4fcb-b9ea-bfeaba76f3b8
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:job-controller
+  subjects:
+  - kind: ServiceAccount
+    name: job-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:namespace-controller
+    resourceVersion: "118"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Anamespace-controller
+    uid: c1700ac4-3772-43f9-81a1-25b4fff1bc5a
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:namespace-controller
+  subjects:
+  - kind: ServiceAccount
+    name: namespace-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:node-controller
+    resourceVersion: "119"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Anode-controller
+    uid: 07838510-830c-496b-b34f-068feb229b77
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:node-controller
+  subjects:
+  - kind: ServiceAccount
+    name: node-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:persistent-volume-binder
+    resourceVersion: "120"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Apersistent-volume-binder
+    uid: 5ad39ed1-e7bb-4d71-bf2b-c614d65408bd
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:persistent-volume-binder
+  subjects:
+  - kind: ServiceAccount
+    name: persistent-volume-binder
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:pod-garbage-collector
+    resourceVersion: "121"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Apod-garbage-collector
+    uid: c7222477-ba05-4b3a-9861-c56bea7116ef
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:pod-garbage-collector
+  subjects:
+  - kind: ServiceAccount
+    name: pod-garbage-collector
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:pv-protection-controller
+    resourceVersion: "132"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Apv-protection-controller
+    uid: 92fd5ac3-2499-4cb8-8673-945e2a556f29
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:pv-protection-controller
+  subjects:
+  - kind: ServiceAccount
+    name: pv-protection-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:pvc-protection-controller
+    resourceVersion: "131"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Apvc-protection-controller
+    uid: 540b30f7-9493-4464-b744-644d90925bf5
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:pvc-protection-controller
+  subjects:
+  - kind: ServiceAccount
+    name: pvc-protection-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:replicaset-controller
+    resourceVersion: "122"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Areplicaset-controller
+    uid: a5df7a60-e55b-45da-a7c8-c39ca0fdb762
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:replicaset-controller
+  subjects:
+  - kind: ServiceAccount
+    name: replicaset-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:replication-controller
+    resourceVersion: "123"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Areplication-controller
+    uid: 0410b18f-70e0-4bf4-ac5a-5a18a4ce9019
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:replication-controller
+  subjects:
+  - kind: ServiceAccount
+    name: replication-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:resourcequota-controller
+    resourceVersion: "124"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Aresourcequota-controller
+    uid: d2271d0c-87d3-41bb-b76a-80d553608e71
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:resourcequota-controller
+  subjects:
+  - kind: ServiceAccount
+    name: resourcequota-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:route-controller
+    resourceVersion: "125"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Aroute-controller
+    uid: 1ea629c9-8df9-4dde-856f-c483e56b77b8
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:route-controller
+  subjects:
+  - kind: ServiceAccount
+    name: route-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:service-account-controller
+    resourceVersion: "126"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Aservice-account-controller
+    uid: 9fa198a8-af9e-4ecc-8de0-345af3ef0da0
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:service-account-controller
+  subjects:
+  - kind: ServiceAccount
+    name: service-account-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:service-controller
+    resourceVersion: "127"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Aservice-controller
+    uid: aae21e5d-be93-4bb5-9a0e-e81153131842
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:service-controller
+  subjects:
+  - kind: ServiceAccount
+    name: service-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:statefulset-controller
+    resourceVersion: "128"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Astatefulset-controller
+    uid: 22f214d8-7512-4be1-87b8-bbf7e5b24083
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:statefulset-controller
+  subjects:
+  - kind: ServiceAccount
+    name: statefulset-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:ttl-controller
+    resourceVersion: "129"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Attl-controller
+    uid: bf963057-d2a2-4b99-b8c8-3df8c9d28264
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:ttl-controller
+  subjects:
+  - kind: ServiceAccount
+    name: ttl-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-07-30T09:08:47Z"
+    name: system:coredns
+    resourceVersion: "173"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acoredns
+    uid: 39eee856-cefe-47e7-817a-0a38deaff146
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:coredns
+  subjects:
+  - kind: ServiceAccount
+    name: coredns
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:discovery
+    resourceVersion: "98"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Adiscovery
+    uid: ae718a61-79c0-4b16-b378-0d36def13fa4
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:discovery
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: system:authenticated
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:kube-controller-manager
+    resourceVersion: "102"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Akube-controller-manager
+    uid: 36970693-a280-4dd1-aabf-738ce1612b69
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:kube-controller-manager
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: system:kube-controller-manager
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:kube-dns
+    resourceVersion: "103"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Akube-dns
+    uid: 55ac9626-ff96-4f84-8454-05089368d413
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:kube-dns
+  subjects:
+  - kind: ServiceAccount
+    name: kube-dns
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:kube-scheduler
+    resourceVersion: "104"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Akube-scheduler
+    uid: bf378829-0cfa-42e1-a98a-e088c359059d
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:kube-scheduler
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: system:kube-scheduler
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-11-21T14:14:36Z"
+    labels:
+      app: metrics-server
+      chart: metrics-server-2.8.5
+      heritage: Tiller
+      release: metrics-server
+    name: system:metrics-server
+    resourceVersion: "26651660"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Ametrics-server
+    uid: 15306cff-f53d-4017-a2c9-7da34923780f
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:metrics-server
+  subjects:
+  - kind: ServiceAccount
+    name: metrics-server
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:node
+    resourceVersion: "106"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Anode
+    uid: a0aae0aa-9ee0-497e-87d4-ff9cd85d49f4
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:node
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:node-proxier
+    resourceVersion: "101"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Anode-proxier
+    uid: b823538f-96e9-4220-9e8c-95863fc23903
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:node-proxier
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: system:kube-proxy
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:public-info-viewer
+    resourceVersion: "100"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Apublic-info-viewer
+    uid: 2b837118-89a2-481c-b9ce-43e2087394c7
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:public-info-viewer
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: system:authenticated
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: system:unauthenticated
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:volume-scheduler
+    resourceVersion: "105"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Avolume-scheduler
+    uid: 93809d23-ee9d-4e08-a1d6-1148adcb6c37
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:volume-scheduler
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: system:kube-scheduler
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1beta1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"name":"tiller"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"cluster-admin"},"subjects":[{"kind":"ServiceAccount","name":"tiller","namespace":"kube-system"}]}
+    creationTimestamp: "2019-07-30T13:44:37Z"
+    name: tiller
+    resourceVersion: "28507"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/tiller
+    uid: 211815cc-369b-49c6-ab0e-620e197d74f0
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cluster-admin
+  subjects:
+  - kind: ServiceAccount
+    name: tiller
+    namespace: kube-system
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""

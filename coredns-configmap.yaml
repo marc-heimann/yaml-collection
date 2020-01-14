@@ -1,0 +1,44 @@
+apiVersion: v1
+data:
+  Corefile: |
+    .:53 {
+        errors
+        health
+        rewirte name api.swisslog.net ambassador.default.svc.cluster.local
+        rewrite name ci.swisslog.net cicd-server-jenkins.default.svc.cluster.local
+        rewrite name spin-gate.swisslog.local spin-gate.default.svc.cluster.local
+        rewrite name spinnaker.swisslog.local spin-deck.default.svc.cluster.local
+        rewrite name gitlab.swisslog.net my-release-gitlab-ce.default.svc.cluster.local
+        rewrite name nexus.swisslog.net nosy-wolverine-sonatype-nexus.default.svc.cluster.local
+        rewrite name container.swisslog.net nosy-wolverine-sonatype-nexus.default.svc.cluster.local
+        rewrite name charts.swisslog.net my-chartmuseum-chartmuseum.default.svc.cluster.local
+        rewrite name sonarqube.swisslog.net sonarqube-sonarqube.default.svc.cluster.local
+        kubernetes cluster.local in-addr.arpa ip6.arpa {
+            pods insecure
+            fallthrough in-addr.arpa ip6.arpa
+            ttl 30
+        }
+        prometheus :9153
+        forward . /etc/resolv.conf
+        cache 30
+        loop
+        reload
+        loadbalance
+        ready
+    }
+    swisslog.com:53 {
+      forward . 10.49.144.169
+      cache 2000
+    }
+    swisslog.local:53 {
+      forward . 10.49.145.194
+      cache 2000
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2019-07-30T09:08:47Z"
+  name: coredns
+  namespace: kube-system
+  resourceVersion: "44122790"
+  selfLink: /api/v1/namespaces/kube-system/configmaps/coredns
+  uid: b06f02c4-a488-4690-a6d5-797542b9cfa6

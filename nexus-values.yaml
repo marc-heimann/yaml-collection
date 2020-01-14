@@ -1,0 +1,6 @@
+nexusProxy:  
+  env:
+    nexusDockerHost: container.swisslog.net
+    nexusHttpHost: nexus.swisslog.net
+    enforceHttps: false
+    cloudIamAuthEnabled: false

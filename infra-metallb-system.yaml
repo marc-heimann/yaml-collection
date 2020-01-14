@@ -1,0 +1,1671 @@
+apiVersion: v1
+items:
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+    creationTimestamp: "2019-08-22T08:48:22Z"
+    generation: 9
+    labels:
+      app: metallb
+      chart: metallb-0.11.2
+      component: controller
+      heritage: Tiller
+      release: metallb
+    name: metallb-controller
+    namespace: metallb-system
+    resourceVersion: "30819425"
+    selfLink: /apis/apps/v1/namespaces/metallb-system/deployments/metallb-controller
+    uid: e5494a29-e0fa-448b-aa83-af0a92642ee4
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 3
+    selector:
+      matchLabels:
+        app: metallb
+        component: controller
+        release: metallb
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: metallb
+          chart: metallb-0.11.2
+          component: controller
+          heritage: Tiller
+          release: metallb
+      spec:
+        containers:
+        - args:
+          - --port=7472
+          - --config=metallb
+          image: metallb/controller:v0.8.1
+          imagePullPolicy: IfNotPresent
+          name: controller
+          ports:
+          - containerPort: 7472
+            name: monitoring
+            protocol: TCP
+          resources: {}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - all
+            readOnlyRootFilesystem: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        nodeSelector:
+          beta.kubernetes.io/os: linux
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 65534
+        serviceAccount: metallb-controller
+        serviceAccountName: metallb-controller
+        terminationGracePeriodSeconds: 0
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2019-08-22T08:48:22Z"
+      lastUpdateTime: "2019-08-22T08:48:24Z"
+      message: ReplicaSet "metallb-controller-66d67cf5fd" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    - lastTransitionTime: "2019-12-05T15:20:16Z"
+      lastUpdateTime: "2019-12-05T15:20:16Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    observedGeneration: 9
+    readyReplicas: 1
+    replicas: 1
+    updatedReplicas: 1
+- apiVersion: v1
+  data:
+    config: |
+      address-pools:
+      - name: default
+        protocol: layer2
+        addresses:
+        - 10.49.145.114-10.49.145.114
+  kind: ConfigMap
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","data":{"config":"address-pools:\n- name: default\n  protocol: layer2\n  addresses:\n  - 10.49.145.114\n"},"kind":"ConfigMap","metadata":{"annotations":{},"name":"config","namespace":"metallb-system"}}
+    creationTimestamp: "2019-08-22T08:31:09Z"
+    name: config
+    namespace: metallb-system
+    resourceVersion: "9388652"
+    selfLink: /api/v1/namespaces/metallb-system/configmaps/config
+    uid: 8462e660-37f6-42ae-a1ee-836c1cea37e7
+- apiVersion: v1
+  data:
+    config: |
+      address-pools:
+      - addresses:
+        - 10.49.145.108-10.49.145.108
+        - 10.49.145.190-10.49.145.199
+        name: default
+        protocol: layer2
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: "2019-08-22T08:48:22Z"
+    labels:
+      app: metallb
+      chart: metallb-0.11.2
+      heritage: Tiller
+      release: metallb
+    name: metallb
+    namespace: metallb-system
+    resourceVersion: "22536917"
+    selfLink: /api/v1/namespaces/metallb-system/configmaps/metallb
+    uid: 44d2d15d-7c6c-4bf5-8405-6cd1f90f40e4
+- apiVersion: v1
+  data:
+    ca.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRFNU1EY3pNREE1TURneU5Wb1hEVEk1TURjeU56QTVNRGd5TlZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBS3J0CnIzcHRkK0p3ZTZuK2ljYlA2Z2QydlJicjZuZ0FYR0NpdVJHakJ5MjBjMlBBZ0ZoYjJDRTNKa3NDdWlFMU11b0MKVnNCRWRBL0NZQWtRdDFlazlDZU1SOWdyaDN4MUNCMTFDRHJCeDBtaHRBNXYxS3ZneW5OZDhVdytGemJpdzNxRQpmZ3lsOXlkc1NRTmRQSFFxYitTUVZPZ283a3FSdXhLdkRiQjZvNkU1endOVDJqSnNqQ3NPdWRVMndtRjJXRlhiCnBVYy82Ymkya2puV2lyKzhkZDl4cTRPeFh3Q3hmYUMwNERqdVVCc0cyNHg3U05QMVpUY2ZxU096RzBZdkVNVWQKZXJ4Z3ZjTGQvSmVVQnNCcENxRWc2OUlMY0xRemFGTHpKK29vMjVuRENDc3d5NmUrMXdLTWVlVWdCM29ma0MzNQppM1F3NDdEWWxYZ1lLdkh6VjNNQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFKUXZnQitWNnNWVElrd1NPVTM5V1JwOVhVNVoKZXB5eDZ5NFllTnM4YXhkbGRZdlhDL1NhaC81elFpK0xEWDZiMkszalJXaEY1SFRMb0ZGODU5WjRlS0lrZGNsUApwb3NkTExXRTVGUXlLbFJvY1gyN0xYWkNWMlI3WFFCY2phdzlUd09WUWRUUVU0Z2l2N2grbUFDclZrbmVKbHE0CllhTlg0Rm5Pc0ZRWkNjRWpycWlGZTRMR1ZqSGJoVVV4QmMrcTBpTXY3NFg0Y2w1L3hjdHBub3duOWVJREVZTkoKbE5kYjR1c29GZnFWUGMvSm4yY2p0S1pLc0tubzNBYy9RTmR4c0k4RThvVmhmYmJqM1VYWDBDekFYcloyR3I1eQpnaWpyZFJuYzlXRm1Va2cyalFwdVpnazg0Nm1TbUk1Y3kwVTNaTklLd1ZEcGh2aW9NT3U5YzVKY0NOMD0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+    namespace: bWV0YWxsYi1zeXN0ZW0=
+    token: ZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNklpSjkuZXlKcGMzTWlPaUpyZFdKbGNtNWxkR1Z6TDNObGNuWnBZMlZoWTJOdmRXNTBJaXdpYTNWaVpYSnVaWFJsY3k1cGJ5OXpaWEoyYVdObFlXTmpiM1Z1ZEM5dVlXMWxjM0JoWTJVaU9pSnRaWFJoYkd4aUxYTjVjM1JsYlNJc0ltdDFZbVZ5Ym1WMFpYTXVhVzh2YzJWeWRtbGpaV0ZqWTI5MWJuUXZjMlZqY21WMExtNWhiV1VpT2lKa1pXWmhkV3gwTFhSdmEyVnVMWEEwTm1oa0lpd2lhM1ZpWlhKdVpYUmxjeTVwYnk5elpYSjJhV05sWVdOamIzVnVkQzl6WlhKMmFXTmxMV0ZqWTI5MWJuUXVibUZ0WlNJNkltUmxabUYxYkhRaUxDSnJkV0psY201bGRHVnpMbWx2TDNObGNuWnBZMlZoWTJOdmRXNTBMM05sY25acFkyVXRZV05qYjNWdWRDNTFhV1FpT2lKa05qRmtORGxoWWkxaVkySmlMVFF6TVRjdFlqZzBaQzFoTWpGbU1qZGtORGt4TWpJaUxDSnpkV0lpT2lKemVYTjBaVzA2YzJWeWRtbGpaV0ZqWTI5MWJuUTZiV1YwWVd4c1lpMXplWE4wWlcwNlpHVm1ZWFZzZENKOS41VjVFLXFrYWxCX1RIWWtIakZRTWZuQ2tUZllXbHI5MmdReTBjZDBqQTFxMVV0NXpVTWZpN05EeGl0R2N3eGRNVXNYSksxdDdFOG9HQVE2bDdCX0FQNlVZemJiaW9Ca3B6T29wcWVVRHF1QkF4OFFCNDRhb19KS0tYdnRmcGlObjlKV3FaMXRGQVJscjdQbmxZaGtXdDdVWXdEejdta0EzYVozSVpFZXlzNFUweVRxbXFibWJ0X056b2RzYjk3ajEzTFZHeHBiaVVybXdLV0RQc09EeG5sTXZzNkNVaTZsS3YzSFduQVYwaHZBNUhxcjBmRHRYSlhYSGlRUmJ3ZUlneVZOZjdMUjZSbWlhcXBFSTJVYjJINXBER3RuZ1dDSGlqYlVMbldwX0ZtQklObWxYNHB5YTJ1UUlZUTRUWXV6QnppVU9xdzd1UjNGNFhHTWloakhoX2c=
+  kind: Secret
+  metadata:
+    annotations:
+      kubernetes.io/service-account.name: default
+      kubernetes.io/service-account.uid: d61d49ab-bcbb-4317-b84d-a21f27d49122
+    creationTimestamp: "2019-08-22T08:31:06Z"
+    name: default-token-p46hd
+    namespace: metallb-system
+    resourceVersion: "5084738"
+    selfLink: /api/v1/namespaces/metallb-system/secrets/default-token-p46hd
+    uid: db1cba32-f660-4bff-b895-86797e749a33
+  type: kubernetes.io/service-account-token
+- apiVersion: v1
+  data:
+    cert-chain.pem: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURKekNDQWcrZ0F3SUJBZ0lSQUlEbm13c0RDd3V1M21HQUdISzBVYWt3RFFZSktvWklodmNOQVFFTEJRQXcKR0RFV01CUUdBMVVFQ2hNTlkyeDFjM1JsY2k1c2IyTmhiREFlRncweE9URXlNRFl3TnpVek16ZGFGdzB5TURBegpNRFV3TnpVek16ZGFNQUF3Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLQW9JQkFRRE5hdzVGCitRYjU5S0VpZkdtaDFxYmQwMHE4eWd5UVoxWDRmcFppdjF5Um5jSDkySWZDb1gydEtLMXNKMnNpRDRyb01YQjMKOVhwT1NDQkd3cmhxKzRZZFRHWGU5dFhyVW91Q1NXUzBVWUE0SW4yaVFNdFNiK1p3TnAxQllvcTgzcFhpZEt5RQpwSkFvK3p6UXJ4ZGFNM294NTFoMVh1MzA4NERVY0VrNTFSVmNsMDMwTFEydS9MbnVlRyswRjIrRzA2UG51WmFuCkZubzdNNHZSL0g2Z3cyUUd4eTNDUEZoY3JqQXV4NTd0RDBodTEwM0E2V2hkc3EyY01lQjhyR3EyZ1JueUpZWW4KVjFKSGRYN1BYYWJGV1pNMFBDbXRqMENqczlKajFLU1ovems5VWhtMUlyVllpSi9id092OHNYTGJjVGFVclUwOQp3S0hrZE9pVU9SVmJOOGdIQWdNQkFBR2pnWU13Z1lBd0RnWURWUjBQQVFIL0JBUURBZ1dnTUIwR0ExVWRKUVFXCk1CUUdDQ3NHQVFVRkJ3TUJCZ2dyQmdFRkJRY0RBakFNQmdOVkhSTUJBZjhFQWpBQU1FRUdBMVVkRVFFQi93UTMKTURXR00zTndhV1ptWlRvdkwyTnNkWE4wWlhJdWJHOWpZV3d2Ym5NdmJXVjBZV3hzWWkxemVYTjBaVzB2YzJFdgpaR1ZtWVhWc2REQU5CZ2txaGtpRzl3MEJBUXNGQUFPQ0FRRUFWbnY1M3VWMld1MEV4dHh2ZktQNURreFd6VTFDCjRMVGM3eGJYVTBLL3Q2UkhZSlRaekd6amFEVk1XQ1ZJK0RaTUJJVEljekRhY3NLbWxtbVdyTzVrblJudkFUbGwKQVFpTnRxNUx5djBYd2JBSmdMNkdnR3UrRGE0TG9LV1VrWlo5cTdvSEw2OEJXNC9QLzQ5R3dkMGNuQUpyNXEwcAp2UGJhM2IrNkl6K0VZWVlReC9wZE1JbUQ3SFE0K0lMTXlNUTYvQ3FaeitOc0tMNWZvRFVxYmdLNmZ1K1Btc0dOCkhZTk83L0NaMTQwbWl3UHMxekd1VzlZYlYya1Y2a05GbDNqbVFXWmE2bmpyQjdldDRJTHFDNllHazlST29iUWwKT2xHd3M2NG94VkRLRlRBeVkrbXBMUEIxZEQ2ODVXc2UzS1g2b2FCd3pFSCszaTJ3cVhjejc4MFRlZz09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    key.pem: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBeldzT1Jma0crZlNoSW54cG9kYW0zZE5Ldk1vTWtHZFYrSDZXWXI5Y2taM0IvZGlICndxRjlyU2l0YkNkcklnK0s2REZ3ZC9WNlRrZ2dSc0s0YXZ1R0hVeGwzdmJWNjFLTGdrbGt0RkdBT0NKOW9rREwKVW0vbWNEYWRRV0tLdk42VjRuU3NoS1NRS1BzODBLOFhXak42TWVkWWRWN3Q5UE9BMUhCSk9kVVZYSmROOUMwTgpydnk1N25odnRCZHZodE9qNTdtV3B4WjZPek9MMGZ4K29NTmtCc2N0d2p4WVhLNHdMc2VlN1E5SWJ0ZE53T2xvClhiS3RuREhnZkt4cXRvRVo4aVdHSjFkU1IzVit6MTJteFZtVE5Ed3ByWTlBbzdQU1k5U2ttZjg1UFZJWnRTSzEKV0lpZjI4RHIvTEZ5MjNFMmxLMU5QY0NoNUhUb2xEa1ZXemZJQndJREFRQUJBb0lCQVFDT3VKajhLTitkLzBlTgpURitnSUNGajhnLzFSM1NmU0F6RlVENXdjWUNCYzloNjVGeSs3N0VBQkVrcDRlRmZrdWp5RnBlTDRUU08rekhoCnVCeWx5QWdRaHlvb1ZkdWZXb1N2aXdxNjlmMWVBeWpDK0wzTGt3L0tXMGU3VEJvVXk1bmI4ekNDSUV4QkRQM2UKQ0NqemROeXJtNDhzVFQ2TGVEdkVYaGVpWk5nb3NZQlNNTGlPa29pdU0rNVpNSVJERE9rZ3h6bXhKdkNCcjdMVAp5V0hYdlk2YWQ1Y1lra2c5VFhYQWw2U1FNT2JQdklCcUg2bG9taVlXMUovTUVPRm1VN3crU3NxOGRGejNndCtRCkZsWnA0aU1ZSHlZSzlXK0Ywa2lRU0ZMYndCVmtYakh6U3lFejFxdVM2Ty8xY21malo1WWQza1VVSklNdWIraUsKdjVyeXc0V0JBb0dCQVBHYjJiU2dCSFNjRGJjMHlBclA1ekd5V2hOdytjamM0WjY4QVgyakl0WFlHU244MFgxLwpCOU9URXpBNnFuZ0hsZ0xWOTBGK1pHUTRraGhWVGR4L1pwSzc5blJ2a3JyOGdDYi9BTUN1SDZHLzUvWVpvQmc5CnIrb0JPODljczNHWVZZRnk2OURkZDRqTjh3L2t5ejdNcmV1Ky9xZUxweEZZeWZ3MFFUS0VhZjNuQW9HQkFObW4KV3pFMlpjaWVOaWxadWdiUXdhdndUdStNYTQwbG1qYVBMcDRVUS9IdVNFUmhXS0p4ckE2RUZYYnduSjAzS3JhUgpUamtoc2VWOUovS0V3dFhwNU1FblV3TDRNUjBJbzk4b0hVT2tkcVZaNmlIMUZwbXF2ZVgyNU1nMzAzS2N1WFAyCis5SzdVVkl3dHdkaHhjUmtJZ1J5dXRTdStlcGt6L1RxdVFKcFAyRGhBb0dBQVZ0T3JhVDRZVzgrNUhoM1p4Z2oKeERPc0xjL0VsMHdtT0MzMkZDNkdVNDBURnhsRVUrQVN1eTFvUGkwV0ovWmk4VUVpVWt2VFpIeXMxVllsU2NldApXOFdTYkxUenJma2MveHNQZGdXRVIvUTc2VFhib0VjNFphZjhIZjMzUS93Ry91TVdUK1h1ZGVZeUp6U3hyM2lXCndXd2hJZSsyMEhJZk1EdGE0bDI3K3FFQ2dZQlRrelNzRC9SRGRhVGNlZXk1b3oxSzFXcXFCeVJoUFhnYXpSNGMKYXpHdjIweDZuVnFZZmNlUWgxMXFuM2V6MHJRZkNHcWQrM2RBNUs4TEs3bFl4SWduTnY5a0c0TllYN0gxQllVLwpMUTYxN1hHKytrcGtWVEMzOWZiaGZyWTl3enBlOGc2K1cxa2RrMEVrbjRGK0tPajdCa2NCVmZMMjh5RDdMWW8vCkI4VGpZUUtCZ0JDT1p6OFBnZVIvQWZWN1VrS1B0TjVNZVJQOWdNNGRyMTE2bjMwZWQyQ1l3djJRMUt1NENDOU4KaHF5QWF5YWJreENaQk1Ncmo5THNKeEw5R3lVcUovMnZEY1BmRGdQVDR6UXNFNGtYZHJwQTA0bHE5TUJpZCtjUApaUUo4UVY5c00yVWtDOHNhNjRuMHpwb3JEc1R0M3N5MHZRUWg3c0FyR0h0UkdWaUxFUDJrCi0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
+    root-cert.pem: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMzVENDQWNXZ0F3SUJBZ0lRZUw2ZmhkY2w0a2lOR0xGL0t0ekhFakFOQmdrcWhraUc5dzBCQVFzRkFEQVkKTVJZd0ZBWURWUVFLRXcxamJIVnpkR1Z5TG14dlkyRnNNQjRYRFRFNU1Ea3dOekEzTURZeU4xb1hEVEk1TURrdwpOREEzTURZeU4xb3dHREVXTUJRR0ExVUVDaE1OWTJ4MWMzUmxjaTVzYjJOaGJEQ0NBU0l3RFFZSktvWklodmNOCkFRRUJCUUFEZ2dFUEFEQ0NBUW9DZ2dFQkFMYjFvMmdKaTgwUUwyM2dmQ250K2xkUExOT1BOWDE5cVVqaWlhbWIKY21jK1ViNCsxUnVhOGI1MzQyTlBpNmNkUlIweEYrOWZEMXZqc1Z3TFJBMS9SQnB4alFCTG43TWJUT1Uyc1gvLwp1MXJaM1VOQm5zUml0NVhBSDRJK2VGTDQ3Uk93bndRKzlpMkU2ZkgvQ1dXbVpkV0hLdWZrUUViK2dwWEFnVVJTCnIwc1kxVFVjQTZYeUh2WmFGLzR3RUx6Ulg1N0F3Zk9lY1VEdHBxVXdlcVhBMVV1MjVseUpUTnZnbVM5Z1VPbncKWVZWSWM5WllBY2xWY3REbWVxYVcxK2Rnb3BwQk9LS1RYQXZMYk52dEVIRTdubHZqK1F1SEgxenEwMnJ0MERjRApQZVVNWFpFQmlibFZVTytld2l6TDdEWm5TRnp3UU5nTEJ2THFDYWl0Tjl2Zm5VOENBd0VBQWFNak1DRXdEZ1lEClZSMFBBUUgvQkFRREFnSUVNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdEUVlKS29aSWh2Y05BUUVMQlFBRGdnRUIKQUozay9CSjN3clhYTWJOSVkwMVJVaGphNEtLblRvSDNUY25DRHIrVDFZRmRRbDl6UXRiU0JSOUhXZWZuUlBJOAp0K0ZNU0srSGFPbFlZRXMrdVNqb0R5RFZIYUhJbGFPYURUOVBaSVZtVFlJcnNjcjd0MnhNa3k1OWFEVXpQR2FsCmg4Wm9menJjb0lGVlRJUGU2TGNZNDNWd3dUMU9ObXdLSE00ODNxcWh4VkNjTHF6L0p2Nlh0eFVORUlwWStKbzAKdXdJWVRhaTU4NHNhMlljRWtWd0JwTDNNOG1MSmt0eDAvZllVNVlIMW1yc3QvcVNhanZ5dW9ydHlJbzVUNE5RSgphRFlCeGNHcFhtNjZHYXFtK0R0Y0RhNjFaa1N3ZVB2NDVyb2Uxem9ZNjRHcDYwS0lTTllkME1mRWJpY0Q3YmpBCllSdGJTTnlRNTVwTEZYNlJEcUhNeDNvPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+  kind: Secret
+  metadata:
+    annotations:
+      istio.io/service-account.name: default
+    creationTimestamp: "2019-09-07T07:53:03Z"
+    name: istio.default
+    namespace: metallb-system
+    resourceVersion: "31033465"
+    selfLink: /api/v1/namespaces/metallb-system/secrets/istio.default
+    uid: eabfe34e-ebc8-48b1-b47a-5a6ac243784c
+  type: istio.io/key-and-cert
+- apiVersion: v1
+  data:
+    cert-chain.pem: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURNVENDQWhtZ0F3SUJBZ0lRR2dQRFFLaWpSa1pabzFxMGpWSG5yakFOQmdrcWhraUc5dzBCQVFzRkFEQVkKTVJZd0ZBWURWUVFLRXcxamJIVnpkR1Z5TG14dlkyRnNNQjRYRFRFNU1USXdOakEzTlRRek5Gb1hEVEl3TURNdwpOVEEzTlRRek5Gb3dBRENDQVNJd0RRWUpLb1pJaHZjTkFRRUJCUUFEZ2dFUEFEQ0NBUW9DZ2dFQkFNa1Z3TjRyCkQ1clZicU1weHFUL1VhbzFiSHNkSmpROU94VW8vcUZMVm9iVytHcURVY3VUR3RTVGtacHM5RVZmNmZyajJpd00KQWc5N2t6RFVyNGVoSndPeXVVaHRTbVVYLzJ2eTNqSlBLbCtKV1Fqc2pNU3dtN2JxYzdiQmhraUQxZjdrdFhxSwo4V1JnZnFzeWtRSDB2dW1Kb2lnMlVFNmduWEt1dkNuak5KeXFpRGlZV09kaDNrQUNwbldUR1ZpVXZwUEpmUk1FCjFrN1cyaEtqZ25IeUdmWWxtSXMzbGpza3lnSVN2NHQzbDg1Q0d6dHd0dldRVG5UWHVicFpKdkYrSGpsMnZ1N1cKSnVyUTZzMjczV1FXNXNTM0h1clVFUXVmWkNuUzF6Tk1weUMvZUtIWW0zM1liekhrZnhPRWcvWFZCdmVjMDRmWgo5enBCWU8vV2lLd0Y5c2NDQXdFQUFhT0JqakNCaXpBT0JnTlZIUThCQWY4RUJBTUNCYUF3SFFZRFZSMGxCQll3CkZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQXdHQTFVZEV3RUIvd1FDTUFBd1RBWURWUjBSQVFIL0JFSXcKUUlZK2MzQnBabVpsT2k4dlkyeDFjM1JsY2k1c2IyTmhiQzl1Y3k5dFpYUmhiR3hpTFhONWMzUmxiUzl6WVM5dApaWFJoYkd4aUxXTnZiblJ5YjJ4c1pYSXdEUVlKS29aSWh2Y05BUUVMQlFBRGdnRUJBQzdNYUVqWXJveHkyWVlhCnROcW9nYTFLV1pQWlptN21PUVZuMjgyTitxTXgrKzBFdDlpWmxsVFY1bzJHdzBmNU1MREZpSEFsemU5VlNlWCsKR29WRW03dWswUGxueHViVitBaHZxSXdBalAraXBSVnlDUnlvQTMxVnhEZ01naW9BaVNnMytQMHJLUElLNjR0LwpuNWpySzhodkl1QUs3K0g0MjZhRmFUcUFJSDJueGt3TG5nbGM3TW55bjRRRmtPeU1VckVScEsxWUVvL3owaEFlCmI4QnZTUjhsU1RVTERUUW9HWmlBbzM0SUQrQllZT2ltQjc4Wi93cDRFaXd0OXlWU0VKVGdTVmpGNThYVWh2N00KTVEyNVp6SUZPMllldmY4aXppZlg2L2dEMStVWHhRaDk2WnIxK1BXb2h6dmNxN21RdVY5MW5JbWNFREl1WXFpSgp4eE5CK0FZPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+    key.pem: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBeVJYQTNpc1BtdFZ1b3luR3BQOVJxalZzZXgwbU5EMDdGU2orb1V0V2h0YjRhb05SCnk1TWExSk9SbW16MFJWL3ArdVBhTEF3Q0QzdVRNTlN2aDZFbkE3SzVTRzFLWlJmL2EvTGVNazhxWDRsWkNPeU0KeExDYnR1cHp0c0dHU0lQVi91UzFlb3J4WkdCK3F6S1JBZlMrNlltaUtEWlFUcUNkY3E2OEtlTTBuS3FJT0poWQo1MkhlUUFLbWRaTVpXSlMrazhsOUV3VFdUdGJhRXFPQ2NmSVo5aVdZaXplV095VEtBaEsvaTNlWHprSWJPM0MyCjlaQk9kTmU1dWxrbThYNGVPWGErN3RZbTZ0RHF6YnZkWkJibXhMY2U2dFFSQzU5a0tkTFhNMHluSUw5NG9kaWIKZmRodk1lUi9FNFNEOWRVRzk1elRoOW4zT2tGZzc5YUlyQVgyeHdJREFRQUJBb0lCQVFDdi83TTBnVG9DU2dheApGckovM2R5TGZvRDViTFR3aWhzNVZRMHcvWEM1U2xSWlhhRHM3azlRZWV5NTNkMGJEMjBLby8xa0NncVBwSmhhCjUvek9XRFYrbmlKZml4RFBWT2JCZyt3STJwTjYxUXN4cldFMEVtUG9BR0xSTmFjanR3aEpOY0xGZy9EdDZ5dFQKQ2tvekRSVS84TEFXUkJ1Y0JpWm9weG1ZQy80VGsveUdEMHJPNUJmQnNUNnZaaWdwOVIrc1RzMFN4djBsNHdURgpTZkxDaWdLOElEK2lEYXMwSGhDa1BUcEM0aGRMZE01bTJtRE1PTy9Ocnc3bkdXU09GS3pnbE85ZytSa0FidDc4CldYeVFiamZoalRBbG9nNlpLTS82S3BFemxxQW9IYnJtcjhZNlQ2OURmRW1sUnZDQUV3ZEY4WjdLUGpTZFBQdXYKWjBYbnJCQlpBb0dCQU5HYzdtRnpQSnliOGhQZzh6eklBUi9RUVdCckVqWGVLcTJLMWdUdTVlYmcrbVNWVU9TQQowM0VseDB2c0Z1TmYvL2xld2xmMDdCYWpzTjYxamg0Y3FmNWlqM2ZtZTdJVnF4T1FlQmliM2VpQk9VQmhaQ3NrCmwvRWY3MldLK2lmVFdZM0N6ak1oRlR1R1VyK25vVWt4ZXV1cDZ3Rmk2SVJtYlV5VnRLeU9CUHh0QW9HQkFQV1YKc0ZoRGNqVllyQUhJQlVqTHFSZlhrRlhoelFXcVJuZ1J0K3FGcFdoSStaTnVUMzh4MDJZZmd4SkNFYXRlVWhWaQpscjdvclRLSTErNE5kRk04V3R5RTNKTlJocVR2djJWa2dvbENqSWVSVlpqTGdZSUVFNkgxTllpNHJnWmNsZ2w4ClBiU1JLc0RlWDR3NWFkSHpKZk52bS9DdU5lU25RUkM5WktqN0Z4ZURBb0dBS25JajEzbjFZU1UzRFExMVUrNlEKUTdmeE5Td1pZTzBmS1VzKzhYcks5VWpEaTVDczg4aWVpSUFFN252ZFdxZTY5dTFZWDJWS1ZYOUtOcDcvSzF2VQpsSjJ5dmEzZmlIMVl5anBzQjFld3hQODk3NnFKRlM5dzBUUU5UenVvVWw0NitUamtkbmdSaTU4MHJIaXVjVnJpCnNFd1ZPWStrMUFMRnlVZGJjY0hFZ3JVQ2dZQXQwbFFvNDh5M2IyZ0luUTEvVzZDZE5qZFVEdUYySVNNczNBRjQKM0o3VUttbUd2SnBRblRkWVlxRE9FMDNBcjhTWkFPQW5scnBhSjNaQ2tIZ1gzN2NFVmpYaHR1QnNmZDgwUitDagpRNnQ4ei8wc21TdjgyazNmZGlVYThYcG03WGVCSlpGTjA1Z3FqRk0va3FiUDZaSTNMYWZtN0ZwWjQyc2NlSG9ECm5YWGRpUUtCZ0NUWDlCa1VRSmJpOFZ3MFFFdG1oclo5YmhKdS91dlFGRkw5d1p4N1FZUmd4NHp3Z0U4Q29pblYKQ2RVWHByR21kNCs0NzdUeGY4a2t1MjUxMTQrZExNeVRZYWl1THBkNDd5U2p5WDFCeUdKMjJnelFIOGxqWTVBNApRaHBaRGtNS0FNTXN4dWlvZ1BnWkxIcko2Nllrc3JSd0wvaFFic1RVSThzRGhnbjErWmpTCi0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
+    root-cert.pem: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMzVENDQWNXZ0F3SUJBZ0lRZUw2ZmhkY2w0a2lOR0xGL0t0ekhFakFOQmdrcWhraUc5dzBCQVFzRkFEQVkKTVJZd0ZBWURWUVFLRXcxamJIVnpkR1Z5TG14dlkyRnNNQjRYRFRFNU1Ea3dOekEzTURZeU4xb1hEVEk1TURrdwpOREEzTURZeU4xb3dHREVXTUJRR0ExVUVDaE1OWTJ4MWMzUmxjaTVzYjJOaGJEQ0NBU0l3RFFZSktvWklodmNOCkFRRUJCUUFEZ2dFUEFEQ0NBUW9DZ2dFQkFMYjFvMmdKaTgwUUwyM2dmQ250K2xkUExOT1BOWDE5cVVqaWlhbWIKY21jK1ViNCsxUnVhOGI1MzQyTlBpNmNkUlIweEYrOWZEMXZqc1Z3TFJBMS9SQnB4alFCTG43TWJUT1Uyc1gvLwp1MXJaM1VOQm5zUml0NVhBSDRJK2VGTDQ3Uk93bndRKzlpMkU2ZkgvQ1dXbVpkV0hLdWZrUUViK2dwWEFnVVJTCnIwc1kxVFVjQTZYeUh2WmFGLzR3RUx6Ulg1N0F3Zk9lY1VEdHBxVXdlcVhBMVV1MjVseUpUTnZnbVM5Z1VPbncKWVZWSWM5WllBY2xWY3REbWVxYVcxK2Rnb3BwQk9LS1RYQXZMYk52dEVIRTdubHZqK1F1SEgxenEwMnJ0MERjRApQZVVNWFpFQmlibFZVTytld2l6TDdEWm5TRnp3UU5nTEJ2THFDYWl0Tjl2Zm5VOENBd0VBQWFNak1DRXdEZ1lEClZSMFBBUUgvQkFRREFnSUVNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdEUVlKS29aSWh2Y05BUUVMQlFBRGdnRUIKQUozay9CSjN3clhYTWJOSVkwMVJVaGphNEtLblRvSDNUY25DRHIrVDFZRmRRbDl6UXRiU0JSOUhXZWZuUlBJOAp0K0ZNU0srSGFPbFlZRXMrdVNqb0R5RFZIYUhJbGFPYURUOVBaSVZtVFlJcnNjcjd0MnhNa3k1OWFEVXpQR2FsCmg4Wm9menJjb0lGVlRJUGU2TGNZNDNWd3dUMU9ObXdLSE00ODNxcWh4VkNjTHF6L0p2Nlh0eFVORUlwWStKbzAKdXdJWVRhaTU4NHNhMlljRWtWd0JwTDNNOG1MSmt0eDAvZllVNVlIMW1yc3QvcVNhanZ5dW9ydHlJbzVUNE5RSgphRFlCeGNHcFhtNjZHYXFtK0R0Y0RhNjFaa1N3ZVB2NDVyb2Uxem9ZNjRHcDYwS0lTTllkME1mRWJpY0Q3YmpBCllSdGJTTnlRNTVwTEZYNlJEcUhNeDNvPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+  kind: Secret
+  metadata:
+    annotations:
+      istio.io/service-account.name: metallb-controller
+    creationTimestamp: "2019-09-07T07:53:03Z"
+    name: istio.metallb-controller
+    namespace: metallb-system
+    resourceVersion: "31033712"
+    selfLink: /api/v1/namespaces/metallb-system/secrets/istio.metallb-controller
+    uid: 26b9d180-f9e0-41ef-b2e4-0f0af5ed8cc3
+  type: istio.io/key-and-cert
+- apiVersion: v1
+  data:
+    cert-chain.pem: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURMekNDQWhlZ0F3SUJBZ0lSQUsyWnhEYVdBc3AvQ2tTbDNKa3BNOGt3RFFZSktvWklodmNOQVFFTEJRQXcKR0RFV01CUUdBMVVFQ2hNTlkyeDFjM1JsY2k1c2IyTmhiREFlRncweE9URXlNRFl3TnpVME16TmFGdzB5TURBegpNRFV3TnpVME16TmFNQUF3Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLQW9JQkFRREkwcDlICnBodWN6aERSeUQ1WWpUSGszUDdPajhFOFVTcStYY2tDZk05S1lRY0NFUUZMTkMxU1FIL2N6WURDSkRnVCt0WHUKd1I5eStBdm9HcnR6R0xYdmdCdlArb2l0MEdWT1NHQUxZYjRaMDhGbjVDajl6L0NBNmtZdG44ajBvempzcnVHcApMb1VPanhHNTFwRkJHSzlQNldjdmtERlJUWUl5Q3NMTVJTc05ZeXlJdHJVNzJFbEpCSk1WVUJ5d1kvaXRiNUUwCml4Zy9pWVZHNm91b2o4NUx1aWVHaU1FZ2lYT285aENhcFlyaXhoVnhDYUdHN21CYXZ6cGZLZytVR2RHRVFlM2EKWmNYbUxiRHNQVDNoWnRzNzNvU1NmRkVjeFZBc0NzTURuNXJaLzUzUk40SXMvbi8rOGd1a1JRVE9nQzh5RDFRMwpqemc2ZHlXVkFuRWVQblBiQWdNQkFBR2pnWXN3Z1lnd0RnWURWUjBQQVFIL0JBUURBZ1dnTUIwR0ExVWRKUVFXCk1CUUdDQ3NHQVFVRkJ3TUJCZ2dyQmdFRkJRY0RBakFNQmdOVkhSTUJBZjhFQWpBQU1Fa0dBMVVkRVFFQi93US8KTUQyR08zTndhV1ptWlRvdkwyTnNkWE4wWlhJdWJHOWpZV3d2Ym5NdmJXVjBZV3hzWWkxemVYTjBaVzB2YzJFdgpiV1YwWVd4c1lpMXpjR1ZoYTJWeU1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQWgxMXFGenRlUU5oNExrZy9TCjZsT3hrWjJhODA0aTdXNm14VmI4aXZRMi9PMjlUeGE5K0xoQjczQzMxbEFaNGloYmJYTllpK2NsL0QvTFdEVngKWEJnNmEvN1VOTkpwT0dHVVJzeXhzTnFGM1dIVnFhV1VOVmt6Y0dPVlJ6MVlydW5Cc0YzZTVsVitjSkFqZ3Z3VAozNEFGNDBXSWFxcFF3cGpMdVd1MllDNnBUMjdCNFlkc1FFVEU0ZmlrYlZ5TXZrZzB0YThieUN1T2NUMkhkcHFjCjZFRUU5eXBsejJPNG5jRlJtVUEzV2NhRnVZN01TSE5rYnJsaHQxbFp6R1haUWg0SHhlZDFPUVdlWExCQjBwYTcKQ1JKTm5hOUtrcjNGQkJTZktYVENsaUN0TXlmeXVkSmdxVU5jeGpqdllZZERnaGxoTTZERjRvSHlhbVY3Um91Vwp3dGJ5Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    key.pem: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFcEFJQkFBS0NBUUVBeU5LZlI2WWJuTTRRMGNnK1dJMHg1Tnorem8vQlBGRXF2bDNKQW56UFNtRUhBaEVCClN6UXRVa0IvM00yQXdpUTRFL3JWN3NFZmN2Z0w2QnE3Y3hpMTc0QWJ6L3FJcmRCbFRraGdDMkcrR2RQQlorUW8KL2Mvd2dPcEdMWi9JOUtNNDdLN2hxUzZGRG84UnVkYVJRUml2VCtsbkw1QXhVVTJDTWdyQ3pFVXJEV01zaUxhMQpPOWhKU1FTVEZWQWNzR1A0clcrUk5Jc1lQNG1GUnVxTHFJL09TN29uaG9qQklJbHpxUFlRbXFXSzRzWVZjUW1oCmh1NWdXcjg2WHlvUGxCblJoRUh0Mm1YRjVpMnc3RDA5NFdiYk85NkVrbnhSSE1WUUxBckRBNSthMmYrZDBUZUMKTFA1Ly92SUxwRVVFem9Bdk1nOVVONDg0T25jbGxRSnhIajV6MndJREFRQUJBb0lCQUJJUGp5K2Nhc05SYlFYUQo0bnFJU0VKeTlaK1NJaWpRaSsyTzliTDVrcEwzNHU5MnBBMGxaaVlOa3ZKQ3NSL0VyaDV0NHF1VVJzWEtOUmZzCnY0cjhYL0JvTHhnblNmK0h6SFNiNGJka1ZQcHhwdVUzQ2RDNTBNRm5VR1J1Q0Y2b0IwaVIrYzJEVjRnVnFkeHkKeGFGN0hOa3MvcEN5Z1J6MHdZN0tsUFpXQ2ljcjZVR2s5TUN5UjZwN2UzQ2NFL3dOcVV1SitWTGhrekloNlQyQgpCdkl3QW9kdm9UaC9XZWdRcWhiZmdGWHd5SWlFQ0p4amREWlIwSHFqc0FZQ05OVUlEVG5lQktTVXk4Umd0MFdCCm82NnBIWFNMSmt3ZmE5d3ZsSHhUUHV2dEpnWEN6SEtLaUZlb2NQMmFidFZsY0U5aU1rbW8va3ZpQ2I3Q2tQSmYKazBCUHBHRUNnWUVBOUZOSTRlN0s1VHh1aUxscGlsNzIvSXJ2aWRlTzRzV1o2b0lLSEcyUjZabExMLzJYdHg5RgpnSnBFNFVHbis1N0cxVkRTWXZPRERGczdGSk5acmNzRlJGY2JQUFZoNjNBRVNURlZqdFI5OWk5Q2ZIY3BueHpYCkhxcWtGZzAvZFJ2M0RDMTR3eXhQTFRlMlRWKzBzNzRtRG9EWmRvTjZZc3NOSTd3aWtma0crQWtDZ1lFQTBtc3cKNmViWnhvWTlBUTlrRWV2a2RPcUFnek1wb3pRTHh1eGoyS0tycjJKVmtxejNpV0Q0RzJKZElZOVNQRUFRT2ttUAo2UnVLVGlpQ3VwMCtKWWc5QlZGK3FvYjJIUE9VQWVsQXdqdzMya3JlR2doOElkRGZUMDRwSG5LdVBuWFBmTkhxCmszazVQZGRVT0pYY1FJWHpCNWYyaW9oZlM3YjYxRE5lUituQ25jTUNnWUVBcnRTcDRvSXRUYnZnbkpXUW9DTTAKT2FKeHBnRkpqWnc0ZDBaMlZjRlNHQVpKZHgzUDRvbk9BaWhpQVk0cDFqUFhzKzBSbngwQk9XWk84SHBBUWN4MQpDR0lNYTZKclh6M1kwMGNxSWZxTDZBNEpWV2N2c1Z2QjAzL255cC9RT015NkMweStqV3EzZlhQUVQ2MmNjTUl3CkdWQzZTOFBwWDZoTXpyVmhSM01iT1lFQ2dZRUFncDBwSXJnNnpJRzlVbkFrVlArUnM0VnhPbi9Ddzl6bHhwZ3MKTG1oam5CMjFNclFOZ0FoaVdsVkhyREpVQUxSZm5sN1Zad1RDYUZ1N01tMnpDd2N6b1o2QnV3YkZ0Umo1OGVuQgpXaENaTnZhc1FZcXN5eXpsd1V1cU9JMUZYZDR4YXJDL0pNWGw0MTVMbUVobURPTlpCWWl0OERaUXVTWWZNeU9qCnpZM3NVWk1DZ1lBWjJwejAzL2lXSFMyN294akFuWjFaYnQyR1piY3Uvb3pray9rNUcxcUtDT05mL2czcGlJNFIKNWtKNVp1YlF5M2hsdk5UdWZtMnZrVTEwazIrcVoxMjQzSVEyNW5kN1dCeDJVL1MvKzVZTk5vRmdCQitNY3NERQpPeHVvaFFPRnZHT1ZOYkxGb1huTGx2N09yaFBiRHZodEtxQ0FyQitjMGtDYlVkcVNyb1JzUVE9PQotLS0tLUVORCBSU0EgUFJJVkFURSBLRVktLS0tLQo=
+    root-cert.pem: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMzVENDQWNXZ0F3SUJBZ0lRZUw2ZmhkY2w0a2lOR0xGL0t0ekhFakFOQmdrcWhraUc5dzBCQVFzRkFEQVkKTVJZd0ZBWURWUVFLRXcxamJIVnpkR1Z5TG14dlkyRnNNQjRYRFRFNU1Ea3dOekEzTURZeU4xb1hEVEk1TURrdwpOREEzTURZeU4xb3dHREVXTUJRR0ExVUVDaE1OWTJ4MWMzUmxjaTVzYjJOaGJEQ0NBU0l3RFFZSktvWklodmNOCkFRRUJCUUFEZ2dFUEFEQ0NBUW9DZ2dFQkFMYjFvMmdKaTgwUUwyM2dmQ250K2xkUExOT1BOWDE5cVVqaWlhbWIKY21jK1ViNCsxUnVhOGI1MzQyTlBpNmNkUlIweEYrOWZEMXZqc1Z3TFJBMS9SQnB4alFCTG43TWJUT1Uyc1gvLwp1MXJaM1VOQm5zUml0NVhBSDRJK2VGTDQ3Uk93bndRKzlpMkU2ZkgvQ1dXbVpkV0hLdWZrUUViK2dwWEFnVVJTCnIwc1kxVFVjQTZYeUh2WmFGLzR3RUx6Ulg1N0F3Zk9lY1VEdHBxVXdlcVhBMVV1MjVseUpUTnZnbVM5Z1VPbncKWVZWSWM5WllBY2xWY3REbWVxYVcxK2Rnb3BwQk9LS1RYQXZMYk52dEVIRTdubHZqK1F1SEgxenEwMnJ0MERjRApQZVVNWFpFQmlibFZVTytld2l6TDdEWm5TRnp3UU5nTEJ2THFDYWl0Tjl2Zm5VOENBd0VBQWFNak1DRXdEZ1lEClZSMFBBUUgvQkFRREFnSUVNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdEUVlKS29aSWh2Y05BUUVMQlFBRGdnRUIKQUozay9CSjN3clhYTWJOSVkwMVJVaGphNEtLblRvSDNUY25DRHIrVDFZRmRRbDl6UXRiU0JSOUhXZWZuUlBJOAp0K0ZNU0srSGFPbFlZRXMrdVNqb0R5RFZIYUhJbGFPYURUOVBaSVZtVFlJcnNjcjd0MnhNa3k1OWFEVXpQR2FsCmg4Wm9menJjb0lGVlRJUGU2TGNZNDNWd3dUMU9ObXdLSE00ODNxcWh4VkNjTHF6L0p2Nlh0eFVORUlwWStKbzAKdXdJWVRhaTU4NHNhMlljRWtWd0JwTDNNOG1MSmt0eDAvZllVNVlIMW1yc3QvcVNhanZ5dW9ydHlJbzVUNE5RSgphRFlCeGNHcFhtNjZHYXFtK0R0Y0RhNjFaa1N3ZVB2NDVyb2Uxem9ZNjRHcDYwS0lTTllkME1mRWJpY0Q3YmpBCllSdGJTTnlRNTVwTEZYNlJEcUhNeDNvPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+  kind: Secret
+  metadata:
+    annotations:
+      istio.io/service-account.name: metallb-speaker
+    creationTimestamp: "2019-09-07T07:53:03Z"
+    name: istio.metallb-speaker
+    namespace: metallb-system
+    resourceVersion: "31033706"
+    selfLink: /api/v1/namespaces/metallb-system/secrets/istio.metallb-speaker
+    uid: 1a6a4ec6-3399-410a-91d0-4b89beeae627
+  type: istio.io/key-and-cert
+- apiVersion: v1
+  data:
+    ca.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRFNU1EY3pNREE1TURneU5Wb1hEVEk1TURjeU56QTVNRGd5TlZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBS3J0CnIzcHRkK0p3ZTZuK2ljYlA2Z2QydlJicjZuZ0FYR0NpdVJHakJ5MjBjMlBBZ0ZoYjJDRTNKa3NDdWlFMU11b0MKVnNCRWRBL0NZQWtRdDFlazlDZU1SOWdyaDN4MUNCMTFDRHJCeDBtaHRBNXYxS3ZneW5OZDhVdytGemJpdzNxRQpmZ3lsOXlkc1NRTmRQSFFxYitTUVZPZ283a3FSdXhLdkRiQjZvNkU1endOVDJqSnNqQ3NPdWRVMndtRjJXRlhiCnBVYy82Ymkya2puV2lyKzhkZDl4cTRPeFh3Q3hmYUMwNERqdVVCc0cyNHg3U05QMVpUY2ZxU096RzBZdkVNVWQKZXJ4Z3ZjTGQvSmVVQnNCcENxRWc2OUlMY0xRemFGTHpKK29vMjVuRENDc3d5NmUrMXdLTWVlVWdCM29ma0MzNQppM1F3NDdEWWxYZ1lLdkh6VjNNQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFKUXZnQitWNnNWVElrd1NPVTM5V1JwOVhVNVoKZXB5eDZ5NFllTnM4YXhkbGRZdlhDL1NhaC81elFpK0xEWDZiMkszalJXaEY1SFRMb0ZGODU5WjRlS0lrZGNsUApwb3NkTExXRTVGUXlLbFJvY1gyN0xYWkNWMlI3WFFCY2phdzlUd09WUWRUUVU0Z2l2N2grbUFDclZrbmVKbHE0CllhTlg0Rm5Pc0ZRWkNjRWpycWlGZTRMR1ZqSGJoVVV4QmMrcTBpTXY3NFg0Y2w1L3hjdHBub3duOWVJREVZTkoKbE5kYjR1c29GZnFWUGMvSm4yY2p0S1pLc0tubzNBYy9RTmR4c0k4RThvVmhmYmJqM1VYWDBDekFYcloyR3I1eQpnaWpyZFJuYzlXRm1Va2cyalFwdVpnazg0Nm1TbUk1Y3kwVTNaTklLd1ZEcGh2aW9NT3U5YzVKY0NOMD0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+    namespace: bWV0YWxsYi1zeXN0ZW0=
+    token: ZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNklpSjkuZXlKcGMzTWlPaUpyZFdKbGNtNWxkR1Z6TDNObGNuWnBZMlZoWTJOdmRXNTBJaXdpYTNWaVpYSnVaWFJsY3k1cGJ5OXpaWEoyYVdObFlXTmpiM1Z1ZEM5dVlXMWxjM0JoWTJVaU9pSnRaWFJoYkd4aUxYTjVjM1JsYlNJc0ltdDFZbVZ5Ym1WMFpYTXVhVzh2YzJWeWRtbGpaV0ZqWTI5MWJuUXZjMlZqY21WMExtNWhiV1VpT2lKdFpYUmhiR3hpTFdOdmJuUnliMnhzWlhJdGRHOXJaVzR0T0Rsek5Ua2lMQ0pyZFdKbGNtNWxkR1Z6TG1sdkwzTmxjblpwWTJWaFkyTnZkVzUwTDNObGNuWnBZMlV0WVdOamIzVnVkQzV1WVcxbElqb2liV1YwWVd4c1lpMWpiMjUwY205c2JHVnlJaXdpYTNWaVpYSnVaWFJsY3k1cGJ5OXpaWEoyYVdObFlXTmpiM1Z1ZEM5elpYSjJhV05sTFdGalkyOTFiblF1ZFdsa0lqb2laR1UzTW1Gak5EVXRaRFkxWWkwME5qa3dMV0ZpWlRVdE5XWmlNRGhsTkRKak1XVmlJaXdpYzNWaUlqb2ljM2x6ZEdWdE9uTmxjblpwWTJWaFkyTnZkVzUwT20xbGRHRnNiR0l0YzNsemRHVnRPbTFsZEdGc2JHSXRZMjl1ZEhKdmJHeGxjaUo5LkRMSmtqZ0lyaE9JQVVqNmxUelBfaFc3aWxJZjRIaHJ4NWpNUkFOSk1vUmJTVVA3SDY4M3MyY2xGLWFUeHNTN2pjWnF3bGVFcFYxUVVtQUhqeVBJZ2JzMTFoZFZFU3FSNWg3d0NUc19CZnllV3FGaUJQTnFBT05oNTU5V3BfblJRRXd0d2VSLTh4dEZPM2xUeG1lZWlVTEtVeWpuS0g3dzBrTkpTLUs1R3MtRXZBc3dzRnNCMHRsRlBFZDBBcVlHbG5nbF9GX1NFLWhqLTlGUmNtVmRIQ3ZMRFNHZVV3VFRUNnVVcWFHNENZOVFGNWVjVnFueXNHME4zcWhTNFVoNTRTZk9CQnlIdVJHeG1QQmRldXh2TFRJazRJRmdZNU9LYmVkcDFwS1hEc0hFcFRJRFhzWEFqeVhwdGN2aEYxMFNWTDk3RkVuX3ZVa1ZMb20xTnhIYjVoZw==
+  kind: Secret
+  metadata:
+    annotations:
+      kubernetes.io/service-account.name: metallb-controller
+      kubernetes.io/service-account.uid: de72ac45-d65b-4690-abe5-5fb08e42c1eb
+    creationTimestamp: "2019-08-22T08:48:22Z"
+    name: metallb-controller-token-89s59
+    namespace: metallb-system
+    resourceVersion: "5086628"
+    selfLink: /api/v1/namespaces/metallb-system/secrets/metallb-controller-token-89s59
+    uid: d9c4295b-c273-4dd6-96e6-a2205b40058e
+  type: kubernetes.io/service-account-token
+- apiVersion: v1
+  data:
+    ca.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRFNU1EY3pNREE1TURneU5Wb1hEVEk1TURjeU56QTVNRGd5TlZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBS3J0CnIzcHRkK0p3ZTZuK2ljYlA2Z2QydlJicjZuZ0FYR0NpdVJHakJ5MjBjMlBBZ0ZoYjJDRTNKa3NDdWlFMU11b0MKVnNCRWRBL0NZQWtRdDFlazlDZU1SOWdyaDN4MUNCMTFDRHJCeDBtaHRBNXYxS3ZneW5OZDhVdytGemJpdzNxRQpmZ3lsOXlkc1NRTmRQSFFxYitTUVZPZ283a3FSdXhLdkRiQjZvNkU1endOVDJqSnNqQ3NPdWRVMndtRjJXRlhiCnBVYy82Ymkya2puV2lyKzhkZDl4cTRPeFh3Q3hmYUMwNERqdVVCc0cyNHg3U05QMVpUY2ZxU096RzBZdkVNVWQKZXJ4Z3ZjTGQvSmVVQnNCcENxRWc2OUlMY0xRemFGTHpKK29vMjVuRENDc3d5NmUrMXdLTWVlVWdCM29ma0MzNQppM1F3NDdEWWxYZ1lLdkh6VjNNQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFKUXZnQitWNnNWVElrd1NPVTM5V1JwOVhVNVoKZXB5eDZ5NFllTnM4YXhkbGRZdlhDL1NhaC81elFpK0xEWDZiMkszalJXaEY1SFRMb0ZGODU5WjRlS0lrZGNsUApwb3NkTExXRTVGUXlLbFJvY1gyN0xYWkNWMlI3WFFCY2phdzlUd09WUWRUUVU0Z2l2N2grbUFDclZrbmVKbHE0CllhTlg0Rm5Pc0ZRWkNjRWpycWlGZTRMR1ZqSGJoVVV4QmMrcTBpTXY3NFg0Y2w1L3hjdHBub3duOWVJREVZTkoKbE5kYjR1c29GZnFWUGMvSm4yY2p0S1pLc0tubzNBYy9RTmR4c0k4RThvVmhmYmJqM1VYWDBDekFYcloyR3I1eQpnaWpyZFJuYzlXRm1Va2cyalFwdVpnazg0Nm1TbUk1Y3kwVTNaTklLd1ZEcGh2aW9NT3U5YzVKY0NOMD0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+    namespace: bWV0YWxsYi1zeXN0ZW0=
+    token: ZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNklpSjkuZXlKcGMzTWlPaUpyZFdKbGNtNWxkR1Z6TDNObGNuWnBZMlZoWTJOdmRXNTBJaXdpYTNWaVpYSnVaWFJsY3k1cGJ5OXpaWEoyYVdObFlXTmpiM1Z1ZEM5dVlXMWxjM0JoWTJVaU9pSnRaWFJoYkd4aUxYTjVjM1JsYlNJc0ltdDFZbVZ5Ym1WMFpYTXVhVzh2YzJWeWRtbGpaV0ZqWTI5MWJuUXZjMlZqY21WMExtNWhiV1VpT2lKdFpYUmhiR3hpTFhOd1pXRnJaWEl0ZEc5clpXNHRkbUozYkhjaUxDSnJkV0psY201bGRHVnpMbWx2TDNObGNuWnBZMlZoWTJOdmRXNTBMM05sY25acFkyVXRZV05qYjNWdWRDNXVZVzFsSWpvaWJXVjBZV3hzWWkxemNHVmhhMlZ5SWl3aWEzVmlaWEp1WlhSbGN5NXBieTl6WlhKMmFXTmxZV05qYjNWdWRDOXpaWEoyYVdObExXRmpZMjkxYm5RdWRXbGtJam9pWlRJNVlUUm1ZelV0T0Rka055MDBOV1UxTFRreU1HSXRNRE0wTjJGa05ETXlZV0V6SWl3aWMzVmlJam9pYzNsemRHVnRPbk5sY25acFkyVmhZMk52ZFc1ME9tMWxkR0ZzYkdJdGMzbHpkR1Z0T20xbGRHRnNiR0l0YzNCbFlXdGxjaUo5LmZKSDJ2UDdNUW9fZTBZS05tQ19qODFkWEdCRUsteWM3aWswdTFacjllemN0ZktnUFhRUGZOUUl6MGsxQm1CNUFRX1R3dFZVcGxSN09YTjZUbURkOFBmQ282Y1JvTUpCWmRqVmxqTzA4YTg5VnpKM1RLendDdDB6NEVndGhUbGlFQS1jX0pPZ093YTZUM2xRTWg5dFIwUTJBdWh0RnNPeVVzRXZlU0VKbmVoUGFHMlliazJYV0lSUDdnVi1wZXpyV3NNQW12NUt5UE1UTkxPcTREMGVpUElETFJ2djJsRktqOWU5V3VxVE9GeWhvcWJodEhKa1ktc3JXMWpmWXlERHpEZWRpZXRlSk9tbUNlTFJjSHl5LVZGQVhCV29nWEF1emNuSUFFdHNxT1dYUUlFLUhZeGdtODdYQjZqcFRTZ0dReWl4dWdHSVhzdlZGRXpZREpxQl9vUQ==
+  kind: Secret
+  metadata:
+    annotations:
+      kubernetes.io/service-account.name: metallb-speaker
+      kubernetes.io/service-account.uid: e29a4fc5-87d7-45e5-920b-0347ad432aa3
+    creationTimestamp: "2019-08-22T08:48:22Z"
+    name: metallb-speaker-token-vbwlw
+    namespace: metallb-system
+    resourceVersion: "5086631"
+    selfLink: /api/v1/namespaces/metallb-system/secrets/metallb-speaker-token-vbwlw
+    uid: 514981b9-7e38-4adf-91db-a117435dd4f0
+  type: kubernetes.io/service-account-token
+- apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    creationTimestamp: "2019-08-22T08:31:06Z"
+    name: default
+    namespace: metallb-system
+    resourceVersion: "5084739"
+    selfLink: /api/v1/namespaces/metallb-system/serviceaccounts/default
+    uid: d61d49ab-bcbb-4317-b84d-a21f27d49122
+  secrets:
+  - name: default-token-p46hd
+- apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    creationTimestamp: "2019-08-22T08:48:22Z"
+    labels:
+      app: metallb
+      chart: metallb-0.11.2
+      heritage: Tiller
+      release: metallb
+    name: metallb-controller
+    namespace: metallb-system
+    resourceVersion: "5086630"
+    selfLink: /api/v1/namespaces/metallb-system/serviceaccounts/metallb-controller
+    uid: de72ac45-d65b-4690-abe5-5fb08e42c1eb
+  secrets:
+  - name: metallb-controller-token-89s59
+- apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    creationTimestamp: "2019-08-22T08:48:22Z"
+    labels:
+      app: metallb
+      chart: metallb-0.11.2
+      heritage: Tiller
+      release: metallb
+    name: metallb-speaker
+    namespace: metallb-system
+    resourceVersion: "5086632"
+    selfLink: /api/v1/namespaces/metallb-system/serviceaccounts/metallb-speaker
+    uid: e29a4fc5-87d7-45e5-920b-0347ad432aa3
+  secrets:
+  - name: metallb-speaker-token-vbwlw
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1beta1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"name":"ambassador"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"ambassador"},"subjects":[{"kind":"ServiceAccount","name":"ambassador","namespace":"default"}]}
+    creationTimestamp: "2019-09-11T15:59:06Z"
+    name: ambassador
+    resourceVersion: "8194515"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/ambassador
+    uid: a22e6197-0927-4a49-9a48-0424b76c24ec
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: ambassador
+  subjects:
+  - kind: ServiceAccount
+    name: ambassador
+    namespace: default
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1beta1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"name":"calico-node"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"calico-node"},"subjects":[{"kind":"ServiceAccount","name":"calico-node","namespace":"kube-system"}]}
+    creationTimestamp: "2019-07-30T10:23:05Z"
+    name: calico-node
+    resourceVersion: "8241"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/calico-node
+    uid: eac943b0-9993-4c34-baf1-5c636a1871f3
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: calico-node
+  subjects:
+  - kind: ServiceAccount
+    name: calico-node
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-11-27T08:18:00Z"
+    labels:
+      app: openebs
+      chart: openebs-1.4.0
+      heritage: Tiller
+      release: cas
+    name: cas-openebs
+    resourceVersion: "28263501"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/cas-openebs
+    uid: 7f42d9fa-3f4c-44dd-ac68-c856e3a32ce0
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cas-openebs
+  subjects:
+  - kind: ServiceAccount
+    name: cas-openebs
+    namespace: openebs
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: cluster-admin
+    resourceVersion: "97"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/cluster-admin
+    uid: ea308c04-72ac-4556-85f3-1f2dcd9a76cb
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cluster-admin
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: system:masters
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1beta1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"name":"default-rbac"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"cluster-admin"},"subjects":[{"kind":"ServiceAccount","name":"default","namespace":"default"}]}
+    creationTimestamp: "2019-07-31T08:51:20Z"
+    name: default-rbac
+    resourceVersion: "143399"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/default-rbac
+    uid: 6bc29bba-fb28-4331-8fa9-5733b0447e12
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cluster-admin
+  subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: default
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1beta1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"name":"fabric8-rbac"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"cluster-admin"},"subjects":[{"kind":"ServiceAccount","name":"default","namespace":"default"}]}
+    creationTimestamp: "2019-07-31T08:50:47Z"
+    name: fabric8-rbac
+    resourceVersion: "143346"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/fabric8-rbac
+    uid: c0c27c1b-aa12-4597-9eee-a631d175a43c
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cluster-admin
+  subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: default
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1beta1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"name":"heapster"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"system:heapster"},"subjects":[{"kind":"ServiceAccount","name":"heapster","namespace":"kube-system"}]}
+    creationTimestamp: "2019-07-30T10:35:49Z"
+    name: heapster
+    resourceVersion: "9984"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/heapster
+    uid: e59b789b-ee9c-441d-a2e2-2d842a844455
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:heapster
+  subjects:
+  - kind: ServiceAccount
+    name: heapster
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-08-22T08:50:20Z"
+    labels:
+      app: nginx-ingress
+      chart: nginx-ingress-1.16.1
+      heritage: Tiller
+      release: ingress
+    name: ingress-nginx-ingress
+    resourceVersion: "5086891"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/ingress-nginx-ingress
+    uid: 2a8d9e33-3b61-498f-84a5-81c54216a20a
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: ingress-nginx-ingress
+  subjects:
+  - kind: ServiceAccount
+    name: ingress-nginx-ingress
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"labels":{"app":"security","chart":"security","heritage":"Tiller","release":"istio"},"name":"istio-citadel-istio-system"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"istio-citadel-istio-system"},"subjects":[{"kind":"ServiceAccount","name":"istio-citadel-service-account","namespace":"istio-system"}]}
+    creationTimestamp: "2019-09-07T07:05:53Z"
+    labels:
+      app: security
+      chart: security
+      heritage: Tiller
+      release: istio
+    name: istio-citadel-istio-system
+    resourceVersion: "7514405"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/istio-citadel-istio-system
+    uid: 13c92303-91a7-4301-b7b0-028d2fe5c969
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: istio-citadel-istio-system
+  subjects:
+  - kind: ServiceAccount
+    name: istio-citadel-service-account
+    namespace: istio-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      helm.sh/hook: post-delete
+      helm.sh/hook-delete-policy: hook-succeeded
+      helm.sh/hook-weight: "2"
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRoleBinding","metadata":{"annotations":{"helm.sh/hook":"post-delete","helm.sh/hook-delete-policy":"hook-succeeded","helm.sh/hook-weight":"2"},"labels":{"app":"security","chart":"security","heritage":"Tiller","release":"istio"},"name":"istio-cleanup-secrets-istio-system"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"istio-cleanup-secrets-istio-system"},"subjects":[{"kind":"ServiceAccount","name":"istio-cleanup-secrets-service-account","namespace":"istio-system"}]}
+    creationTimestamp: "2019-09-07T07:52:37Z"
+    labels:
+      app: security
+      chart: security
+      heritage: Tiller
+      release: istio
+    name: istio-cleanup-secrets-istio-system
+    resourceVersion: "7514353"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/istio-cleanup-secrets-istio-system
+    uid: b8e0f6e0-b3ef-4764-bb24-475e61543966
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: istio-cleanup-secrets-istio-system
+  subjects:
+  - kind: ServiceAccount
+    name: istio-cleanup-secrets-service-account
+    namespace: istio-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"labels":{"app":"galley","chart":"galley","heritage":"Tiller","release":"istio"},"name":"istio-galley-admin-role-binding-istio-system"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"istio-galley-istio-system"},"subjects":[{"kind":"ServiceAccount","name":"istio-galley-service-account","namespace":"istio-system"}]}
+    creationTimestamp: "2019-09-07T07:05:53Z"
+    labels:
+      app: galley
+      chart: galley
+      heritage: Tiller
+      release: istio
+    name: istio-galley-admin-role-binding-istio-system
+    resourceVersion: "7514395"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/istio-galley-admin-role-binding-istio-system
+    uid: b37db476-0a4b-4394-9b14-9ca9db9f5428
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: istio-galley-istio-system
+  subjects:
+  - kind: ServiceAccount
+    name: istio-galley-service-account
+    namespace: istio-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-09-07T06:59:15Z"
+    labels:
+      app: istio-init
+      istio: init
+    name: istio-init-admin-role-binding-istio-system
+    resourceVersion: "7507793"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/istio-init-admin-role-binding-istio-system
+    uid: c0b538fa-96e0-4fa2-b88c-e5ed1a8d5be5
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: istio-init-istio-system
+  subjects:
+  - kind: ServiceAccount
+    name: istio-init-service-account
+    namespace: istio-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"labels":{"app":"kiali","chart":"kiali","heritage":"Tiller","release":"istio"},"name":"istio-kiali-admin-role-binding-istio-system"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"kiali"},"subjects":[{"kind":"ServiceAccount","name":"kiali-service-account","namespace":"istio-system"}]}
+    creationTimestamp: "2019-09-07T07:52:39Z"
+    labels:
+      app: kiali
+      chart: kiali
+      heritage: Tiller
+      release: istio
+    name: istio-kiali-admin-role-binding-istio-system
+    resourceVersion: "7514397"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/istio-kiali-admin-role-binding-istio-system
+    uid: 3e1f86dc-0d6b-4f75-88e2-1931b4eb4f32
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: kiali
+  subjects:
+  - kind: ServiceAccount
+    name: kiali-service-account
+    namespace: istio-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"labels":{"app":"mixer","chart":"mixer","heritage":"Tiller","release":"istio"},"name":"istio-mixer-admin-role-binding-istio-system"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"istio-mixer-istio-system"},"subjects":[{"kind":"ServiceAccount","name":"istio-mixer-service-account","namespace":"istio-system"}]}
+    creationTimestamp: "2019-09-07T07:05:53Z"
+    labels:
+      app: mixer
+      chart: mixer
+      heritage: Tiller
+      release: istio
+    name: istio-mixer-admin-role-binding-istio-system
+    resourceVersion: "7514400"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/istio-mixer-admin-role-binding-istio-system
+    uid: a20712ca-071e-4424-90fc-3a3eead0f816
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: istio-mixer-istio-system
+  subjects:
+  - kind: ServiceAccount
+    name: istio-mixer-service-account
+    namespace: istio-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"labels":{"chart":"istio-1.2.5"},"name":"istio-multi"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"istio-reader"},"subjects":[{"kind":"ServiceAccount","name":"istio-multi","namespace":"istio-system"}]}
+    creationTimestamp: "2019-09-07T07:05:53Z"
+    labels:
+      chart: istio-1.2.5
+    name: istio-multi
+    resourceVersion: "7514409"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/istio-multi
+    uid: eb6968f2-175b-4a69-bee1-9e4351c4697b
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: istio-reader
+  subjects:
+  - kind: ServiceAccount
+    name: istio-multi
+    namespace: istio-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"labels":{"app":"pilot","chart":"pilot","heritage":"Tiller","release":"istio"},"name":"istio-pilot-istio-system"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"istio-pilot-istio-system"},"subjects":[{"kind":"ServiceAccount","name":"istio-pilot-service-account","namespace":"istio-system"}]}
+    creationTimestamp: "2019-09-07T07:05:53Z"
+    labels:
+      app: pilot
+      chart: pilot
+      heritage: Tiller
+      release: istio
+    name: istio-pilot-istio-system
+    resourceVersion: "7514402"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/istio-pilot-istio-system
+    uid: fc7b8fa8-3a33-4c4a-aeb7-2a297959cfa3
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: istio-pilot-istio-system
+  subjects:
+  - kind: ServiceAccount
+    name: istio-pilot-service-account
+    namespace: istio-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1beta1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"labels":{"app":"security","chart":"security","heritage":"Tiller","release":"istio"},"name":"istio-security-post-install-role-binding-istio-system"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"istio-security-post-install-istio-system"},"subjects":[{"kind":"ServiceAccount","name":"istio-security-post-install-account","namespace":"istio-system"}]}
+    creationTimestamp: "2019-09-07T07:05:53Z"
+    labels:
+      app: security
+      chart: security
+      heritage: Tiller
+      release: istio
+    name: istio-security-post-install-role-binding-istio-system
+    resourceVersion: "7514364"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/istio-security-post-install-role-binding-istio-system
+    uid: 2bb2ed9a-7075-4906-bd35-61612641604b
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: istio-security-post-install-istio-system
+  subjects:
+  - kind: ServiceAccount
+    name: istio-security-post-install-account
+    namespace: istio-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"labels":{"app":"sidecarInjectorWebhook","chart":"sidecarInjectorWebhook","heritage":"Tiller","istio":"sidecar-injector","release":"istio"},"name":"istio-sidecar-injector-admin-role-binding-istio-system"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"istio-sidecar-injector-istio-system"},"subjects":[{"kind":"ServiceAccount","name":"istio-sidecar-injector-service-account","namespace":"istio-system"}]}
+    creationTimestamp: "2019-09-07T07:05:53Z"
+    labels:
+      app: sidecarInjectorWebhook
+      chart: sidecarInjectorWebhook
+      heritage: Tiller
+      istio: sidecar-injector
+      release: istio
+    name: istio-sidecar-injector-admin-role-binding-istio-system
+    resourceVersion: "7514407"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/istio-sidecar-injector-admin-role-binding-istio-system
+    uid: a7e5e195-847f-4a89-b9b6-4dda97c5c818
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: istio-sidecar-injector-istio-system
+  subjects:
+  - kind: ServiceAccount
+    name: istio-sidecar-injector-service-account
+    namespace: istio-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-07-30T09:08:47Z"
+    name: kubeadm:kubelet-bootstrap
+    resourceVersion: "165"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/kubeadm%3Akubelet-bootstrap
+    uid: bbb9f7df-651f-4a44-be37-555c3a2182d5
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:node-bootstrapper
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: system:bootstrappers:kubeadm:default-node-token
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-07-30T09:08:47Z"
+    name: kubeadm:node-autoapprove-bootstrap
+    resourceVersion: "166"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/kubeadm%3Anode-autoapprove-bootstrap
+    uid: 07314184-8642-4e52-82eb-2847dcd76ebe
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:certificates.k8s.io:certificatesigningrequests:nodeclient
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: system:bootstrappers:kubeadm:default-node-token
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-07-30T09:08:47Z"
+    name: kubeadm:node-autoapprove-certificate-rotation
+    resourceVersion: "167"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/kubeadm%3Anode-autoapprove-certificate-rotation
+    uid: b226f649-c637-4bde-8e22-19eb4e51dead
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:certificates.k8s.io:certificatesigningrequests:selfnodeclient
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: system:nodes
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-07-30T09:08:47Z"
+    name: kubeadm:node-proxier
+    resourceVersion: "188"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/kubeadm%3Anode-proxier
+    uid: cee0ff2a-8cd6-4cf2-867c-5fb91fd22daa
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:node-proxier
+  subjects:
+  - kind: ServiceAccount
+    name: kube-proxy
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-09-18T18:47:06Z"
+    name: kubeapps-operator
+    resourceVersion: "9281043"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/kubeapps-operator
+    uid: 9fc539ad-f581-40a0-89e0-5e50fed47dbf
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cluster-admin
+  subjects:
+  - kind: ServiceAccount
+    name: kubeapps-operator
+    namespace: default
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"name":"kubernetes-dashboard"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"kubernetes-dashboard"},"subjects":[{"kind":"ServiceAccount","name":"kubernetes-dashboard","namespace":"kubernetes-dashboard"}]}
+    creationTimestamp: "2019-11-21T12:24:04Z"
+    name: kubernetes-dashboard
+    resourceVersion: "26629267"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/kubernetes-dashboard
+    uid: 4de36e2f-19bc-42fe-85db-5184448ab101
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: kubernetes-dashboard
+  subjects:
+  - kind: ServiceAccount
+    name: kubernetes-dashboard
+    namespace: kubernetes-dashboard
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-08-22T08:48:22Z"
+    labels:
+      app: metallb
+      chart: metallb-0.11.2
+      heritage: Tiller
+      release: metallb
+    name: metallb:controller
+    resourceVersion: "5086634"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/metallb%3Acontroller
+    uid: d2070440-f40c-4cf2-b747-326704195b30
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: metallb:controller
+  subjects:
+  - kind: ServiceAccount
+    name: metallb-controller
+    namespace: metallb-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-08-22T08:48:22Z"
+    labels:
+      app: metallb
+      chart: metallb-0.11.2
+      heritage: Tiller
+      release: metallb
+    name: metallb:speaker
+    resourceVersion: "5086635"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/metallb%3Aspeaker
+    uid: c26bed98-8b8b-4fb0-9c53-86b52e031f3f
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: metallb:speaker
+  subjects:
+  - kind: ServiceAccount
+    name: metallb-speaker
+    namespace: metallb-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-11-21T14:14:36Z"
+    labels:
+      app: metrics-server
+      chart: metrics-server-2.8.5
+      heritage: Tiller
+      release: metrics-server
+    name: metrics-server:system:auth-delegator
+    resourceVersion: "26651656"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/metrics-server%3Asystem%3Aauth-delegator
+    uid: 443a7c88-dcee-4994-9d37-b36138235389
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:auth-delegator
+  subjects:
+  - kind: ServiceAccount
+    name: metrics-server
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-12-09T08:11:21Z"
+    labels:
+      app: nfs-server-provisioner
+      chart: nfs-server-provisioner-0.3.2
+      heritage: Tiller
+      release: nfs-server
+    name: nfs-server-nfs-server-provisioner
+    resourceVersion: "31977617"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/nfs-server-nfs-server-provisioner
+    uid: 800c073d-fe22-4876-bcdd-3e4446d66a9d
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: nfs-server-nfs-server-provisioner
+  subjects:
+  - kind: ServiceAccount
+    name: nfs-server-nfs-server-provisioner
+    namespace: default
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"labels":{"app":"prometheus","chart":"prometheus","heritage":"Tiller","release":"istio"},"name":"prometheus-istio-system"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"prometheus-istio-system"},"subjects":[{"kind":"ServiceAccount","name":"prometheus","namespace":"istio-system"}]}
+    creationTimestamp: "2019-09-07T07:05:53Z"
+    labels:
+      app: prometheus
+      chart: prometheus
+      heritage: Tiller
+      release: istio
+    name: prometheus-istio-system
+    resourceVersion: "7514404"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/prometheus-istio-system
+    uid: 4d36eb23-7145-4565-a4ac-384051f2d458
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: prometheus-istio-system
+  subjects:
+  - kind: ServiceAccount
+    name: prometheus
+    namespace: istio-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-09-04T06:48:49Z"
+    name: spinnaker-default-crbinding
+    resourceVersion: "7027803"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/spinnaker-default-crbinding
+    uid: 841606fd-0c46-4536-837a-ed30aa3e6cc9
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cluster-admin
+  subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: spinnaker
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1beta1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"name":"swisslog-admin"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"cluster-admin"},"subjects":[{"kind":"ServiceAccount","name":"swisslog-admin","namespace":"kube-system"}]}
+    creationTimestamp: "2019-07-30T10:27:05Z"
+    name: swisslog-admin
+    resourceVersion: "8831"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/swisslog-admin
+    uid: fd7cd3e2-8721-4728-b1c7-df8a336230a8
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cluster-admin
+  subjects:
+  - kind: ServiceAccount
+    name: swisslog-admin
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:basic-user
+    resourceVersion: "99"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Abasic-user
+    uid: 762ade01-f77a-4f9d-bc04-5ac854a3f59e
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:basic-user
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: system:authenticated
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:attachdetach-controller
+    resourceVersion: "107"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Aattachdetach-controller
+    uid: a6e21130-419e-480b-8fa2-f5a9e1653537
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:attachdetach-controller
+  subjects:
+  - kind: ServiceAccount
+    name: attachdetach-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:certificate-controller
+    resourceVersion: "130"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Acertificate-controller
+    uid: 20063055-f293-4857-b446-6465cdd6568b
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:certificate-controller
+  subjects:
+  - kind: ServiceAccount
+    name: certificate-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:clusterrole-aggregation-controller
+    resourceVersion: "108"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Aclusterrole-aggregation-controller
+    uid: d80f12f1-8405-46e0-bd0e-622e22160504
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:clusterrole-aggregation-controller
+  subjects:
+  - kind: ServiceAccount
+    name: clusterrole-aggregation-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:cronjob-controller
+    resourceVersion: "109"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Acronjob-controller
+    uid: 7cb325a3-4cd5-44e1-88b5-8cc70b543167
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:cronjob-controller
+  subjects:
+  - kind: ServiceAccount
+    name: cronjob-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:daemon-set-controller
+    resourceVersion: "110"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Adaemon-set-controller
+    uid: b76c1fd7-05bc-435f-84ff-d42c6c9407c2
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:daemon-set-controller
+  subjects:
+  - kind: ServiceAccount
+    name: daemon-set-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:deployment-controller
+    resourceVersion: "111"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Adeployment-controller
+    uid: 50bbc060-b71f-44ab-85d6-c76feed7eea1
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:deployment-controller
+  subjects:
+  - kind: ServiceAccount
+    name: deployment-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:disruption-controller
+    resourceVersion: "112"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Adisruption-controller
+    uid: 98eef827-8faa-48dd-ad64-e3f42d5e6128
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:disruption-controller
+  subjects:
+  - kind: ServiceAccount
+    name: disruption-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:endpoint-controller
+    resourceVersion: "113"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Aendpoint-controller
+    uid: fb8d7f93-066b-4661-b13f-d0543f498019
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:endpoint-controller
+  subjects:
+  - kind: ServiceAccount
+    name: endpoint-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:expand-controller
+    resourceVersion: "114"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Aexpand-controller
+    uid: 00d65c73-b36a-4806-8608-32d40ff39c8f
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:expand-controller
+  subjects:
+  - kind: ServiceAccount
+    name: expand-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:generic-garbage-collector
+    resourceVersion: "115"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Ageneric-garbage-collector
+    uid: 13e273eb-fa05-4e88-8c99-20d84a4fad17
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:generic-garbage-collector
+  subjects:
+  - kind: ServiceAccount
+    name: generic-garbage-collector
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:horizontal-pod-autoscaler
+    resourceVersion: "116"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Ahorizontal-pod-autoscaler
+    uid: 8aab82ab-952a-4f46-b03b-2ac554e869fb
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:horizontal-pod-autoscaler
+  subjects:
+  - kind: ServiceAccount
+    name: horizontal-pod-autoscaler
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:job-controller
+    resourceVersion: "117"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Ajob-controller
+    uid: c66604c1-da1b-4fcb-b9ea-bfeaba76f3b8
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:job-controller
+  subjects:
+  - kind: ServiceAccount
+    name: job-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:namespace-controller
+    resourceVersion: "118"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Anamespace-controller
+    uid: c1700ac4-3772-43f9-81a1-25b4fff1bc5a
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:namespace-controller
+  subjects:
+  - kind: ServiceAccount
+    name: namespace-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:node-controller
+    resourceVersion: "119"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Anode-controller
+    uid: 07838510-830c-496b-b34f-068feb229b77
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:node-controller
+  subjects:
+  - kind: ServiceAccount
+    name: node-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:persistent-volume-binder
+    resourceVersion: "120"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Apersistent-volume-binder
+    uid: 5ad39ed1-e7bb-4d71-bf2b-c614d65408bd
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:persistent-volume-binder
+  subjects:
+  - kind: ServiceAccount
+    name: persistent-volume-binder
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:pod-garbage-collector
+    resourceVersion: "121"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Apod-garbage-collector
+    uid: c7222477-ba05-4b3a-9861-c56bea7116ef
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:pod-garbage-collector
+  subjects:
+  - kind: ServiceAccount
+    name: pod-garbage-collector
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:pv-protection-controller
+    resourceVersion: "132"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Apv-protection-controller
+    uid: 92fd5ac3-2499-4cb8-8673-945e2a556f29
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:pv-protection-controller
+  subjects:
+  - kind: ServiceAccount
+    name: pv-protection-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:pvc-protection-controller
+    resourceVersion: "131"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Apvc-protection-controller
+    uid: 540b30f7-9493-4464-b744-644d90925bf5
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:pvc-protection-controller
+  subjects:
+  - kind: ServiceAccount
+    name: pvc-protection-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:replicaset-controller
+    resourceVersion: "122"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Areplicaset-controller
+    uid: a5df7a60-e55b-45da-a7c8-c39ca0fdb762
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:replicaset-controller
+  subjects:
+  - kind: ServiceAccount
+    name: replicaset-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:replication-controller
+    resourceVersion: "123"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Areplication-controller
+    uid: 0410b18f-70e0-4bf4-ac5a-5a18a4ce9019
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:replication-controller
+  subjects:
+  - kind: ServiceAccount
+    name: replication-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:resourcequota-controller
+    resourceVersion: "124"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Aresourcequota-controller
+    uid: d2271d0c-87d3-41bb-b76a-80d553608e71
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:resourcequota-controller
+  subjects:
+  - kind: ServiceAccount
+    name: resourcequota-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:route-controller
+    resourceVersion: "125"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Aroute-controller
+    uid: 1ea629c9-8df9-4dde-856f-c483e56b77b8
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:route-controller
+  subjects:
+  - kind: ServiceAccount
+    name: route-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:service-account-controller
+    resourceVersion: "126"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Aservice-account-controller
+    uid: 9fa198a8-af9e-4ecc-8de0-345af3ef0da0
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:service-account-controller
+  subjects:
+  - kind: ServiceAccount
+    name: service-account-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:service-controller
+    resourceVersion: "127"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Aservice-controller
+    uid: aae21e5d-be93-4bb5-9a0e-e81153131842
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:service-controller
+  subjects:
+  - kind: ServiceAccount
+    name: service-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:statefulset-controller
+    resourceVersion: "128"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Astatefulset-controller
+    uid: 22f214d8-7512-4be1-87b8-bbf7e5b24083
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:statefulset-controller
+  subjects:
+  - kind: ServiceAccount
+    name: statefulset-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:45Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:controller:ttl-controller
+    resourceVersion: "129"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acontroller%3Attl-controller
+    uid: bf963057-d2a2-4b99-b8c8-3df8c9d28264
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:controller:ttl-controller
+  subjects:
+  - kind: ServiceAccount
+    name: ttl-controller
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-07-30T09:08:47Z"
+    name: system:coredns
+    resourceVersion: "173"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Acoredns
+    uid: 39eee856-cefe-47e7-817a-0a38deaff146
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:coredns
+  subjects:
+  - kind: ServiceAccount
+    name: coredns
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:discovery
+    resourceVersion: "98"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Adiscovery
+    uid: ae718a61-79c0-4b16-b378-0d36def13fa4
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:discovery
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: system:authenticated
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:kube-controller-manager
+    resourceVersion: "102"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Akube-controller-manager
+    uid: 36970693-a280-4dd1-aabf-738ce1612b69
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:kube-controller-manager
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: system:kube-controller-manager
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:kube-dns
+    resourceVersion: "103"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Akube-dns
+    uid: 55ac9626-ff96-4f84-8454-05089368d413
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:kube-dns
+  subjects:
+  - kind: ServiceAccount
+    name: kube-dns
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:kube-scheduler
+    resourceVersion: "104"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Akube-scheduler
+    uid: bf378829-0cfa-42e1-a98a-e088c359059d
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:kube-scheduler
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: system:kube-scheduler
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2019-11-21T14:14:36Z"
+    labels:
+      app: metrics-server
+      chart: metrics-server-2.8.5
+      heritage: Tiller
+      release: metrics-server
+    name: system:metrics-server
+    resourceVersion: "26651660"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Ametrics-server
+    uid: 15306cff-f53d-4017-a2c9-7da34923780f
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:metrics-server
+  subjects:
+  - kind: ServiceAccount
+    name: metrics-server
+    namespace: kube-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:node
+    resourceVersion: "106"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Anode
+    uid: a0aae0aa-9ee0-497e-87d4-ff9cd85d49f4
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:node
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:node-proxier
+    resourceVersion: "101"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Anode-proxier
+    uid: b823538f-96e9-4220-9e8c-95863fc23903
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:node-proxier
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: system:kube-proxy
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:public-info-viewer
+    resourceVersion: "100"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Apublic-info-viewer
+    uid: 2b837118-89a2-481c-b9ce-43e2087394c7
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:public-info-viewer
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: system:authenticated
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: system:unauthenticated
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      rbac.authorization.kubernetes.io/autoupdate: "true"
+    creationTimestamp: "2019-07-30T09:08:44Z"
+    labels:
+      kubernetes.io/bootstrapping: rbac-defaults
+    name: system:volume-scheduler
+    resourceVersion: "105"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/system%3Avolume-scheduler
+    uid: 93809d23-ee9d-4e08-a1d6-1148adcb6c37
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: system:volume-scheduler
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: system:kube-scheduler
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1beta1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"name":"tiller"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"cluster-admin"},"subjects":[{"kind":"ServiceAccount","name":"tiller","namespace":"kube-system"}]}
+    creationTimestamp: "2019-07-30T13:44:37Z"
+    name: tiller
+    resourceVersion: "28507"
+    selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/tiller
+    uid: 211815cc-369b-49c6-ab0e-620e197d74f0
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cluster-admin
+  subjects:
+  - kind: ServiceAccount
+    name: tiller
+    namespace: kube-system
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
