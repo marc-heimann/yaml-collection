@@ -46,8 +46,8 @@ image:
 
 # AWS Access keys to inject as environment variables
 aws:
-  secret_key: "sjhmMsuWppbVgzyHD7cYP3goGijx2XAjY78co6as"
-  access_key: "AKIAU6DCFQNUCVZ76JEJ"
+  secret_key: "minio"
+  access_key: "minio123"
   region: "us-east-1"
 
 ## Node labels for pod assignment
