@@ -1,0 +1,9 @@
+{
+    "AccessKey": {
+        "UserName": "velero",
+        "AccessKeyId": "AKIAU6DCFQNUEH5B6Q4K",
+        "Status": "Active",
+        "SecretAccessKey": "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",
+        "CreateDate": "2020-01-14T20:51:32Z"
+    }
+}
