@@ -6,7 +6,7 @@
 # enabling restic). Required.
 image:
   repository: velero/velero
-  tag: v1.1.0
+  tag: v1.2.0
   pullPolicy: IfNotPresent
 
 # Annotations to add to the Velero deployment's pod template. Optional.
@@ -20,13 +20,13 @@ podAnnotations: {}
 resources: {}
 
 # Init containers to add to the Velero deployment's pod spec. At least one plugin provider image is required.
-initContainers: [] 
-#  - name: velero-plugin-for-aws
-#    image: velero/velero-plugin-for-aws:v1.0.0
-#    imagePullPolicy: IfNotPresent
-#    volumeMounts:
-#      - mountPath: /target
-#        name: plugins
+initContainers:   
+  - name: velero-plugin-for-aws
+    image: velero/velero-plugin-for-aws:v1.0.0
+    imagePullPolicy: IfNotPresent
+    volumeMounts:
+      - mountPath: /target
+        name: plugins
 
 # Tolerations to use for the Velero deployment. Optional.
 tolerations: []
@@ -77,14 +77,14 @@ configuration:
     # Bucket to store backups in. Required.
     bucket: velero
     # Prefix within bucket under which to store backups. Optional.
-    # prefix: ""
+    #prefix: "backup"
     # Additional provider-specific configuration. See link above
     # for details of required/optional fields for your provider.
     config: 
-      region: minio
-      s3ForcePathStyle: true
-      s3Url: http://s3-storage-minio:9000
-    #  publicUrl: http://10.49.145.110:30919/minio/velero-bucket/
+      region: us-east-1
+    #  s3ForcePathStyle: true
+      #s3Url: http://s3-storage-minio.default.svc:9000
+      #publicUrl: http://s3-strage-minio:30919/minio/velero/
     #  signatureVersion: "4"
     #  kmsKeyId: AKIAIOSFODNN7EXAMPLE
     #  resourceGroup:
@@ -101,7 +101,7 @@ configuration:
     # Additional provider-specific configuration. See link above
     # for details of required/optional fields for your provider.
     config: 
-     region: minio
+     region: us-east-1
   #    apitimeout:
   #    resourceGroup:
   #    snapshotLocation:
@@ -146,7 +146,7 @@ rbac:
 # Information about the Kubernetes service account Velero uses.
 serviceAccount:
   server:
-    create: true
+    create: false
     name: default
 
 # Info about the secret to be used by the Velero deployment, which
@@ -159,17 +159,16 @@ credentials:
   useSecret: true
   # Name of a pre-existing secret (if any) in the Velero namespace
   # that should be used to get IAM account credentials. Optional.
-  existingSecret:
+  existingSecret: cloud-credentials    
   # Data to be stored in the Velero secret, if `useSecret` is
   # true and `existingSecret` is empty. This should be the contents
   # of your IAM credentials file.
   secretContents: 
-    cloud: |
-      [default]
-      AWS_ACCESS_KEY=AKIAIOSFODNN7EXAMPLE
-      AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-      AWS_REGION=minio
-
+    cloud: | 
+      [default]      
+      aws_access_key_id=minio
+      aws_secret_access_key=minio123
+      
 # Wheter to create volumesnapshotlocation crd, if false => disable snapshot feature
 snapshotsEnabled: false
 

@@ -1,0 +1,1 @@
+velero install --secret-file ./credentials-velero --bucket velero --use-volume-snapshots=false --use-restic --backup-location-config region=minio,s3ForcePathStyle="true",s3Url=http://10.49.145.197:9000 --plugins velero/velero-plugin-for-aws:v1.0.0 --provider aws
